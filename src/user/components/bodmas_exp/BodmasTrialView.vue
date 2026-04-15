@@ -211,7 +211,7 @@ const SUMMARY_MESSAGES = {
       <!-- Expression -->
       <div>
         <p class="text-sm text-muted-foreground mb-1">
-          Here is the expression given to {{ currentTrial.studentName }}:
+           {{ currentTrial.studentName }} is a third grade student. Here is the expression given to {{ currentTrial.studentName }}, in their math test.:
         </p>
         <p class="text-2xl font-mono font-semibold">{{ currentTrial.expression }}</p>
       </div>
@@ -238,7 +238,7 @@ const SUMMARY_MESSAGES = {
       <!-- Description box (type1_yn — Type 1 only) -->
       <div v-if="currentTrial.format === 'type1_yn' && !isTextInput"
            class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-        <p class="font-medium mb-1">Proposed explanation:</p>
+        <p class="font-medium mb-1">Here is a proposed description of what {{ currentTrial.studentName }} did:</p>
         <p class="italic">"{{ currentTrial.descriptionShown }}"</p>
       </div>
 
@@ -303,7 +303,7 @@ const SUMMARY_MESSAGES = {
       <!-- Slider (type1_yn and advice_slider) -->
       <div v-if="isAdviceSlider" class="flex flex-col gap-4 flex-1">
         <p class="text-sm font-medium">
-          <template v-if="currentTrial.format === 'type1_yn'">How accurate is this description?</template>
+          <template v-if="currentTrial.format === 'type1_yn'">How accurate do you think the description matches what {{ currentTrial.studentName }} did?</template>
           <template v-else>How helpful do you think this advice will be for {{ currentTrial.studentName }}?</template>
         </p>
         <div class="flex flex-col gap-2 px-1">
