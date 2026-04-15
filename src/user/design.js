@@ -204,30 +204,6 @@ timeline.pushSeqView({
   component: BodmasTrialView,
 })
 
-// Type 2: describe what the student did (free text)
-timeline.pushSeqView({
-  name: 'exp_type2',
-  path: '/experiment-describe',
-  component: BodmasTrialView,
-  props: { trialType: 'type2' },
-})
-
-// Type 3: rate advice helpfulness (0–10 slider)
-timeline.pushSeqView({
-  name: 'exp_type3',
-  path: '/experiment-advice',
-  component: BodmasTrialView,
-  props: { trialType: 'type3' },
-})
-
-// Type 4: give advice for the student (free text)
-timeline.pushSeqView({
-  name: 'exp_type4',
-  path: '/experiment-give-advice',
-  component: BodmasTrialView,
-  props: { trialType: 'type4' },
-})
-
 ////// example of randomized branching routes
 // (you can also have conditional branching based on conditions -- see docs)
 
