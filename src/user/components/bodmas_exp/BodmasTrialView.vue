@@ -1,0 +1,360 @@
+<script setup>
+import useViewAPI from '@/core/composables/useViewAPI'
+import { Button } from '@/uikit/components/ui/button'
+import { ConstrainedTaskWindow } from '@/uikit/layouts'
+import trialsData from './trials.json'
+import adviceTrialsData from './advice_trials.json'
+
+const props = defineProps({
+  trialType: { type: String, default: 'type1' },
+})
+
+const api = useViewAPI()
+
+// ── Select data source and keys based on trial type ───────────────────────────
+// Types 1 & 2 → trials.json (description-based)
+// Types 3 & 4 → advice_trials.json (advice-based)
+// Types 2 & 4 → free-text response instead of slider
+const isAdviceSource = props.trialType === 'type3' || props.trialType === 'type4'
+const isTextInput    = props.trialType === 'type2' || props.trialType === 'type4'
+const sourceData     = isAdviceSource ? adviceTrialsData : trialsData
+
+const persistKey  = props.trialType === 'type1' ? 'participantTrialIds'
+                  : `participantTrialIds_${props.trialType}`
+const attemptsKey = props.trialType === 'type1' ? 'attempts'
+                  : `attempts_${props.trialType}`
+
+// ── Per-participant trial sampling ────────────────────────────────────────────
+// Types 1 & 2: Pool A (15) → draw 10 at random; Pool B/C/D: all 5 each → 25 total
+// Types 3 & 4: all 20 shown, shuffled
+if (!api.persist.isDefined(persistKey)) {
+  if (isAdviceSource) {
+    const combined = [...sourceData].sort(() => Math.random() - 0.5)
+    api.persist[persistKey] = combined.map(t => t.id)
+  } else {
+    const poolA    = sourceData.filter(t => t.pool === 'A')
+    const sampledA = [...poolA].sort(() => Math.random() - 0.5).slice(0, 10)
+    const poolBCD  = sourceData.filter(t => t.pool !== 'A')
+    const combined = [...sampledA, ...poolBCD].sort(() => Math.random() - 0.5)
+    api.persist[persistKey] = combined.map(t => t.id)
+  }
+}
+
+const idToTrial = Object.fromEntries(sourceData.map(t => [t.id, t]))
+const participantTrials = api.persist[persistKey].map(id => idToTrial[id])
+const TRIAL_COUNT = participantTrials.length   // 25 for types 1/2, 20 for types 3/4
+
+// ── Build step list ───────────────────────────────────────────────────────────
+const trials = api.steps.append(
+  participantTrials.map((t) => ({
+    id: `trial_${t.id}`,
+    trialData: t,
+    response: null,
+    correct: null,
+    rt: null,
+  }))
+)
+trials.append([{ id: 'summary' }])
+
+// Persistent counters (initialise all four so they always exist)
+if (!api.persist.isDefined('score'))              api.persist.score = 0
+if (!api.persist.isDefined('attempts'))           api.persist.attempts = 0
+if (!api.persist.isDefined('attempts_type2'))     api.persist.attempts_type2 = 0
+if (!api.persist.isDefined('attempts_type3'))     api.persist.attempts_type3 = 0
+if (!api.persist.isDefined('attempts_type4'))     api.persist.attempts_type4 = 0
+
+if (!api.isTimerStarted()) api.startTimer()
+
+// ── Autofill for testing ──────────────────────────────────────────────────────
+function autofill() {
+  while (api.stepIndex < api.nSteps) {
+    const step = api.stepData
+    if (step.id !== 'summary') {
+      const t = step.trialData
+      if (isTextInput) {
+        step.response = 'autofill response'
+        step.correct  = null
+        step.rt       = api.faker.rnorm(4000, 800)
+        api.persist[attemptsKey] += 1
+      } else if (t.format === 'advice_slider' || t.format === 'type1_yn') {
+        step.response = Math.round(Math.max(0, Math.min(10, api.faker.rnorm(5, 2))))
+        step.correct  = null
+        step.rt       = api.faker.rnorm(4000, 800)
+        api.persist[attemptsKey] += 1
+      } else {
+        step.response = t.options[0].key
+        step.correct  = t.options[0].key === t.correctKey ? 1 : 0
+        step.rt       = api.faker.rnorm(4000, 800)
+        api.persist.score += step.correct
+        api.persist[attemptsKey] += 1
+      }
+    }
+    api.recordStep()
+    api.goNextStep()
+  }
+}
+api.setAutofill(autofill)
+
+// ── Per-trial reactive state ──────────────────────────────────────────────────
+import { ref, computed, watch } from 'vue'
+
+const selectedKey   = ref(null)
+const submitted     = ref(false)
+const sliderValue   = ref(5)
+const sliderTouched = ref(false)
+const textResponse  = ref('')
+
+watch(
+  () => api.stepIndex,
+  () => {
+    selectedKey.value   = null
+    submitted.value     = false
+    sliderValue.value   = 5
+    sliderTouched.value = false
+    textResponse.value  = ''
+    api.startTimer()
+  }
+)
+
+const currentTrial   = computed(() => api.stepData?.trialData ?? null)
+const isSummary      = computed(() => api.stepData?.id === 'summary')
+const isAdviceSlider = computed(() =>
+  !isTextInput && (
+    currentTrial.value?.format === 'advice_slider' ||
+    currentTrial.value?.format === 'type1_yn'
+  )
+)
+const canSubmit = computed(() => {
+  if (isTextInput) return textResponse.value.trim().length > 0
+  if (isAdviceSlider.value) return true
+  return !!selectedKey.value
+})
+
+const localQuestionNumber = computed(() => api.stepIndex + 1)
+
+function submitAnswer() {
+  if (submitted.value || !canSubmit.value) return
+  submitted.value = true
+  const rt = api.elapsedTime()
+  if (isTextInput) {
+    api.stepData.response = textResponse.value.trim()
+    api.stepData.correct  = null
+    api.stepData.rt       = rt
+    api.persist[attemptsKey] += 1
+  } else if (isAdviceSlider.value) {
+    api.stepData.response = sliderValue.value
+    api.stepData.correct  = null
+    api.stepData.rt       = rt
+    api.persist[attemptsKey] += 1
+  } else {
+    api.stepData.response = selectedKey.value
+    api.stepData.correct  = selectedKey.value === currentTrial.value.correctKey ? 1 : 0
+    api.stepData.rt       = rt
+    api.persist.score    += api.stepData.correct
+    api.persist[attemptsKey] += 1
+  }
+  api.recordStep()
+}
+
+function nextTrial() { api.goNextStep() }
+function finish()    { api.goNextView() }
+
+const FORMAT_LABELS = {
+  type1_yn:       'Identify the misconception',
+  full_trace:     'Full trace of student work',
+  blanked_wrong:  'Student work (some steps hidden)',
+  advice_opinion: 'Would this help?',
+  advice_slider:  'Rate the advice',
+}
+
+const SUMMARY_MESSAGES = {
+  type1: (n) => `You rated ${n} descriptions.`,
+  type2: (n) => `You described ${n} student responses.`,
+  type3: (n) => `You rated ${n} pieces of advice.`,
+  type4: (n) => `You gave advice for ${n} students.`,
+}
+</script>
+
+<template>
+  <ConstrainedTaskWindow
+    variant="ghost"
+    :responsiveUI="api.config.responsiveUI"
+    :width="api.config.windowsizerRequest.width"
+    :height="api.config.windowsizerRequest.height"
+  >
+    <!-- ── Summary screen ───────────────────────────────────────────────────── -->
+    <div v-if="isSummary" class="flex flex-col items-center justify-center h-full gap-6 text-center px-8">
+      <h2 class="text-2xl font-bold">All done!</h2>
+      <p class="text-lg text-muted-foreground">
+        {{ SUMMARY_MESSAGES[props.trialType]?.(api.persist[attemptsKey]) }}
+      </p>
+      <Button size="lg" @click="finish()">Continue</Button>
+    </div>
+
+    <!-- ── Trial screen ─────────────────────────────────────────────────────── -->
+    <div v-else-if="currentTrial" class="flex flex-col gap-5 px-8 py-6 w-full max-w-2xl mx-auto h-full overflow-y-auto">
+
+      <!-- Progress -->
+      <div class="flex items-center justify-between text-sm text-muted-foreground">
+        <span>Question {{ localQuestionNumber }} of {{ TRIAL_COUNT }}</span>
+        <span class="capitalize text-xs bg-muted px-2 py-1 rounded">
+          {{ FORMAT_LABELS[currentTrial.format] ?? currentTrial.format }}
+        </span>
+      </div>
+      <div class="w-full bg-muted rounded-full h-1.5">
+        <div
+          class="bg-primary h-1.5 rounded-full transition-all"
+          :style="{ width: ((localQuestionNumber - 1) / TRIAL_COUNT * 100) + '%' }"
+        />
+      </div>
+
+      <!-- Expression -->
+      <div>
+        <p class="text-sm text-muted-foreground mb-1">
+          Here is the expression given to {{ currentTrial.studentName }}:
+        </p>
+        <p class="text-2xl font-mono font-semibold">{{ currentTrial.expression }}</p>
+      </div>
+
+      <!-- Final answer + trace -->
+      <div>
+        <p class="text-sm text-muted-foreground mb-2">
+          Here is the final answer {{ currentTrial.studentName }} produced, along with their working:
+        </p>
+        <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7 whitespace-pre">
+          <div v-for="(line, i) in currentTrial.traceLines" :key="i">
+            <span
+              v-if="line === '████████████████████'"
+              class="inline-block bg-gray-800 text-gray-800 rounded select-none px-1"
+              title="This step is hidden"
+            >████████████████████</span>
+            <span v-else-if="line === '↓'" class="text-muted-foreground">  ↓</span>
+            <span v-else-if="line === '...'" class="text-muted-foreground">  ...</span>
+            <span v-else>{{ line }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description box (type1_yn — Type 1 only) -->
+      <div v-if="currentTrial.format === 'type1_yn' && !isTextInput"
+           class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
+        <p class="font-medium mb-1">Proposed explanation:</p>
+        <p class="italic">"{{ currentTrial.descriptionShown }}"</p>
+      </div>
+
+      <!-- Advice box (advice_slider — Type 3 only) -->
+      <div v-if="(currentTrial.format === 'advice_opinion' || currentTrial.format === 'advice_slider') && !isTextInput"
+           class="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 text-sm text-blue-900">
+        <p class="font-medium mb-1">Advice given to {{ currentTrial.studentName }}:</p>
+        <p class="italic">"{{ currentTrial.advice }}"</p>
+      </div>
+
+      <!-- Question + options (full_trace, blanked_wrong, advice_opinion only) -->
+      <div v-if="currentTrial.format !== 'advice_slider' && currentTrial.format !== 'type1_yn'" class="flex flex-col gap-3 flex-1">
+        <p class="text-sm font-medium">
+          <template v-if="currentTrial.format === 'full_trace'">What rule did this student follow?</template>
+          <template v-else-if="currentTrial.format === 'blanked_wrong'">What went wrong in the hidden step?</template>
+          <template v-else-if="currentTrial.format === 'advice_opinion'">Will this advice help {{ currentTrial.studentName }} learn to solve this type of problem correctly?</template>
+        </p>
+        <div class="flex flex-col gap-3">
+          <button
+            v-for="opt in currentTrial.options"
+            :key="opt.key"
+            :disabled="submitted"
+            @click="selectedKey = opt.key"
+            class="text-left rounded-lg border px-4 py-3 text-sm transition-colors"
+            :class="{
+              'border-primary bg-primary/10 ring-1 ring-primary': selectedKey === opt.key && !submitted,
+              'border-green-500 bg-green-100 ring-1 ring-green-500 text-green-900':
+                submitted && currentTrial.correctKey && opt.key === currentTrial.correctKey,
+              'border-red-400 bg-red-100 text-red-900':
+                submitted && currentTrial.correctKey && selectedKey === opt.key && opt.key !== currentTrial.correctKey,
+              'border-primary bg-primary/10 ring-1 ring-primary':
+                submitted && !currentTrial.correctKey && opt.key === selectedKey,
+              'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50':
+                !submitted && selectedKey !== opt.key,
+              'opacity-40': submitted && currentTrial.correctKey && opt.key !== currentTrial.correctKey && selectedKey !== opt.key,
+            }"
+          >
+            <span v-if="currentTrial.format === 'advice_opinion'" class="font-medium">{{ opt.label }}</span>
+            <span v-else class="text-sm">{{ opt.description }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Free-text input (Types 2 and 4) -->
+      <div v-if="isTextInput" class="flex flex-col gap-3 flex-1">
+        <p class="text-sm font-medium">
+          <template v-if="props.trialType === 'type2'">What do you think the student did here?</template>
+          <template v-else>What advice would you give this student to make them do better?</template>
+        </p>
+        <textarea
+          v-model="textResponse"
+          :disabled="submitted"
+          placeholder="Type your response here…"
+          rows="4"
+          class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
+        />
+        <div v-if="submitted" class="text-sm text-muted-foreground">
+          Response recorded.
+        </div>
+      </div>
+
+      <!-- Slider (type1_yn and advice_slider) -->
+      <div v-if="isAdviceSlider" class="flex flex-col gap-4 flex-1">
+        <p class="text-sm font-medium">
+          <template v-if="currentTrial.format === 'type1_yn'">How accurate is this description?</template>
+          <template v-else>How helpful do you think this advice will be for {{ currentTrial.studentName }}?</template>
+        </p>
+        <div class="flex flex-col gap-2 px-1">
+          <input
+            type="range"
+            min="0"
+            max="10"
+            step="1"
+            v-model.number="sliderValue"
+            @input="sliderTouched = true"
+            :disabled="submitted"
+            class="w-full h-2 cursor-pointer accent-primary disabled:opacity-60"
+          />
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-muted-foreground">
+              <template v-if="currentTrial.format === 'type1_yn'">0 — Not accurate at all</template>
+              <template v-else>0 — Not helpful at all</template>
+            </span>
+            <span class="text-2xl font-bold text-foreground tabular-nums">{{ sliderValue }}</span>
+            <span class="text-muted-foreground">
+              <template v-if="currentTrial.format === 'type1_yn'">10 — Perfectly accurate</template>
+              <template v-else>10 — Extremely helpful</template>
+            </span>
+          </div>
+          <div v-if="submitted" class="text-sm text-muted-foreground text-center pt-1">
+            <template v-if="currentTrial.format === 'type1_yn'">
+              You rated this description <span class="font-semibold text-foreground">{{ api.stepData.response }}</span> / 10
+            </template>
+            <template v-else>
+              You rated this advice <span class="font-semibold text-foreground">{{ api.stepData.response }}</span> / 10
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-3 pb-2">
+        <Button
+          v-if="!submitted"
+          :disabled="!canSubmit"
+          @click="submitAnswer()"
+        >
+          Submit
+        </Button>
+        <Button
+          v-if="submitted"
+          @click="nextTrial()"
+        >
+          {{ localQuestionNumber < TRIAL_COUNT ? 'Next Question' : 'See Results' }}
+        </Button>
+      </div>
+    </div>
+  </ConstrainedTaskWindow>
+</template>

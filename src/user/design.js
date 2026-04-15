@@ -13,15 +13,18 @@
  */
 
 import { markRaw } from 'vue'
-import { processQuery, initService } from '@/core/utils/utils'
+import { processQuery } from '@/core/utils/utils'
 
 // 1. Import main built-in View components
 import AdvertisementView from '@/builtins/advertisement/AdvertisementView.vue'
 import MTurkRecruitView from '@/builtins/mturk/MTurkRecruitView.vue'
 import InformedConsentView from '@/builtins/informedConsent/InformedConsentView.vue'
-import DemographicSurveyView from '@/builtins/demographicSurvey/DemographicSurveyMinimalView.vue'
+import DemographicSurveyView from '@/builtins/demographicSurvey/DemographicSurveyView.vue'
+import DeviceSurveyView from '@/builtins/deviceSurvey/DeviceSurveyView.vue'
+import InstructionsView from '@/builtins/instructions/InstructionsView.vue'
 import InstructionsQuizView from '@/builtins/instructionsQuiz/InstructionsQuiz.vue'
 import DebriefView from '@/builtins/debrief/DebriefView.vue'
+import TaskFeedbackSurveyView from '@/builtins/taskFeedbackSurvey/TaskFeedbackSurveyView.vue'
 import ThanksView from '@/builtins/thanks/ThanksView.vue'
 import WithdrawView from '@/builtins/withdraw/WithdrawView.vue'
 import WindowSizerView from '@/builtins/windowSizer/WindowSizerView.vue'
@@ -30,9 +33,8 @@ import WindowSizerView from '@/builtins/windowSizer/WindowSizerView.vue'
 import ExpView from '@/builtins/demoTasks/ExpView.vue'
 import FavoriteNumber from '@/builtins/demoTasks/FavoriteNumber.vue'
 import FavoriteColor from '@/builtins/demoTasks/FavoriteColor.vue'
-import InstructionsView from '@/user/components/stroop_exp/StroopInstructionsView.vue'
 import StroopExpView from '@/user/components/stroop_exp/StroopExpView.vue'
-import TaskFeedbackSurveyView from '@/user/components/TaskFeedbackSurveyView.vue'
+import BodmasTrialView from '@/user/components/bodmas_exp/BodmasTrialView.vue'
 
 // #3. Import smile API and timeline
 import useAPI from '@/core/composables/useAPI'
@@ -60,7 +62,10 @@ api.setRuntimeConfig('minWriteInterval', 2000)
 api.setRuntimeConfig('autoSave', true)
 
 api.setRuntimeConfig('payrate', '$15USD/hour prorated for estimated completition time + performance related bonus')
+
+// get rid of these two?
 api.setRuntimeConfig('estimated_time', '30-40 minutes')
+api.setRuntimeConfig('payrate', '$15USD/hour prorated for estimated completition time + performance related bonus')
 
 // set the informed consent text on the menu bar
 import InformedConsentText from './components/InformedConsentText.vue'
@@ -126,8 +131,6 @@ timeline.pushSeqView({
     requiresConsent: false,
   },
   beforeEnter: (to) => {
-    // handle any service-specific initialization before processing URL params
-    if (initService(to.params.service) === false) return false
     // processes info to get the service-specific
     // participant info (e.g., Profilic ID)
     processQuery(to.query, to.params.service)
@@ -163,6 +166,12 @@ timeline.pushSeqView({
   },
 })
 
+// demographic survey
+timeline.pushSeqView({
+  name: 'demograph',
+  component: DemographicSurveyView,
+})
+
 // windowsizer
 timeline.pushSeqView({
   name: 'windowsizer',
@@ -188,13 +197,35 @@ timeline.pushSeqView({
   },
 })
 
-// main experiment
-// note: by default, the path will be set to the name of the view
-// however, you can override this by setting the path explicitly
+// Type 1: rate description accuracy (0–10 slider)
 timeline.pushSeqView({
   name: 'exp',
   path: '/experiment',
-  component: ExpView,
+  component: BodmasTrialView,
+})
+
+// Type 2: describe what the student did (free text)
+timeline.pushSeqView({
+  name: 'exp_type2',
+  path: '/experiment-describe',
+  component: BodmasTrialView,
+  props: { trialType: 'type2' },
+})
+
+// Type 3: rate advice helpfulness (0–10 slider)
+timeline.pushSeqView({
+  name: 'exp_type3',
+  path: '/experiment-advice',
+  component: BodmasTrialView,
+  props: { trialType: 'type3' },
+})
+
+// Type 4: give advice for the student (free text)
+timeline.pushSeqView({
+  name: 'exp_type4',
+  path: '/experiment-give-advice',
+  component: BodmasTrialView,
+  props: { trialType: 'type4' },
 })
 
 ////// example of randomized branching routes
@@ -232,17 +263,17 @@ timeline.pushSeqView({
   },
 })
 
+// device survey
+timeline.pushSeqView({
+  name: 'device',
+  component: DeviceSurveyView,
+})
+
 // debriefing form
 timeline.pushSeqView({
   name: 'feedback',
   component: TaskFeedbackSurveyView,
-})
-
-// demographic survey
-timeline.pushSeqView({
-  name: 'demograph',
-  component: DemographicSurveyView,
-  meta: { setDone: true },
+  meta: { setDone: true }, // this is the last form
 })
 
 // thanks/submit page
