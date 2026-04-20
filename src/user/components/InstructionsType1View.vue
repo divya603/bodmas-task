@@ -123,7 +123,7 @@ function next() {
           <p class="text-sm text-muted-foreground mb-2">Student's working:</p>
           <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7 whitespace-pre">
             <div v-for="(line, i) in currentExample.traceLines" :key="i">
-              <span v-if="line === '↓'" class="text-muted-foreground">  ↓</span>
+              <span v-if="line === '↓'" class="text-muted-foreground">  =</span>
               <span v-else>{{ line }}</span>
             </div>
           </div>

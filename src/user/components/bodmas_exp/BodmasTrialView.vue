@@ -25,17 +25,18 @@ const attemptsKey = props.trialType === 'type1' ? 'attempts'
                   : `attempts_${props.trialType}`
 
 // ── Per-participant trial sampling ────────────────────────────────────────────
-// Types 1 & 2: Pool A (15) → draw 10 at random; Pool B/C/D: all 5 each → 25 total
+// Types 1 & 2: Fixed 10 from Pool A + all 10 from B/C/D = 20 trials, shuffled
 // Types 3 & 4: all 20 shown, shuffled
+const FIXED_POOL_A_IDS = [1, 3, 5, 7, 9, 11, 12, 13, 14, 15]
+
 if (!api.persist.isDefined(persistKey)) {
   if (isAdviceSource) {
     const combined = [...sourceData].sort(() => Math.random() - 0.5)
     api.persist[persistKey] = combined.map(t => t.id)
   } else {
-    const poolA    = sourceData.filter(t => t.pool === 'A')
-    const sampledA = [...poolA].sort(() => Math.random() - 0.5).slice(0, 10)
-    const poolBCD  = sourceData.filter(t => t.pool !== 'A')
-    const combined = [...sampledA, ...poolBCD].sort(() => Math.random() - 0.5)
+    const poolA   = sourceData.filter(t => FIXED_POOL_A_IDS.includes(t.id))
+    const poolBCD = sourceData.filter(t => t.pool !== 'A')
+    const combined = [...poolA, ...poolBCD].sort(() => Math.random() - 0.5)
     api.persist[persistKey] = combined.map(t => t.id)
   }
 }
@@ -46,10 +47,12 @@ const TRIAL_COUNT = participantTrials.length   // 25 for types 1/2, 20 for types
 
 // ── Build step list ───────────────────────────────────────────────────────────
 const trials = api.steps.append(
-  participantTrials.map((t) => ({
+  participantTrials.map((t, i) => ({
     id: `trial_${t.id}`,
     trialData: t,
+    showTraceFirst: i >= 10,  // second half: trace then question on separate screens
     response: null,
+    comment: null,
     correct: null,
     rt: null,
   }))
@@ -76,7 +79,13 @@ function autofill() {
         step.correct  = null
         step.rt       = api.faker.rnorm(4000, 800)
         api.persist[attemptsKey] += 1
-      } else if (t.format === 'advice_slider' || t.format === 'type1_yn') {
+      } else if (t.format === 'type1_yn') {
+        const LIKERT_OPTIONS = ['Strongly Agree', 'Agree', 'Somewhat Agree', 'Somewhat Disagree', 'Disagree', 'Strongly Disagree']
+        step.response = LIKERT_OPTIONS[Math.floor(Math.random() * LIKERT_OPTIONS.length)]
+        step.correct  = null
+        step.rt       = api.faker.rnorm(4000, 800)
+        api.persist[attemptsKey] += 1
+      } else if (t.format === 'advice_slider') {
         step.response = Math.round(Math.max(0, Math.min(10, api.faker.rnorm(5, 2))))
         step.correct  = null
         step.rt       = api.faker.rnorm(4000, 800)
@@ -98,34 +107,37 @@ api.setAutofill(autofill)
 // ── Per-trial reactive state ──────────────────────────────────────────────────
 import { ref, computed, watch } from 'vue'
 
-const selectedKey   = ref(null)
-const submitted     = ref(false)
-const sliderValue   = ref(5)
-const sliderTouched = ref(false)
-const textResponse  = ref('')
+const LIKERT_OPTIONS = ['Strongly Agree', 'Agree', 'Somewhat Agree', 'Somewhat Disagree', 'Disagree', 'Strongly Disagree']
+
+const selectedKey    = ref(null)
+const submitted      = ref(false)
+const likertValue    = ref(null)
+const sliderValue    = ref(5)
+const textResponse   = ref('')
+const traceViewed    = ref(false)
 
 watch(
   () => api.stepIndex,
   () => {
-    selectedKey.value   = null
-    submitted.value     = false
-    sliderValue.value   = 5
-    sliderTouched.value = false
-    textResponse.value  = ''
+    selectedKey.value  = null
+    submitted.value    = false
+    likertValue.value  = null
+    sliderValue.value  = 5
+    textResponse.value = ''
+    traceViewed.value  = false
     api.startTimer()
   }
 )
 
-const currentTrial   = computed(() => api.stepData?.trialData ?? null)
-const isSummary      = computed(() => api.stepData?.id === 'summary')
-const isAdviceSlider = computed(() =>
-  !isTextInput && (
-    currentTrial.value?.format === 'advice_slider' ||
-    currentTrial.value?.format === 'type1_yn'
-  )
-)
+const currentTrial    = computed(() => api.stepData?.trialData ?? null)
+const isSummary       = computed(() => api.stepData?.id === 'summary')
+const showTraceFirst  = computed(() => api.stepData?.showTraceFirst ?? false)
+const inTracePhase    = computed(() => showTraceFirst.value && !traceViewed.value)
+const isLikert        = computed(() => !isTextInput && currentTrial.value?.format === 'type1_yn')
+const isAdviceSlider  = computed(() => !isTextInput && currentTrial.value?.format === 'advice_slider')
 const canSubmit = computed(() => {
-  if (isTextInput) return textResponse.value.trim().length > 0
+  if (isTextInput)        return textResponse.value.trim().length > 0
+  if (isLikert.value)     return likertValue.value !== null
   if (isAdviceSlider.value) return true
   return !!selectedKey.value
 })
@@ -141,6 +153,12 @@ function submitAnswer() {
     api.stepData.correct  = null
     api.stepData.rt       = rt
     api.persist[attemptsKey] += 1
+  } else if (isLikert.value) {
+    api.stepData.response     = likertValue.value
+    api.stepData.comment      = textResponse.value.trim()
+    api.stepData.correct      = null
+    api.stepData.rt           = rt
+    api.persist[attemptsKey] += 1
   } else if (isAdviceSlider.value) {
     api.stepData.response = sliderValue.value
     api.stepData.correct  = null
@@ -154,6 +172,7 @@ function submitAnswer() {
     api.persist[attemptsKey] += 1
   }
   api.recordStep()
+  api.goNextStep()
 }
 
 function nextTrial() { api.goNextStep() }
@@ -208,16 +227,16 @@ const SUMMARY_MESSAGES = {
         />
       </div>
 
-      <!-- Expression -->
-      <div>
+      <!-- Expression (hidden on question screen for split trials) -->
+      <div v-if="!showTraceFirst || inTracePhase">
         <p class="text-sm text-muted-foreground mb-1">
            {{ currentTrial.studentName }} is a third grade student. Here is the expression given to {{ currentTrial.studentName }}, in their math test.:
         </p>
         <p class="text-2xl font-mono font-semibold">{{ currentTrial.expression }}</p>
       </div>
 
-      <!-- Final answer + trace -->
-      <div>
+      <!-- Final answer + trace (hidden on question screen for split trials) -->
+      <div v-if="!showTraceFirst || inTracePhase">
         <p class="text-sm text-muted-foreground mb-2">
           Here is the final answer {{ currentTrial.studentName }} produced, along with their working:
         </p>
@@ -228,15 +247,15 @@ const SUMMARY_MESSAGES = {
               class="inline-block bg-gray-800 text-gray-800 rounded select-none px-1"
               title="This step is hidden"
             >████████████████████</span>
-            <span v-else-if="line === '↓'" class="text-muted-foreground">  ↓</span>
+            <span v-else-if="line === '↓'" class="text-muted-foreground">  =</span>
             <span v-else-if="line === '...'" class="text-muted-foreground">  ...</span>
             <span v-else>{{ line }}</span>
           </div>
         </div>
       </div>
 
-      <!-- Description box (type1_yn — Type 1 only) -->
-      <div v-if="currentTrial.format === 'type1_yn' && !isTextInput"
+      <!-- Description box (type1_yn — Type 1 only, hidden during trace phase) -->
+      <div v-if="currentTrial.format === 'type1_yn' && !isTextInput && !inTracePhase"
            class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
         <p class="font-medium mb-1">Here is a proposed description of what {{ currentTrial.studentName }} did:</p>
         <p class="italic">"{{ currentTrial.descriptionShown }}"</p>
@@ -300,12 +319,48 @@ const SUMMARY_MESSAGES = {
         </div>
       </div>
 
-      <!-- Slider (type1_yn and advice_slider) -->
+      <!-- Likert radio buttons + comment (type1_yn — Type 1, hidden during trace phase) -->
+      <div v-if="isLikert && !inTracePhase" class="flex flex-col gap-4 flex-1">
+        <div class="flex flex-col gap-2">
+          <p class="text-sm font-medium">Is this what {{ currentTrial.studentName }} believes?</p>
+          <label
+            v-for="option in LIKERT_OPTIONS"
+            :key="option"
+            class="flex items-center gap-3 rounded-lg border px-4 py-3 text-sm cursor-pointer transition-colors"
+            :class="{
+              'border-primary bg-primary/10': likertValue === option,
+              'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50': likertValue !== option,
+              'opacity-60 pointer-events-none': submitted,
+            }"
+          >
+            <input
+              type="radio"
+              :value="option"
+              v-model="likertValue"
+              :disabled="submitted"
+              class="accent-primary"
+            />
+            {{ option }}
+          </label>
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="text-sm font-medium">
+            What do you think {{ currentTrial.studentName }} did?
+            <span class="text-muted-foreground font-normal">(optional)</span>
+          </p>
+          <textarea
+            v-model="textResponse"
+            :disabled="submitted"
+            placeholder="Type your thoughts here…"
+            rows="3"
+            class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
+          />
+        </div>
+      </div>
+
+      <!-- Slider (advice_slider — Type 3) -->
       <div v-if="isAdviceSlider" class="flex flex-col gap-4 flex-1">
-        <p class="text-sm font-medium">
-          <template v-if="currentTrial.format === 'type1_yn'">How accurate do you think the description matches what {{ currentTrial.studentName }} did?</template>
-          <template v-else>How helpful do you think this advice will be for {{ currentTrial.studentName }}?</template>
-        </p>
+        <p class="text-sm font-medium">How helpful do you think this advice will be for {{ currentTrial.studentName }}?</p>
         <div class="flex flex-col gap-2 px-1">
           <input
             type="range"
@@ -313,46 +368,28 @@ const SUMMARY_MESSAGES = {
             max="10"
             step="1"
             v-model.number="sliderValue"
-            @input="sliderTouched = true"
             :disabled="submitted"
             class="w-full h-2 cursor-pointer accent-primary disabled:opacity-60"
           />
           <div class="flex justify-between items-center text-xs">
-            <span class="text-muted-foreground">
-              <template v-if="currentTrial.format === 'type1_yn'">0 — Not accurate at all</template>
-              <template v-else>0 — Not helpful at all</template>
-            </span>
+            <span class="text-muted-foreground">0 — Not helpful at all</span>
             <span class="text-2xl font-bold text-foreground tabular-nums">{{ sliderValue }}</span>
-            <span class="text-muted-foreground">
-              <template v-if="currentTrial.format === 'type1_yn'">10 — Perfectly accurate</template>
-              <template v-else>10 — Extremely helpful</template>
-            </span>
-          </div>
-          <div v-if="submitted" class="text-sm text-muted-foreground text-center pt-1">
-            <template v-if="currentTrial.format === 'type1_yn'">
-              You rated this description <span class="font-semibold text-foreground">{{ api.stepData.response }}</span> / 10
-            </template>
-            <template v-else>
-              You rated this advice <span class="font-semibold text-foreground">{{ api.stepData.response }}</span> / 10
-            </template>
+            <span class="text-muted-foreground">10 — Extremely helpful</span>
           </div>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="flex justify-end gap-3 pb-2">
+        <Button v-if="inTracePhase" @click="traceViewed = true">
+          Next
+        </Button>
         <Button
-          v-if="!submitted"
+          v-else
           :disabled="!canSubmit"
           @click="submitAnswer()"
         >
           Submit
-        </Button>
-        <Button
-          v-if="submitted"
-          @click="nextTrial()"
-        >
-          {{ localQuestionNumber < TRIAL_COUNT ? 'Next Question' : 'See Results' }}
         </Button>
       </div>
     </div>
