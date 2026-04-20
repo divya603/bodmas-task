@@ -46,11 +46,14 @@ const participantTrials = api.persist[persistKey].map(id => idToTrial[id])
 const TRIAL_COUNT = participantTrials.length   // 25 for types 1/2, 20 for types 3/4
 
 // ── Build step list ───────────────────────────────────────────────────────────
+// Randomly assign which 10 trials show trace-first vs together
+const splitFlags = [...Array(10).fill(false), ...Array(10).fill(true)].sort(() => Math.random() - 0.5)
+
 const trials = api.steps.append(
   participantTrials.map((t, i) => ({
     id: `trial_${t.id}`,
     trialData: t,
-    showTraceFirst: i >= 10,  // second half: trace then question on separate screens
+    showTraceFirst: splitFlags[i],
     response: null,
     comment: null,
     correct: null,
