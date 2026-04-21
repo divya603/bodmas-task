@@ -131,7 +131,6 @@ function next() {
 
         <!-- Description -->
         <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-          <p class="font-medium mb-1">Proposed description:</p>
           <p class="italic">"{{ currentExample.description }}"</p>
         </div>
 
@@ -205,7 +204,6 @@ function next() {
 
         <!-- Description -->
         <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-          <p class="font-medium mb-1">Proposed description:</p>
           <p class="italic">"{{ examples[2].description }}"</p>
         </div>
 
