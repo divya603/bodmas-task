@@ -42,8 +42,25 @@ if (!api.persist.isDefined(persistKey)) {
 }
 
 const idToTrial = Object.fromEntries(sourceData.map(t => [t.id, t]))
-const participantTrials = api.persist[persistKey].map(id => idToTrial[id])
-const TRIAL_COUNT = participantTrials.length   // 25 for types 1/2, 20 for types 3/4
+
+// Filter out stale IDs that no longer exist in the trial bank (e.g. from a previous session)
+let participantTrials = api.persist[persistKey].map(id => idToTrial[id]).filter(t => t !== undefined)
+
+// If all persisted IDs were stale, reset and re-sample
+if (participantTrials.length === 0) {
+  if (isAdviceSource) {
+    const combined = [...sourceData].sort(() => Math.random() - 0.5)
+    api.persist[persistKey] = combined.map(t => t.id)
+  } else {
+    const poolA   = sourceData.filter(t => FIXED_POOL_A_IDS.includes(t.id))
+    const poolBCD = sourceData.filter(t => t.pool !== 'A')
+    const combined = [...poolA, ...poolBCD].sort(() => Math.random() - 0.5)
+    api.persist[persistKey] = combined.map(t => t.id)
+  }
+  participantTrials = api.persist[persistKey].map(id => idToTrial[id])
+}
+
+const TRIAL_COUNT = participantTrials.length   // 20 for types 1/2, 20 for types 3/4
 
 // ── Build step list ───────────────────────────────────────────────────────────
 // Randomly assign which 10 of 20 trials show trace-first vs together
