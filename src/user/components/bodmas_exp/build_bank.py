@@ -1,8 +1,8 @@
 """
-Build trial_bank.json — 30 hardcoded, pre-verified expressions.
+Build trial_bank.json — 20 hardcoded, pre-verified expressions.
 
-Pool A (15, correctKey='yes'):  correct description shown — 1 misconception.
-                                 Participant randomly draws 10.
+Pool A ( 5, correctKey='yes'):  correct description shown — 1 misconception.
+                                 All 5 shown to every participant.
 Pool B ( 5, correctKey='no'):   foil (wrong) description shown — 1 misconception.
                                  Every participant sees all 5.
 Pool C ( 5, correctKey='yes'):  2 misconceptions; inference points to the 1ST error.
@@ -10,7 +10,7 @@ Pool C ( 5, correctKey='yes'):  2 misconceptions; inference points to the 1ST er
 Pool D ( 5, correctKey='yes'):  2 misconceptions; inference points to the 2ND error.
                                  Every participant sees all 5.
 
-Per-participant trial count: 10 (A) + 5 (B) + 5 (C) + 5 (D) = 25 trials.
+Per-participant trial count: 5 (A) + 5 (B) + 5 (C) + 5 (D) = 20 trials.
 
 Analysis flags on every trial
 ──────────────────────────────
@@ -62,19 +62,6 @@ BANK_DATA = [
         'inference_target':  'add_before_mult',
     },
     {
-        'expr':              '3*(4-1)+2*5',
-        'learner':           'addition_first',
-        'pool':              'A',
-        'trace':             ['3×(4-1)+2×5', '↓', '3×3+2×5', '↓', '3×5×5', '↓', '15×5', '↓', '75'],
-        'learnerAns':        '75',
-        'expertAns':         '19',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `3+2` before `3×3`)',
-        'foil_desc':         None,
-        'student':           'Emma',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
         'expr':              '(6-2)*3+4*2',
         'learner':           'addition_first',
         'pool':              'A',
@@ -87,46 +74,6 @@ BANK_DATA = [
         'misconception_types': ['add_before_mult'],
         'inference_target':  'add_before_mult',
     },
-    {
-        'expr':              '2*(3+1)+5*3',
-        'learner':           'addition_first',
-        'pool':              'A',
-        'trace':             ['2×(3+1)+5×3', '↓', '2×4+5×3', '↓', '2×9×3', '↓', '18×3', '↓', '54'],
-        'learnerAns':        '54',
-        'expertAns':         '23',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `4+5` before `2×4`)',
-        'foil_desc':         None,
-        'student':           'Jake',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '(5+1)*4-2*3',
-        'learner':           'addition_first',
-        'pool':              'A',
-        'trace':             ['(5+1)×4-2×3', '↓', '6×4-2×3', '↓', '6×2×3', '↓', '12×3', '↓', '36'],
-        'learnerAns':        '36',
-        'expertAns':         '18',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `4-2` before `6×4`)',
-        'foil_desc':         None,
-        'student':           'Julian',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '4*(3-2)+6*2',
-        'learner':           'addition_first',
-        'pool':              'A',
-        'trace':             ['4×(3-2)+6×2', '↓', '4×1+6×2', '↓', '4×7×2', '↓', '28×2', '↓', '56'],
-        'learnerAns':        '56',
-        'expertAns':         '16',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `1+6` before `4×1`)',
-        'foil_desc':         None,
-        'student':           'Bob',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-
     # ── left_to_right_only learner ──────────────────────────────────────────
     {
         'expr':              '4*2*3+5*2',
@@ -141,72 +88,6 @@ BANK_DATA = [
         'misconception_types': ['add_before_mult'],
         'inference_target':  'add_before_mult',
     },
-    {
-        'expr':              '3*2*4+1*5',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['3×2×4+1×5', '↓', '6×4+1×5', '↓', '24+1×5', '↓', '25×5', '↓', '125'],
-        'learnerAns':        '125',
-        'expertAns':         '29',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `24+1` before `1×5`)',
-        'foil_desc':         None,
-        'student':           'Jessica',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '2*5*2+3*4',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['2×5×2+3×4', '↓', '10×2+3×4', '↓', '20+3×4', '↓', '23×4', '↓', '92'],
-        'learnerAns':        '92',
-        'expertAns':         '32',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `20+3` before `3×4`)',
-        'foil_desc':         None,
-        'student':           'Sam',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '4*3+2*5-1',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['4×3+2×5-1', '↓', '12+2×5-1', '↓', '14×5-1', '↓', '70-1', '↓', '69'],
-        'learnerAns':        '69',
-        'expertAns':         '21',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `12+2` before `2×5`)',
-        'foil_desc':         None,
-        'student':           'Alex',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '5*2+3*4+1',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['5×2+3×4+1', '↓', '10+3×4+1', '↓', '13×4+1', '↓', '52+1', '↓', '53'],
-        'learnerAns':        '53',
-        'expertAns':         '23',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `10+3` before `3×4`)',
-        'foil_desc':         None,
-        'student':           'Jordan',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-    {
-        'expr':              '3*6-2+4*2',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['3×6-2+4×2', '↓', '18-2+4×2', '↓', '16+4×2', '↓', '20×2', '↓', '40'],
-        'learnerAns':        '40',
-        'expertAns':         '24',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `18-2` before `4×2`)',
-        'foil_desc':         None,
-        'student':           'Taylor',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
-    },
-
     # ── right_to_left learner ───────────────────────────────────────────────
     {
         'expr':              '6-2+3*4',
@@ -221,20 +102,6 @@ BANK_DATA = [
         'misconception_types': ['same_prio_rtl'],
         'inference_target':  'same_prio_rtl',
     },
-    {
-        'expr':              '8-3+4*2',
-        'learner':           'right_to_left',
-        'pool':              'A',
-        'trace':             ['8-3+4×2', '↓', '8-3+8', '↓', '8-11', '↓', '-3'],
-        'learnerAns':        '-3',
-        'expertAns':         '13',
-        'correct_desc':      'Evaluated the expression right to left (computed `3+8` before `8-3`)',
-        'foil_desc':         None,
-        'student':           'Casey',
-        'misconception_types': ['same_prio_rtl'],
-        'inference_target':  'same_prio_rtl',
-    },
-
     # ── bracket_ignorer learner ─────────────────────────────────────────────
     {
         'expr':              '5*(3+4)-2',

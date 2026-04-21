@@ -27,7 +27,7 @@ const attemptsKey = props.trialType === 'type1' ? 'attempts'
 // ── Per-participant trial sampling ────────────────────────────────────────────
 // Types 1 & 2: Fixed 10 from Pool A + all 10 from B/C/D = 20 trials, shuffled
 // Types 3 & 4: all 20 shown, shuffled
-const FIXED_POOL_A_IDS = [1, 3, 5, 7, 9, 11, 12, 13, 14, 15]
+const FIXED_POOL_A_IDS = [1, 3, 7, 13, 15]  // 2×addition_first, 1×left_to_right, 1×right_to_left, 1×bracket_ignorer
 
 if (!api.persist.isDefined(persistKey)) {
   if (isAdviceSource) {
@@ -46,7 +46,7 @@ const participantTrials = api.persist[persistKey].map(id => idToTrial[id])
 const TRIAL_COUNT = participantTrials.length   // 25 for types 1/2, 20 for types 3/4
 
 // ── Build step list ───────────────────────────────────────────────────────────
-// Randomly assign which 10 trials show trace-first vs together
+// Randomly assign which 10 of 20 trials show trace-first vs together
 const splitFlags = [...Array(10).fill(false), ...Array(10).fill(true)].sort(() => Math.random() - 0.5)
 
 const trials = api.steps.append(
