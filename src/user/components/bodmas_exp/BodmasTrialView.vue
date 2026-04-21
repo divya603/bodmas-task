@@ -277,7 +277,6 @@ const SUMMARY_MESSAGES = {
       <!-- Description box (type1_yn — Type 1 only, hidden during trace phase) -->
       <div v-if="currentTrial.format === 'type1_yn' && !isTextInput && !inTracePhase"
            class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-        <p class="font-medium mb-1">Here is a proposed description of what {{ currentTrial.studentName }} did:</p>
         <p class="italic">"{{ currentTrial.descriptionShown }}"</p>
       </div>
 
