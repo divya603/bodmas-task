@@ -17,9 +17,9 @@
     ],
     "finalAnswer": "30",
     "expertAnswer": "26",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Did addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -62,9 +62,9 @@
     ],
     "finalAnswer": "56",
     "expertAnswer": "20",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Did addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -107,9 +107,9 @@
     ],
     "finalAnswer": "58",
     "expertAnswer": "34",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Computed left to right blindly",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Computed left to right blindly",
     "options": [
       {
         "key": "yes",
@@ -136,23 +136,23 @@
     "id": 4,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "6-2+3×4",
+    "expression": "8-3+2×5",
     "mysteryLearner": "right_to_left",
     "studentName": "Morgan",
     "traceLines": [
-      "6-2+3×4",
+      "8-3+2×5",
       "↓",
-      "6-2+12",
+      "8-3+10",
       "↓",
-      "6-14",
+      "8-13",
       "↓",
-      "-8"
+      "-5"
     ],
-    "finalAnswer": "-8",
-    "expertAnswer": "16",
-    "correctDescription": "Evaluated the expressionright to left",
+    "finalAnswer": "-5",
+    "expertAnswer": "15",
+    "correctDescription": "Evaluated the expression right to left, without considering operator priority",
     "foilDescription": null,
-    "descriptionShown": "Evaluated the expressionright to left",
+    "descriptionShown": "Evaluated the expression right to left, without considering operator priority",
     "options": [
       {
         "key": "no",
@@ -195,9 +195,9 @@
     ],
     "finalAnswer": "17",
     "expertAnswer": "33",
-    "correctDescription": "Dropped the brackets, and computed as if there were no brackets",
+    "correctDescription": "Ignored the brackets, and computed as if there were no brackets",
     "foilDescription": null,
-    "descriptionShown": "Dropped the brackets, and computed as if there were no brackets",
+    "descriptionShown": "Ignored the brackets, and computed as if there were no brackets",
     "options": [
       {
         "key": "no",
@@ -241,8 +241,8 @@
     "finalAnswer": "49",
     "expertAnswer": "19",
     "correctDescription": "Did addition/subtraction before multiplication/division",
-    "foilDescription": "Evaluated strictly right to left, ignoring operator priority",
-    "descriptionShown": "Evaluated strictly right to left, ignoring operator priority",
+    "foilDescription": "Evaluated strictly left to right, ignoring operator priority",
+    "descriptionShown": "Evaluated strictly left to right, ignoring operator priority",
     "options": [
       {
         "key": "no",
@@ -374,8 +374,8 @@
     "finalAnswer": "-1",
     "expertAnswer": "11",
     "correctDescription": "Evaluated right to left",
-    "foilDescription": "Did addition/subtraction before multiplication",
-    "descriptionShown": "Did addition/subtraction before multiplication",
+    "foilDescription": "Did addition before multiplication",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "yes",
@@ -419,8 +419,8 @@
     "finalAnswer": "10",
     "expertAnswer": "19",
     "correctDescription": "Dropped the brackets",
-    "foilDescription": "Distributed (expanded) the brackets instead of evaluating inside them first",
-    "descriptionShown": "Distributed (expanded) the brackets instead of evaluating inside them first",
+    "foilDescription": "Expandedthe brackets instead of evaluating inside them first",
+    "descriptionShown": "Expandedthe brackets instead of evaluating inside them first",
     "options": [
       {
         "key": "no",
@@ -465,9 +465,9 @@
     ],
     "finalAnswer": "97",
     "expertAnswer": "182",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Did addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -513,9 +513,9 @@
     ],
     "finalAnswer": "98",
     "expertAnswer": "27",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Did addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -547,21 +547,23 @@
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Lily",
     "traceLines": [
+      "4+(2×3)-5+1",
+      "↓",
       "4+2×3-5+1",
       "↓",
       "6×3-5+1",
       "↓",
       "18-5+1",
       "↓",
-      "18-6",
+      "13+1",
       "↓",
-      "12"
+      "14"
     ],
     "finalAnswer": "12",
     "expertAnswer": "6",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Ignored the brackets, and computed as if there were no brackets",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Ignored the brackets, and computed as if there were no brackets",
     "options": [
       {
         "key": "no",
@@ -579,7 +581,7 @@
     "has_1_misconception": false,
     "misconception_types": [
       "add_before_mult",
-      "same_prio_rtl"
+      "bracket_drop"
     ],
     "inference_target": "add_before_mult",
     "right_inference": true,
@@ -605,9 +607,9 @@
     ],
     "finalAnswer": "10",
     "expertAnswer": "11",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "correctDescription": "Did addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Did addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -635,25 +637,23 @@
     "id": 15,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "5+2×4-3+4",
-    "mysteryLearner": "compound_add_rtl",
+    "expression": "6-2+3×4",
+    "mysteryLearner": "compound_rtl_add",
     "studentName": "Owen",
     "traceLines": [
-      "5+2×4-3+4",
+      "6-2+3×4",
       "↓",
-      "7×4-3+4",
+      "6-5×4",
       "↓",
-      "28-3+4",
+      "1×4",
       "↓",
-      "28-7",
-      "↓",
-      "21"
+      "4"
     ],
-    "finalAnswer": "21",
-    "expertAnswer": "14",
-    "correctDescription": "Did addition/subtraction before multiplication/division",
+    "finalAnswer": "4",
+    "expertAnswer": "16",
+    "correctDescription": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "foilDescription": null,
-    "descriptionShown": "Did addition/subtraction before multiplication/division",
+    "descriptionShown": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "options": [
       {
         "key": "no",
@@ -670,10 +670,10 @@
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": [
-      "add_before_mult",
-      "same_prio_rtl"
+      "same_prio_rtl",
+      "add_before_mult"
     ],
-    "inference_target": "add_before_mult",
+    "inference_target": "same_prio_rtl",
     "right_inference": true,
     "inference_points_to_first": true
   },
@@ -793,9 +793,9 @@
     ],
     "finalAnswer": "30",
     "expertAnswer": "10",
-    "correctDescription": "Evaluated right to left instead of left to right",
+    "correctDescription": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left instead of left to right",
+    "descriptionShown": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "options": [
       {
         "key": "no",
@@ -839,9 +839,9 @@
     ],
     "finalAnswer": "9",
     "expertAnswer": "11",
-    "correctDescription": "Evaluated right to left instead of left to right",
+    "correctDescription": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left instead of left to right",
+    "descriptionShown": "Evaluated right to left instead of left to right when there were multiple operators of the same priority",
     "options": [
       {
         "key": "yes",
@@ -869,25 +869,23 @@
     "id": 20,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "1+3×4-2+5",
-    "mysteryLearner": "compound_add_rtl",
+    "expression": "7-2+3×5",
+    "mysteryLearner": "compound_rtl_add",
     "studentName": "Nora",
     "traceLines": [
-      "1+3×4-2+5",
+      "7-2+3×5",
       "↓",
-      "4×4-2+5",
+      "7-5×5",
       "↓",
-      "16-2+5",
+      "2×5",
       "↓",
-      "16-7",
-      "↓",
-      "9"
+      "10"
     ],
-    "finalAnswer": "9",
-    "expertAnswer": "16",
-    "correctDescription": "Evaluated right to left instead of left to right",
+    "finalAnswer": "10",
+    "expertAnswer": "20",
+    "correctDescription": "Did addition/subtraction before multiplication/division",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left instead of left to right",
+    "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
         "key": "yes",
@@ -904,10 +902,10 @@
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": [
-      "add_before_mult",
-      "same_prio_rtl"
+      "same_prio_rtl",
+      "add_before_mult"
     ],
-    "inference_target": "same_prio_rtl",
+    "inference_target": "add_before_mult",
     "right_inference": true,
     "inference_points_to_first": false
   }

@@ -55,7 +55,7 @@ BANK_DATA = [
         'trace':             ['(2+3)×5+1', '↓', '5×5+1', '↓', '5×6', '↓', '30'],
         'learnerAns':        '30',
         'expertAns':         '26',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `5+1` before `5×5`)',
+        'correct_desc':      'Did addition before multiplication',
         'foil_desc':         None,
         'student':           'Ned',
         'misconception_types': ['add_before_mult'],
@@ -68,7 +68,7 @@ BANK_DATA = [
         'trace':             ['(6-2)×3+4×2', '↓', '4×3+4×2', '↓', '4×7×2', '↓', '28×2', '↓', '56'],
         'learnerAns':        '56',
         'expertAns':         '20',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `3+4` before `4×3`)',
+        'correct_desc':      'Did addition before multiplication',
         'foil_desc':         None,
         'student':           'Emily',
         'misconception_types': ['add_before_mult'],
@@ -82,7 +82,7 @@ BANK_DATA = [
         'trace':             ['4×2×3+5×2', '↓', '8×3+5×2', '↓', '24+5×2', '↓', '29×2', '↓', '58'],
         'learnerAns':        '58',
         'expertAns':         '34',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `24+5` before `5×2`)',
+        'correct_desc':      'Computed left to right blindly',
         'foil_desc':         None,
         'student':           'Mike',
         'misconception_types': ['add_before_mult'],
@@ -90,13 +90,13 @@ BANK_DATA = [
     },
     # ── right_to_left learner ───────────────────────────────────────────────
     {
-        'expr':              '6-2+3*4',
+        'expr':              '8-3+2*5',
         'learner':           'right_to_left',
         'pool':              'A',
-        'trace':             ['6-2+3×4', '↓', '6-2+12', '↓', '6-14', '↓', '-8'],
-        'learnerAns':        '-8',
-        'expertAns':         '16',
-        'correct_desc':      'Evaluated the expressionright to left (computed `2+12` before `6-2`)',
+        'trace':             ['8-3+2×5', '↓', '8-3+10', '↓', '8-13', '↓', '-5'],
+        'learnerAns':        '-5',
+        'expertAns':         '15',
+        'correct_desc':      'Evaluated the expression right to left, without considering operator priority',
         'foil_desc':         None,
         'student':           'Morgan',
         'misconception_types': ['same_prio_rtl'],
@@ -110,7 +110,7 @@ BANK_DATA = [
         'trace':             ['5×(3+4)-2', '↓', '5×3+4-2', '↓', '15+4-2', '↓', '19-2', '↓', '17'],
         'learnerAns':        '17',
         'expertAns':         '33',
-        'correct_desc':      'Dropped the brackets, and computed as if there were no brackets (computed `(3+4)` as if there were no brackets)',
+        'correct_desc':      'Ignored the brackets, and computed as if there were no brackets',
         'foil_desc':         None,
         'student':           'Riley',
         'misconception_types': ['bracket_drop'],
@@ -128,8 +128,8 @@ BANK_DATA = [
         'trace':             ['(4+3)×2+5×1', '↓', '7×2+5×1', '↓', '7×7×1', '↓', '49×1', '↓', '49'],
         'learnerAns':        '49',
         'expertAns':         '19',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `2+5` before `7×2`)',
-        'foil_desc':         'Evaluated strictly right to left, ignoring operator priority',
+        'correct_desc':      'Did addition/subtraction before multiplication/division',
+        'foil_desc':         'Evaluated strictly left to right, ignoring operator priority',
         'student':           'Quinn',
         'misconception_types': ['add_before_mult'],
         'inference_target':  'same_prio_rtl',   # foil names RTL
@@ -141,7 +141,7 @@ BANK_DATA = [
         'trace':             ['6×(2+1)-3×4', '↓', '6×3-3×4', '↓', '6×0×4', '↓', '0×4', '↓', '0'],
         'learnerAns':        '0',
         'expertAns':         '6',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `3-3` before `6×3`)',
+        'correct_desc':      'Did addition/subtraction before multiplication/division',
         'foil_desc':         'Dropped the brackets and evaluated as if they weren\'t there',
         'student':           'Pat',
         'misconception_types': ['add_before_mult'],
@@ -154,7 +154,7 @@ BANK_DATA = [
         'trace':             ['6×3+4-2×3', '↓', '18+4-2×3', '↓', '22-2×3', '↓', '20×3', '↓', '60'],
         'learnerAns':        '60',
         'expertAns':         '16',
-        'correct_desc':      'Did addition/subtraction before multiplication/division (computed `18+4` before `2×3`)',
+        'correct_desc':      'Did addition/subtraction before multiplication/division',
         'foil_desc':         'Evaluated strictly right to left, ignoring operator priority',
         'student':           'Drew',
         'misconception_types': ['add_before_mult'],
@@ -167,8 +167,8 @@ BANK_DATA = [
         'trace':             ['9-4+2×3', '↓', '9-4+6', '↓', '9-10', '↓', '-1'],
         'learnerAns':        '-1',
         'expertAns':         '11',
-        'correct_desc':      'Evaluated right to left (computed `4+6` before `9-4`)',
-        'foil_desc':         'Did addition/subtraction before multiplication (computed `9-4` before `2×3`)',
+        'correct_desc':      'Evaluated right to left',
+        'foil_desc':         'Did addition before multiplication',
         'student':           'Lee',
         'misconception_types': ['same_prio_rtl'],
         'inference_target':  'add_before_mult',   # foil names add-before-mult
@@ -181,7 +181,7 @@ BANK_DATA = [
         'learnerAns':        '10',
         'expertAns':         '19',
         'correct_desc':      'Dropped the brackets (computed `(2+3)` as if there were no brackets)',
-        'foil_desc':         'Distributed (expanded) the brackets instead of evaluating inside them first',
+        'foil_desc':         'Expandedthe brackets instead of evaluating inside them first',
         'student':           'Chris',
         'misconception_types': ['bracket_drop'],
         'inference_target':  'bracket_distribute',   # foil names bracket-distribute
@@ -210,7 +210,7 @@ BANK_DATA = [
         ],
         'learnerAns':        '97',
         'expertAns':         '182',
-        'desc_shown':        'Did addition/subtraction before multiplication/division (computed `2+3` before `3×6`)',
+        'desc_shown':        'Did addition before multiplication',
         'student':           'Noah',
         'misconception_types': ['add_before_mult', 'bracket_drop'],
         'inference_target':  'add_before_mult',
@@ -232,7 +232,7 @@ BANK_DATA = [
         ],
         'learnerAns':        '98',
         'expertAns':         '27',
-        'desc_shown':        'Did addition/subtraction before multiplication/division (computed `3+2` before `2×4`)',
+        'desc_shown':        'Did addition before multiplication',
         'student':           'Olivia',
         'misconception_types': ['add_before_mult', 'bracket_drop'],
         'inference_target':  'add_before_mult',
@@ -246,17 +246,18 @@ BANK_DATA = [
         'learner':           'compound_add_rtl',
         'pool':              'C',
         'trace':             [
-            '4+2×3-5+1', '↓',
-            '6×3-5+1',   '↓',   # ERROR 1: 4+2=6 (add_before_mult)
-            '18-5+1',    '↓',
-            '18-6',      '↓',   # ERROR 2: 5+1=6 before 18-5 (same_prio_rtl)
-            '12',
+            '4+(2×3)-5+1', '↓',
+            '4+2×3-5+1',   '↓',   # ERROR 1: dropped (2×3) (bracket_drop)
+            '6×3-5+1',    '↓',   # ERROR 2: 4+2=6 (add_before_mult)
+            '18-5+1',      '↓',   
+            '13+1',        '↓',
+            '14',
         ],
         'learnerAns':        '12',
         'expertAns':         '6',
-        'desc_shown':        'Did addition/subtraction before multiplication/division (computed `4+2` before `2×3`)',
+        'desc_shown':        'Ignored the brackets, and computed as if there were no brackets',
         'student':           'Lily',
-        'misconception_types': ['add_before_mult', 'same_prio_rtl'],
+        'misconception_types': ['add_before_mult', 'bracket_drop'],
         'inference_target':  'add_before_mult',
     },
 
@@ -275,31 +276,30 @@ BANK_DATA = [
         ],
         'learnerAns':        '10',
         'expertAns':         '11',
-        'desc_shown':        'Did addition/subtraction before multiplication/division (computed `3+5` before `5×2`)',
+        'desc_shown':        'Did addition before multiplication',
         'student':           'Mia',
         'misconception_types': ['add_before_mult', 'same_prio_rtl'],
         'inference_target':  'add_before_mult',
     },
 
-    # C5 — add_before_mult (1st) → same_prio_rtl (2nd)
-    # Expert: 5+8-3+4 = 14
+    # C5 — same_prio_rtl (1st) → add_before_mult (2nd)
+    # Expert: 6-2+12 = 16
     {
-        'expr':              '5+2*4-3+4',
-        'learner':           'compound_add_rtl',
+        'expr':              '6-2+3*4',
+        'learner':           'compound_rtl_add',
         'pool':              'C',
         'trace':             [
-            '5+2×4-3+4', '↓',
-            '7×4-3+4',   '↓',   # ERROR 1: 5+2=7 (add_before_mult)
-            '28-3+4',    '↓',
-            '28-7',      '↓',   # ERROR 2: 3+4=7 before 28-3 (same_prio_rtl)
-            '21',
+            '6-2+3×4', '↓',
+            '6-5×4',   '↓',   # ERROR 1: 2+3=5 right-to-left (same_prio_rtl)
+            '1×4',     '↓',   # ERROR 2: 6-5=1 before 5×4 (add_before_mult)
+            '4',
         ],
-        'learnerAns':        '21',
-        'expertAns':         '14',
-        'desc_shown':        'Did addition/subtraction before multiplication/division (computed `5+2` before `2×4`)',
+        'learnerAns':        '4',
+        'expertAns':         '16',
+        'desc_shown':        'Evaluated right to left instead of left to right when there were multiple operators of the same priority',
         'student':           'Owen',
-        'misconception_types': ['add_before_mult', 'same_prio_rtl'],
-        'inference_target':  'add_before_mult',
+        'misconception_types': ['same_prio_rtl', 'add_before_mult'],
+        'inference_target':  'same_prio_rtl',
     },
 
     # ═══════════════════════════════════════════════════════════════════════════
@@ -324,7 +324,7 @@ BANK_DATA = [
         ],
         'learnerAns':        '56',
         'expertAns':         '161',
-        'desc_shown':        'Dropped the brackets, and computed as if there were no brackets (treated `(2+6)` as if there were no brackets)',
+        'desc_shown':        'Dropped the brackets, and computed as if there were no brackets',
         'student':           'Zoe',
         'misconception_types': ['add_before_mult', 'bracket_drop'],
         'inference_target':  'bracket_drop',
@@ -367,7 +367,7 @@ BANK_DATA = [
         ],
         'learnerAns':        '30',
         'expertAns':         '10',
-        'desc_shown':        'Evaluated right to left instead of left to right (computed `3+2` before `35-3`)',
+        'desc_shown':        'Evaluated right to left instead of left to right when there were multiple operators of the same priority',
         'student':           'Ella',
         'misconception_types': ['add_before_mult', 'same_prio_rtl'],
         'inference_target':  'same_prio_rtl',
@@ -388,31 +388,30 @@ BANK_DATA = [
         ],
         'learnerAns':        '9',
         'expertAns':         '11',
-        'desc_shown':        'Evaluated right to left instead of left to right (computed `6+3` before `18-6`)',
+        'desc_shown':        'Evaluated right to left instead of left to right when there were multiple operators of the same priority',
         'student':           'Finn',
         'misconception_types': ['add_before_mult', 'same_prio_rtl'],
         'inference_target':  'same_prio_rtl',
     },
 
-    # D5 — add_before_mult (1st) → same_prio_rtl (2nd)
-    # Expert: 1+12-2+5 = 16
+    # D5 — same_prio_rtl (1st) → add_before_mult (2nd)
+    # Expert: 7-2+15 = 20
     {
-        'expr':              '1+3*4-2+5',
-        'learner':           'compound_add_rtl',
+        'expr':              '7-2+3*5',
+        'learner':           'compound_rtl_add',
         'pool':              'D',
         'trace':             [
-            '1+3×4-2+5', '↓',
-            '4×4-2+5',   '↓',   # ERROR 1: 1+3=4 (add_before_mult)
-            '16-2+5',    '↓',
-            '16-7',      '↓',   # ERROR 2: 2+5=7 before 16-2 (same_prio_rtl)
-            '9',
+            '7-2+3×5', '↓',
+            '7-5×5',   '↓',   # ERROR 1: 2+3=5 right-to-left (same_prio_rtl)
+            '2×5',     '↓',   # ERROR 2: 7-5=2 before 5×5 (add_before_mult)
+            '10',
         ],
-        'learnerAns':        '9',
-        'expertAns':         '16',
-        'desc_shown':        'Evaluated right to left instead of left to right (computed `2+5` before `16-2`)',
+        'learnerAns':        '10',
+        'expertAns':         '20',
+        'desc_shown':        'Did addition/subtraction before multiplication/division',
         'student':           'Nora',
-        'misconception_types': ['add_before_mult', 'same_prio_rtl'],
-        'inference_target':  'same_prio_rtl',
+        'misconception_types': ['same_prio_rtl', 'add_before_mult'],
+        'inference_target':  'add_before_mult',
     },
 ]
 
