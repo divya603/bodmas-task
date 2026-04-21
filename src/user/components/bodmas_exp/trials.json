@@ -3,16 +3,16 @@
     "id": 1,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "(2+3)×5+1",
+    "expression": "(2+3)\u00d75+1",
     "mysteryLearner": "addition_first",
     "studentName": "Ned",
     "traceLines": [
-      "(2+3)×5+1",
-      "↓",
-      "5×5+1",
-      "↓",
-      "5×6",
-      "↓",
+      "(2+3)\u00d75+1",
+      "\u2193",
+      "5\u00d75+1",
+      "\u2193",
+      "5\u00d76",
+      "\u2193",
       "30"
     ],
     "finalAnswer": "30",
@@ -43,21 +43,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 3,
+    "id": 2,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "(6-2)×3+4×2",
+    "expression": "(6-2)\u00d73+4\u00d72",
     "mysteryLearner": "addition_first",
     "studentName": "Emily",
     "traceLines": [
-      "(6-2)×3+4×2",
-      "↓",
-      "4×3+4×2",
-      "↓",
-      "4×7×2",
-      "↓",
-      "28×2",
-      "↓",
+      "(6-2)\u00d73+4\u00d72",
+      "\u2193",
+      "4\u00d73+4\u00d72",
+      "\u2193",
+      "4\u00d77\u00d72",
+      "\u2193",
+      "28\u00d72",
+      "\u2193",
       "56"
     ],
     "finalAnswer": "56",
@@ -67,13 +67,13 @@
     "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -88,21 +88,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 7,
+    "id": 3,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "4×2×3+5×2",
+    "expression": "4\u00d72\u00d73+5\u00d72",
     "mysteryLearner": "left_to_right_only",
     "studentName": "Mike",
     "traceLines": [
-      "4×2×3+5×2",
-      "↓",
-      "8×3+5×2",
-      "↓",
-      "24+5×2",
-      "↓",
-      "29×2",
-      "↓",
+      "4\u00d72\u00d73+5\u00d72",
+      "\u2193",
+      "8\u00d73+5\u00d72",
+      "\u2193",
+      "24+5\u00d72",
+      "\u2193",
+      "29\u00d72",
+      "\u2193",
       "58"
     ],
     "finalAnswer": "58",
@@ -112,13 +112,13 @@
     "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       },
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       }
     ],
@@ -133,26 +133,26 @@
     "inference_points_to_first": null
   },
   {
-    "id": 13,
+    "id": 4,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "6-2+3×4",
+    "expression": "6-2+3\u00d74",
     "mysteryLearner": "right_to_left",
     "studentName": "Morgan",
     "traceLines": [
-      "6-2+3×4",
-      "↓",
+      "6-2+3\u00d74",
+      "\u2193",
       "6-2+12",
-      "↓",
+      "\u2193",
       "6-14",
-      "↓",
+      "\u2193",
       "-8"
     ],
     "finalAnswer": "-8",
     "expertAnswer": "16",
-    "correctDescription": "Evaluated right to left",
+    "correctDescription": "Evaluated the expressionright to left",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left",
+    "descriptionShown": "Evaluated the expressionright to left",
     "options": [
       {
         "key": "no",
@@ -176,28 +176,28 @@
     "inference_points_to_first": null
   },
   {
-    "id": 15,
+    "id": 5,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "5×(3+4)-2",
+    "expression": "5\u00d7(3+4)-2",
     "mysteryLearner": "bracket_ignorer",
     "studentName": "Riley",
     "traceLines": [
-      "5×(3+4)-2",
-      "↓",
-      "5×3+4-2",
-      "↓",
+      "5\u00d7(3+4)-2",
+      "\u2193",
+      "5\u00d73+4-2",
+      "\u2193",
       "15+4-2",
-      "↓",
+      "\u2193",
       "19-2",
-      "↓",
+      "\u2193",
       "17"
     ],
     "finalAnswer": "17",
     "expertAnswer": "33",
-    "correctDescription": "Dropped the brackets",
+    "correctDescription": "Dropped the brackets, and computed as if there were no brackets",
     "foilDescription": null,
-    "descriptionShown": "Dropped the brackets",
+    "descriptionShown": "Dropped the brackets, and computed as if there were no brackets",
     "options": [
       {
         "key": "no",
@@ -221,21 +221,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 16,
+    "id": 6,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "(4+3)×2+5×1",
+    "expression": "(4+3)\u00d72+5\u00d71",
     "mysteryLearner": "addition_first",
     "studentName": "Quinn",
     "traceLines": [
-      "(4+3)×2+5×1",
-      "↓",
-      "7×2+5×1",
-      "↓",
-      "7×7×1",
-      "↓",
-      "49×1",
-      "↓",
+      "(4+3)\u00d72+5\u00d71",
+      "\u2193",
+      "7\u00d72+5\u00d71",
+      "\u2193",
+      "7\u00d77\u00d71",
+      "\u2193",
+      "49\u00d71",
+      "\u2193",
       "49"
     ],
     "finalAnswer": "49",
@@ -266,21 +266,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 17,
+    "id": 7,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "6×(2+1)-3×4",
+    "expression": "6\u00d7(2+1)-3\u00d74",
     "mysteryLearner": "addition_first",
     "studentName": "Pat",
     "traceLines": [
-      "6×(2+1)-3×4",
-      "↓",
-      "6×3-3×4",
-      "↓",
-      "6×0×4",
-      "↓",
-      "0×4",
-      "↓",
+      "6\u00d7(2+1)-3\u00d74",
+      "\u2193",
+      "6\u00d73-3\u00d74",
+      "\u2193",
+      "6\u00d70\u00d74",
+      "\u2193",
+      "0\u00d74",
+      "\u2193",
       "0"
     ],
     "finalAnswer": "0",
@@ -290,13 +290,13 @@
     "descriptionShown": "Dropped the brackets and evaluated as if they weren't there",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -311,21 +311,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 18,
+    "id": 8,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "6×3+4-2×3",
+    "expression": "6\u00d73+4-2\u00d73",
     "mysteryLearner": "left_to_right_only",
     "studentName": "Drew",
     "traceLines": [
-      "6×3+4-2×3",
-      "↓",
-      "18+4-2×3",
-      "↓",
-      "22-2×3",
-      "↓",
-      "20×3",
-      "↓",
+      "6\u00d73+4-2\u00d73",
+      "\u2193",
+      "18+4-2\u00d73",
+      "\u2193",
+      "22-2\u00d73",
+      "\u2193",
+      "20\u00d73",
+      "\u2193",
       "60"
     ],
     "finalAnswer": "60",
@@ -356,19 +356,19 @@
     "inference_points_to_first": null
   },
   {
-    "id": 19,
+    "id": 9,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "9-4+2×3",
+    "expression": "9-4+2\u00d73",
     "mysteryLearner": "right_to_left",
     "studentName": "Lee",
     "traceLines": [
-      "9-4+2×3",
-      "↓",
+      "9-4+2\u00d73",
+      "\u2193",
       "9-4+6",
-      "↓",
+      "\u2193",
       "9-10",
-      "↓",
+      "\u2193",
       "-1"
     ],
     "finalAnswer": "-1",
@@ -399,21 +399,21 @@
     "inference_points_to_first": null
   },
   {
-    "id": 20,
+    "id": 10,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "4×(2+3)-1",
+    "expression": "4\u00d7(2+3)-1",
     "mysteryLearner": "bracket_ignorer",
     "studentName": "Chris",
     "traceLines": [
-      "4×(2+3)-1",
-      "↓",
-      "4×2+3-1",
-      "↓",
+      "4\u00d7(2+3)-1",
+      "\u2193",
+      "4\u00d72+3-1",
+      "\u2193",
       "8+3-1",
-      "↓",
+      "\u2193",
       "11-1",
-      "↓",
+      "\u2193",
       "10"
     ],
     "finalAnswer": "10",
@@ -423,13 +423,13 @@
     "descriptionShown": "Distributed (expanded) the brackets instead of evaluating inside them first",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -444,23 +444,23 @@
     "inference_points_to_first": null
   },
   {
-    "id": 21,
+    "id": 11,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "2+3×6×(3+7)",
+    "expression": "2+3\u00d76\u00d7(3+7)",
     "mysteryLearner": "compound_add_bracket_drop",
     "studentName": "Noah",
     "traceLines": [
-      "2+3×6×(3+7)",
-      "↓",
-      "5×6×(3+7)",
-      "↓",
-      "5×6×3+7",
-      "↓",
-      "30×3+7",
-      "↓",
+      "2+3\u00d76\u00d7(3+7)",
+      "\u2193",
+      "5\u00d76\u00d7(3+7)",
+      "\u2193",
+      "5\u00d76\u00d73+7",
+      "\u2193",
+      "30\u00d73+7",
+      "\u2193",
       "90+7",
-      "↓",
+      "\u2193",
       "97"
     ],
     "finalAnswer": "97",
@@ -492,23 +492,23 @@
     "inference_points_to_first": true
   },
   {
-    "id": 22,
+    "id": 12,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "3+2×4×(5-2)",
+    "expression": "3+2\u00d74\u00d7(5-2)",
     "mysteryLearner": "compound_add_bracket_drop",
     "studentName": "Olivia",
     "traceLines": [
-      "3+2×4×(5-2)",
-      "↓",
-      "5×4×(5-2)",
-      "↓",
-      "5×4×5-2",
-      "↓",
-      "20×5-2",
-      "↓",
+      "3+2\u00d74\u00d7(5-2)",
+      "\u2193",
+      "5\u00d74\u00d7(5-2)",
+      "\u2193",
+      "5\u00d74\u00d75-2",
+      "\u2193",
+      "20\u00d75-2",
+      "\u2193",
       "100-2",
-      "↓",
+      "\u2193",
       "98"
     ],
     "finalAnswer": "98",
@@ -540,21 +540,21 @@
     "inference_points_to_first": true
   },
   {
-    "id": 23,
+    "id": 13,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "4+2×3-5+1",
+    "expression": "4+2\u00d73-5+1",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Lily",
     "traceLines": [
-      "4+2×3-5+1",
-      "↓",
-      "6×3-5+1",
-      "↓",
+      "4+2\u00d73-5+1",
+      "\u2193",
+      "6\u00d73-5+1",
+      "\u2193",
       "18-5+1",
-      "↓",
+      "\u2193",
       "18-6",
-      "↓",
+      "\u2193",
       "12"
     ],
     "finalAnswer": "12",
@@ -564,13 +564,13 @@
     "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -586,21 +586,21 @@
     "inference_points_to_first": true
   },
   {
-    "id": 24,
+    "id": 14,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "3+5×2-4+2",
+    "expression": "3+5\u00d72-4+2",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Mia",
     "traceLines": [
-      "3+5×2-4+2",
-      "↓",
-      "8×2-4+2",
-      "↓",
+      "3+5\u00d72-4+2",
+      "\u2193",
+      "8\u00d72-4+2",
+      "\u2193",
       "16-4+2",
-      "↓",
+      "\u2193",
       "16-6",
-      "↓",
+      "\u2193",
       "10"
     ],
     "finalAnswer": "10",
@@ -610,13 +610,13 @@
     "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -632,21 +632,21 @@
     "inference_points_to_first": true
   },
   {
-    "id": 25,
+    "id": 15,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "5+2×4-3+4",
+    "expression": "5+2\u00d74-3+4",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Owen",
     "traceLines": [
-      "5+2×4-3+4",
-      "↓",
-      "7×4-3+4",
-      "↓",
+      "5+2\u00d74-3+4",
+      "\u2193",
+      "7\u00d74-3+4",
+      "\u2193",
       "28-3+4",
-      "↓",
+      "\u2193",
       "28-7",
-      "↓",
+      "\u2193",
       "21"
     ],
     "finalAnswer": "21",
@@ -656,13 +656,13 @@
     "descriptionShown": "Did addition/subtraction before multiplication/division",
     "options": [
       {
-        "key": "yes",
-        "label": "Yes",
+        "key": "no",
+        "label": "No",
         "description": ""
       },
       {
-        "key": "no",
-        "label": "No",
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -678,30 +678,30 @@
     "inference_points_to_first": true
   },
   {
-    "id": 26,
+    "id": 16,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "1+4×5×(2+6)",
+    "expression": "1+4\u00d75\u00d7(2+6)",
     "mysteryLearner": "compound_add_bracket_drop",
     "studentName": "Zoe",
     "traceLines": [
-      "1+4×5×(2+6)",
-      "↓",
-      "5×5×(2+6)",
-      "↓",
-      "5×5×2+6",
-      "↓",
-      "25×2+6",
-      "↓",
+      "1+4\u00d75\u00d7(2+6)",
+      "\u2193",
+      "5\u00d75\u00d7(2+6)",
+      "\u2193",
+      "5\u00d75\u00d72+6",
+      "\u2193",
+      "25\u00d72+6",
+      "\u2193",
       "50+6",
-      "↓",
+      "\u2193",
       "56"
     ],
     "finalAnswer": "56",
     "expertAnswer": "161",
-    "correctDescription": "Dropped the brackets",
+    "correctDescription": "Dropped the brackets, and computed as if there were no brackets",
     "foilDescription": null,
-    "descriptionShown": "Dropped the brackets",
+    "descriptionShown": "Dropped the brackets, and computed as if there were no brackets",
     "options": [
       {
         "key": "no",
@@ -726,39 +726,39 @@
     "inference_points_to_first": false
   },
   {
-    "id": 27,
+    "id": 17,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "4+1×3×(6-4)",
+    "expression": "4+1\u00d73\u00d7(6-4)",
     "mysteryLearner": "compound_add_bracket_drop",
     "studentName": "Liam",
     "traceLines": [
-      "4+1×3×(6-4)",
-      "↓",
-      "5×3×(6-4)",
-      "↓",
-      "5×3×6-4",
-      "↓",
-      "15×6-4",
-      "↓",
+      "4+1\u00d73\u00d7(6-4)",
+      "\u2193",
+      "5\u00d73\u00d7(6-4)",
+      "\u2193",
+      "5\u00d73\u00d76-4",
+      "\u2193",
+      "15\u00d76-4",
+      "\u2193",
       "90-4",
-      "↓",
+      "\u2193",
       "86"
     ],
     "finalAnswer": "86",
     "expertAnswer": "10",
-    "correctDescription": "Dropped the brackets",
+    "correctDescription": "Dropped the brackets and computed as if there were no brackets(treated `(6-4)` as if there were no brackets)",
     "foilDescription": null,
-    "descriptionShown": "Dropped the brackets",
+    "descriptionShown": "Dropped the brackets and computed as if there were no brackets(treated `(6-4)` as if there were no brackets)",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
       {
         "key": "yes",
         "label": "Yes",
+        "description": ""
+      },
+      {
+        "key": "no",
+        "label": "No",
         "description": ""
       }
     ],
@@ -774,37 +774,37 @@
     "inference_points_to_first": false
   },
   {
-    "id": 28,
+    "id": 18,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "6+1×5-3+2",
+    "expression": "6+1\u00d75-3+2",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Ella",
     "traceLines": [
-      "6+1×5-3+2",
-      "↓",
-      "7×5-3+2",
-      "↓",
+      "6+1\u00d75-3+2",
+      "\u2193",
+      "7\u00d75-3+2",
+      "\u2193",
       "35-3+2",
-      "↓",
+      "\u2193",
       "35-5",
-      "↓",
+      "\u2193",
       "30"
     ],
     "finalAnswer": "30",
     "expertAnswer": "10",
-    "correctDescription": "Evaluated right to left",
+    "correctDescription": "Evaluated right to left instead of left to right",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left",
+    "descriptionShown": "Evaluated right to left instead of left to right",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
       {
         "key": "no",
         "label": "No",
+        "description": ""
+      },
+      {
+        "key": "yes",
+        "label": "Yes",
         "description": ""
       }
     ],
@@ -820,37 +820,37 @@
     "inference_points_to_first": false
   },
   {
-    "id": 29,
+    "id": 19,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "2+4×3-6+3",
+    "expression": "2+4\u00d73-6+3",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Finn",
     "traceLines": [
-      "2+4×3-6+3",
-      "↓",
-      "6×3-6+3",
-      "↓",
+      "2+4\u00d73-6+3",
+      "\u2193",
+      "6\u00d73-6+3",
+      "\u2193",
       "18-6+3",
-      "↓",
+      "\u2193",
       "18-9",
-      "↓",
+      "\u2193",
       "9"
     ],
     "finalAnswer": "9",
     "expertAnswer": "11",
-    "correctDescription": "Evaluated right to left",
+    "correctDescription": "Evaluated right to left instead of left to right",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left",
+    "descriptionShown": "Evaluated right to left instead of left to right",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
       {
         "key": "yes",
         "label": "Yes",
+        "description": ""
+      },
+      {
+        "key": "no",
+        "label": "No",
         "description": ""
       }
     ],
@@ -866,37 +866,37 @@
     "inference_points_to_first": false
   },
   {
-    "id": 30,
+    "id": 20,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "1+3×4-2+5",
+    "expression": "1+3\u00d74-2+5",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Nora",
     "traceLines": [
-      "1+3×4-2+5",
-      "↓",
-      "4×4-2+5",
-      "↓",
+      "1+3\u00d74-2+5",
+      "\u2193",
+      "4\u00d74-2+5",
+      "\u2193",
       "16-2+5",
-      "↓",
+      "\u2193",
       "16-7",
-      "↓",
+      "\u2193",
       "9"
     ],
     "finalAnswer": "9",
     "expertAnswer": "16",
-    "correctDescription": "Evaluated right to left",
+    "correctDescription": "Evaluated right to left instead of left to right",
     "foilDescription": null,
-    "descriptionShown": "Evaluated right to left",
+    "descriptionShown": "Evaluated right to left instead of left to right",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
       {
         "key": "yes",
         "label": "Yes",
+        "description": ""
+      },
+      {
+        "key": "no",
+        "label": "No",
         "description": ""
       }
     ],
