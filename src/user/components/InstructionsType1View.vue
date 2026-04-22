@@ -136,7 +136,7 @@ function next() {
 
         <!-- Radio buttons -->
         <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">Is this what {{ currentExample.studentName }} believes?</p>
+          <p class="text-sm font-medium">Does this description capture the rule {{ currentExample.studentName }} seems to be following?</p>
           <label
             v-for="option in LIKERT_OPTIONS"
             :key="option"
@@ -209,7 +209,7 @@ function next() {
 
         <!-- Radio buttons -->
         <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">Is this what {{ examples[2].studentName }} believes?</p>
+          <p class="text-sm font-medium">Does this description capture the rule {{ examples[2].studentName }} seems to be following?</p>
           <label
             v-for="option in LIKERT_OPTIONS"
             :key="option"

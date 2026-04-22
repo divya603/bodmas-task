@@ -341,7 +341,7 @@ const SUMMARY_MESSAGES = {
       <!-- Likert radio buttons + comment (type1_yn — Type 1, hidden during trace phase) -->
       <div v-if="isLikert && !inTracePhase" class="flex flex-col gap-4 flex-1">
         <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">Is this what {{ currentTrial.studentName }} believes?</p>
+          <p class="text-sm font-medium">Does this description capture the rule {{ currentTrial.studentName }} seems to be following?</p>
           <label
             v-for="option in LIKERT_OPTIONS"
             :key="option"
