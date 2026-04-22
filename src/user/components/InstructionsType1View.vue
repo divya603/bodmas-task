@@ -102,7 +102,7 @@ function next() {
         </p>
 
         <div class="flex justify-end pt-2">
-          <Button @click="next()">See examples <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button @click="next()">Continue <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
@@ -158,7 +158,7 @@ function next() {
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>
-          <Button :disabled="!demoSelections[page - 1]" @click="next()">{{ page === 2 ? 'See split example' : 'Next example' }} <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button :disabled="!demoSelections[page - 1]" @click="next()">Continue <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
@@ -192,7 +192,7 @@ function next() {
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>
-          <Button @click="next()">Next <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button @click="next()">Continue <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
@@ -231,7 +231,7 @@ function next() {
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>
-          <Button :disabled="!demoSelections[2]" @click="next()">Start the task <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button :disabled="!demoSelections[2]" @click="next()">Continue <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
