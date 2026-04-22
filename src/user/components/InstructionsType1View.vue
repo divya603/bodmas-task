@@ -78,15 +78,15 @@ function next() {
         <ul class="list-disc pl-6 text-base leading-relaxed space-y-1">
           <li>A math expression given to a third-grade student</li>
           <li>The student's step-by-step working and final answer</li>
-          <li>A proposed description of what the student believes</li>
+          <li>A proposed description of the rule the student seems to be following</li>
         </ul>
 
         <p class="text-base leading-relaxed">
-          Your job is to rate <strong>how well the description matches what the student believes</strong>,
+          Your job is to rate <strong>how well the description captures the rule the student seems to be following</strong>,
           using a 6-point scale:
         </p>
         <div class="bg-muted rounded-lg px-5 py-4 text-sm space-y-1">
-          <p><span class="font-semibold">Strongly Agree</span> — The description perfectly captures the student's belief.</p>
+          <p><span class="font-semibold">Strongly Agree</span> — The description perfectly captures the rule the student is following.</p>
           <p><span class="font-semibold">Agree / Somewhat Agree</span> — The description mostly matches.</p>
           <p><span class="font-semibold">Somewhat Disagree / Disagree</span> — The description is off.</p>
           <p><span class="font-semibold">Strongly Disagree</span> — The description does not match at all.</p>
@@ -158,7 +158,7 @@ function next() {
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>
-          <Button @click="next()">{{ page === 2 ? 'See split example' : 'Next example' }} <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button :disabled="!demoSelections[page - 1]" @click="next()">{{ page === 2 ? 'See split example' : 'Next example' }} <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
@@ -231,7 +231,7 @@ function next() {
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>
-          <Button @click="next()">Start the task <i-fa6-solid-arrow-right class="ml-1" /></Button>
+          <Button :disabled="!demoSelections[2]" @click="next()">Start the task <i-fa6-solid-arrow-right class="ml-1" /></Button>
         </div>
       </template>
 
