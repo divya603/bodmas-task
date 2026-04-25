@@ -225,9 +225,6 @@ const SUMMARY_MESSAGES = {
     <!-- ── Summary screen ───────────────────────────────────────────────────── -->
     <div v-if="isSummary" class="flex flex-col items-center justify-center h-full gap-6 text-center px-8">
       <h2 class="text-2xl font-bold">All done!</h2>
-      <p class="text-lg text-muted-foreground">
-        {{ SUMMARY_MESSAGES[props.trialType]?.(api.persist[attemptsKey]) }}
-      </p>
       <Button size="lg" @click="finish()">Continue</Button>
     </div>
 
