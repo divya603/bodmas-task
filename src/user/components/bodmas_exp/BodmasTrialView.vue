@@ -63,14 +63,14 @@ if (participantTrials.length === 0) {
 const TRIAL_COUNT = participantTrials.length   // 20 for types 1/2, 20 for types 3/4
 
 // ── Build step list ───────────────────────────────────────────────────────────
-// Randomly assign which 10 of 20 trials show trace-first vs together
+// Randomly assign which 10 of 20 trials hide the trace during the rating phase
 const splitFlags = [...Array(10).fill(false), ...Array(10).fill(true)].sort(() => Math.random() - 0.5)
 
 const trials = api.steps.append(
   participantTrials.map((t, i) => ({
     id: `trial_${t.id}`,
     trialData: t,
-    showTraceFirst: splitFlags[i],
+    traceHiddenDuringRating: splitFlags[i],  // true = trace removed when description appears
     response: null,
     comment: null,
     correct: null,
@@ -149,15 +149,16 @@ watch(
   }
 )
 
-const currentTrial    = computed(() => api.stepData?.trialData ?? null)
-const isSummary       = computed(() => api.stepData?.id === 'summary')
-const showTraceFirst  = computed(() => api.stepData?.showTraceFirst ?? false)
-const inTracePhase    = computed(() => showTraceFirst.value && !traceViewed.value)
-const isLikert        = computed(() => !isTextInput && currentTrial.value?.format === 'type1_yn')
-const isAdviceSlider  = computed(() => !isTextInput && currentTrial.value?.format === 'advice_slider')
+const currentTrial             = computed(() => api.stepData?.trialData ?? null)
+const isSummary                = computed(() => api.stepData?.id === 'summary')
+const traceHiddenDuringRating  = computed(() => api.stepData?.traceHiddenDuringRating ?? false)
+const inTextPhase              = computed(() => !traceViewed.value)  // phase 1: text box; phase 2: Likert
+const isLikert                 = computed(() => !isTextInput && currentTrial.value?.format === 'type1_yn')
+const isAdviceSlider           = computed(() => !isTextInput && currentTrial.value?.format === 'advice_slider')
+const canContinue = computed(() => textResponse.value.trim().length > 0)
 const canSubmit = computed(() => {
-  if (isTextInput)        return textResponse.value.trim().length > 0
-  if (isLikert.value)     return likertValue.value !== null
+  if (isTextInput)          return textResponse.value.trim().length > 0
+  if (isLikert.value)       return likertValue.value !== null
   if (isAdviceSlider.value) return true
   return !!selectedKey.value
 })
@@ -247,16 +248,16 @@ const SUMMARY_MESSAGES = {
         />
       </div>
 
-      <!-- Expression (hidden on question screen for split trials) -->
-      <div v-if="!showTraceFirst || inTracePhase">
+      <!-- Expression (always shown) -->
+      <div>
         <p class="text-sm text-muted-foreground mb-1">
-           {{ currentTrial.studentName }} is a third grade student. Here is the expression given to {{ currentTrial.studentName }}, in their math test.:
+          {{ currentTrial.studentName }} is a third grade student. Here is the expression given to {{ currentTrial.studentName }}, in their math test.:
         </p>
         <p class="text-2xl font-mono font-semibold">{{ currentTrial.expression }}</p>
       </div>
 
-      <!-- Final answer + trace (hidden on question screen for split trials) -->
-      <div v-if="!showTraceFirst || inTracePhase">
+      <!-- Trace (always shown in phase 1; conditionally shown in phase 2) -->
+      <div v-if="inTextPhase || !traceHiddenDuringRating">
         <p class="text-sm text-muted-foreground mb-2">
           Here is the final answer {{ currentTrial.studentName }} produced, along with their working:
         </p>
@@ -274,10 +275,23 @@ const SUMMARY_MESSAGES = {
         </div>
       </div>
 
-      <!-- Description box (type1_yn — Type 1 only, hidden during trace phase) -->
-      <div v-if="currentTrial.format === 'type1_yn' && !isTextInput && !inTracePhase"
+      <!-- Phase 1: mandatory text box (type1_yn only) -->
+      <div v-if="isLikert && inTextPhase" class="flex flex-col gap-2 flex-1">
+        <p class="text-sm font-medium">
+          What do you think {{ currentTrial.studentName }} did?
+        </p>
+        <textarea
+          v-model="textResponse"
+          placeholder="Type your thoughts here…"
+          rows="4"
+          class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+
+      <!-- Phase 2: description box (type1_yn only) -->
+      <div v-if="currentTrial.format === 'type1_yn' && !isTextInput && !inTextPhase"
            class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-        <p class="italic">"{{ currentTrial.descriptionShown }}"</p>
+        <p class="italic">{{ currentTrial.studentName }} believes {{ currentTrial.descriptionShown }}.</p>
       </div>
 
       <!-- Advice box (advice_slider — Type 3 only) -->
@@ -338,43 +352,28 @@ const SUMMARY_MESSAGES = {
         </div>
       </div>
 
-      <!-- Likert radio buttons + comment (type1_yn — Type 1, hidden during trace phase) -->
-      <div v-if="isLikert && !inTracePhase" class="flex flex-col gap-4 flex-1">
-        <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">Does this description capture the rule {{ currentTrial.studentName }} seems to be following?</p>
-          <label
-            v-for="option in LIKERT_OPTIONS"
-            :key="option"
-            class="flex items-center gap-3 rounded-lg border px-4 py-3 text-sm cursor-pointer transition-colors"
-            :class="{
-              'border-primary bg-primary/10': likertValue === option,
-              'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50': likertValue !== option,
-              'opacity-60 pointer-events-none': submitted,
-            }"
-          >
-            <input
-              type="radio"
-              :value="option"
-              v-model="likertValue"
-              :disabled="submitted"
-              class="accent-primary"
-            />
-            {{ option }}
-          </label>
-        </div>
-        <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">
-            What do you think {{ currentTrial.studentName }} did?
-            <span class="text-muted-foreground font-normal">(optional)</span>
-          </p>
-          <textarea
-            v-model="textResponse"
+      <!-- Phase 2: Likert radio buttons (type1_yn only) -->
+      <div v-if="isLikert && !inTextPhase" class="flex flex-col gap-2 flex-1">
+        <p class="text-sm font-medium">Is this what {{ currentTrial.studentName }} believes?</p>
+        <label
+          v-for="option in LIKERT_OPTIONS"
+          :key="option"
+          class="flex items-center gap-3 rounded-lg border px-4 py-3 text-sm cursor-pointer transition-colors"
+          :class="{
+            'border-primary bg-primary/10': likertValue === option,
+            'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50': likertValue !== option,
+            'opacity-60 pointer-events-none': submitted,
+          }"
+        >
+          <input
+            type="radio"
+            :value="option"
+            v-model="likertValue"
             :disabled="submitted"
-            placeholder="Type your thoughts here…"
-            rows="3"
-            class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
+            class="accent-primary"
           />
-        </div>
+          {{ option }}
+        </label>
       </div>
 
       <!-- Slider (advice_slider — Type 3) -->
@@ -400,8 +399,8 @@ const SUMMARY_MESSAGES = {
 
       <!-- Actions -->
       <div class="flex justify-end gap-3 pb-2">
-        <Button v-if="inTracePhase" @click="traceViewed = true">
-          Next
+        <Button v-if="isLikert && inTextPhase" :disabled="!canContinue" @click="traceViewed = true">
+          Continue <i-fa6-solid-arrow-right class="ml-1" />
         </Button>
         <Button
           v-else

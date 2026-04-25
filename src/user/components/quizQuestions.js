@@ -14,10 +14,10 @@ export const QUIZ_QUESTIONS = [
       },
       {
         id: 'q2',
-        question: 'Is the full trace always shown?',
+        question: "Is the student's working always visible when you answer the question?",
         multiSelect: false,
         answers: ['Yes', 'No'],
-        correctAnswer: ['Yes'],
+        correctAnswer: ['No'],
       },
     ],
   },
