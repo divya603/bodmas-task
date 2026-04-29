@@ -67,35 +67,33 @@ function next() {
 
       <!-- ── Page 0: Introduction ──────────────────────────────────────────── -->
       <template v-if="page === 0">
-        <h1 class="text-2xl font-bold">Instructions</h1>
+        <h1 class="text-2xl font-bold">📋 Instructions</h1>
 
         <p class="text-base leading-relaxed">
-          This study looks at whether people can examine a student's step-by-step working
-          through a math equation and identify what the student believes about how math works.
+          You'll see math work from a series of different students 🧑‍🎓 and try to figure out what each one thinks about how math works. Each trial has two steps.
         </p>
-
-        <p class="text-base leading-relaxed">Each trial has two steps:</p>
 
         <div class="bg-muted rounded-lg px-5 py-4 text-sm space-y-4">
           <div>
-            <p class="font-semibold mb-1">Step 1</p>
-            <p>You will see a math expression and the student's complete step-by-step working. Write your initial thoughts about what the student did.</p>
+            <p class="font-semibold mb-1">👀 Step 1</p>
+            <p>You'll see a math expression and one student's step-by-step solution. Write your initial thoughts about what they did. ✏️</p>
           </div>
           <div>
-            <p class="font-semibold mb-1">Step 2</p>
-            <p>You will see a statement about what the student believes. Rate how accurately it describes the student using a 6-point scale:</p>
+            <p class="font-semibold mb-1">💭 Step 2</p>
+            <p>You'll see a statement about what this student might believe. Rate it on this scale:</p>
             <div class="mt-2 space-y-1 pl-2">
-              <p><span class="font-semibold">Strongly Agree</span> — The statement perfectly describes what the student believes.</p>
-              <p><span class="font-semibold">Agree / Somewhat Agree</span> — The statement mostly matches.</p>
-              <p><span class="font-semibold">Somewhat Disagree / Disagree</span> — The statement is somewhat off.</p>
-              <p><span class="font-semibold">Strongly Disagree</span> — The statement does not describe what the student believes at all.</p>
+              <p><span class="font-semibold">Strongly Agree</span> — perfectly describes their belief</p>
+              <p><span class="font-semibold">Agree</span> — mostly matches</p>
+              <p><span class="font-semibold">Somewhat Agree</span> — partly matches</p>
+              <p><span class="font-semibold">Somewhat Disagree</span> — somewhat off</p>
+              <p><span class="font-semibold">Disagree</span> — mostly off</p>
+              <p><span class="font-semibold">Strongly Disagree</span> — doesn't describe them at all</p>
             </div>
           </div>
         </div>
 
         <p class="text-base leading-relaxed">
-          <strong>Note:</strong> In some trials, the student's working will still be visible when you reach Step 2.
-          In others, it will no longer be shown. You will not know in advance which it will be.
+          ⚠️ In Step 2, the student's work may or may not still be visible. You won't know in advance!
         </p>
 
         <div class="flex justify-end pt-2">

@@ -238,22 +238,22 @@ BANK_DATA = [
         'inference_target':  'add_before_mult',
     },
 
-    # C3 — add_before_mult (1st) → same_prio_rtl (2nd)
-    # Learner computes 4+2=6 before 2×3, then later computes 5+1=6 right-to-left.
-    # Expert: 4+6-5+1 = 6
+    # C3 — bracket_drop (1st) → add_before_mult (2nd)
+    # Student drops brackets around (2×3), then adds 4+2 before multiplying.
+    # Expert: 4+(2×3)-5+1 = 4+6-5+1 = 6
     {
-        'expr':              '4+2*3-5+1',
-        'learner':           'compound_add_rtl',
+        'expr':              '4+(2*3)-5+1',
+        'learner':           'compound_bracket_add',
         'pool':              'C',
         'trace':             [
             '4+(2×3)-5+1', '↓',
-            '4+2×3-5+1',   '↓',   # ERROR 1: dropped (2×3) (bracket_drop)
-            '6×3-5+1',    '↓',   # ERROR 2: 4+2=6 (add_before_mult)
-            '18-5+1',      '↓',   
+            '4+2×3-5+1',   '↓',   # ERROR 1: dropped brackets (bracket_drop)
+            '6×3-5+1',     '↓',   # ERROR 2: 4+2=6 (add_before_mult)
+            '18-5+1',      '↓',
             '13+1',        '↓',
             '14',
         ],
-        'learnerAns':        '12',
+        'learnerAns':        '14',
         'expertAns':         '6',
         'desc_shown':        'ignoring the brackets and computing as if they weren\'t there',
         'student':           'Lily',
