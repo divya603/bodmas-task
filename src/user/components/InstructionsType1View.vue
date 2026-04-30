@@ -21,7 +21,6 @@ const examples = [
     studentName: 'Alex',
     belief: 'doing addition before multiplication',
     traceHiddenInPhase2: false,
-    hint: 'Alex got 35 — the correct answer is 23. The statement accurately describes what Alex did, so Agree or Strongly Agree would be appropriate here.',
   },
   {
     expression: '2 + 3 × 4',
@@ -29,7 +28,6 @@ const examples = [
     studentName: 'Sam',
     belief: 'evaluating right to left',
     traceHiddenInPhase2: false,
-    hint: 'Sam added first and got 20 — the correct answer is 14. The statement says "evaluating right to left" but Sam added before multiplying, not right to left. Disagree or Strongly Disagree would be appropriate here.',
   },
   {
     expression: '(3 + 4) × 5',
@@ -37,7 +35,6 @@ const examples = [
     studentName: 'Jordan',
     belief: 'dropping the brackets',
     traceHiddenInPhase2: true,
-    hint: 'Jordan got 35, which is the correct answer — the brackets were evaluated correctly. The statement says "dropping the brackets" which does not match. Disagree or Strongly Disagree would be appropriate.',
   },
 ]
 
@@ -182,10 +179,6 @@ function next() {
           </div>
         </div>
 
-        <!-- Hint after selection -->
-        <div v-if="demoSelections[exampleIndex]" class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
-          {{ currentExample.hint }}
-        </div>
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>

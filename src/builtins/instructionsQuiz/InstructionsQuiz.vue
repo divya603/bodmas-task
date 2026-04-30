@@ -149,9 +149,9 @@ function submitQuiz() {
     persist: api.persist,
   })
   if (quizCorrect.value) {
-    api.goNextView()
+    api.goToStep('feedback/success')
   } else {
-    returnInstructions()
+    api.goToStep('feedback/retry')
   }
 }
 

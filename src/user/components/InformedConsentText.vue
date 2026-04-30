@@ -1,50 +1,116 @@
 <template>
   <div class="p-3 pt-2 text-left">
-    <h1 class="text-3xl font-bold"><i-mdi-approve class="inline-block mr-2" />Informed Consent</h1>
+
+    <h1 class="text-3xl font-bold">Research Informed Consent Form</h1>
     <hr class="mt-2 mb-3 h-px" />
     <p>
-      If you agree to be in this study, you will be asked to look at pictures of objects or pictures presented on a
-      computer display, watch videos, listen to sounds, or observe lights controlled by the computer and to make
-      judgments about them using a keyboard, mouse, or other input device attached to a computer.
-    </p>
-    <ul class="pl-8 pt-3 pb-3 list-square">
-      <li>
-        Participation in this study will take about 30 minutes to complete, and you will receive $4.50 for your
-        participation. As an additional incentive to try your best at the task, you may earn a cash bonus of up to
-        $10.00 based on your performance.
-      </li>
-      <li>When you complete the study, a thorough verbal and written explanation of it will be provided.</li>
-      <li>In addition, by agreeing to participate, you understand you must be 18 years or older to participate.</li>
-      <li>
-        There are no known risks associated with your participation in this research beyond those of everyday life.
-        Although you will receive no direct benefits, this research may help the investigator understand how people
-        learn new categories.
-      </li>
-      <li>
-        Confidentiality of your research records will be strictly maintained. We assign code numbers to each participant
-        so that data is never directly linked to individual identity, and we are interested in group results rather than
-        the responses of particular individuals. Any emails will never be shared with anyone nor linked to your data.
-        Data are kept in our laboratory and are only viewed by the investigators. These data files are kept on our
-        computer indefinitely.
-      </li>
-      <li>
-        Taking part in this study is voluntary. Not taking part or withdrawing after the study has begun will result in
-        no loss of services from NYU to which you are otherwise entitled. You have the right to skip or not answer any
-        questions you prefer not to answer.
-      </li>
-    </ul>
-    <p>
-      If there is anything about the study or your participation that is unclear or that you do not understand, if you
-      have questions or wish to report a research-related problem, you may contact the principal investigator,
-      <a href="http://todd.gureckislab.org">Todd M. Gureckis</a> at 6 Washington Place (409), New York, NY, 10003, (212)
-      998-3794, <a href="mailto:todd.gureckis@nyu.edu">todd.gureckis@nyu.edu</a>. For questions about your rights as a
-      research participant, you may contact the University Committee on Activities Involving Human Subjects, New York
-      University, 665 Broadway, Suite 804, New York, NY 10012, at ask.humansubjects@nyu.edu or (212) 998-4808.
-    </p>
+      <b>STUDY TITLE:</b> Evaluating Student Reasoning in Arithmetic (IRB-FY2025-[NUMBER])<br></br>
+      <b>INVESTIGATOR(S):</b> Mark K. Ho, Divya Srinivasan
+    </p><br></br>
+    <div>
+      <h2>INVITATION TO BE A PART OF A RESEARCH STUDY</h2>
+      <p>You are invited to participate in a research study. This form has information to help you
+      decide whether or not you wish to participate - please review it carefully. Your
+      participation is voluntary. Please ask any questions you have about the study or about
+      this form before deciding to participate.</p>
+    </div><br></br>
+    <div>
+      <h2>PURPOSE OF THE STUDY</h2>
+      <p>The purpose of this study is to investigate how people identify and reason about
+      mathematical misconceptions in student arithmetic work.</p>
+    </div><br></br>
+    <div>
+      <h2>ELIGIBILITY TO PARTICIPATE</h2>
+      <p>You are eligible to participate in this study if you are:</p>
+      <ul class="pl-8 pt-3 pb-3 list-square">
+        <li>an adult (18+)</li>
+        <li>located in the United States</li>
+        <li>a participant on Prolific who has completed more than 75 studies with an acceptance
+          rate >95%</li>
+      </ul>
+      <p>To determine if you are eligible, we will use Prolific screening filters.</p>
+    </div><br></br>
+    <div>
+      <h2>DESCRIPTION OF STUDY PROCEDURES</h2>
+      <p>If you agree to participate, you will be asked to:</p>
+      <ul class="pl-8 pt-3 pb-3 list-decimal">
+        <li>Read instructions about the task.</li>
+        <li>Answer comprehension questions about the instructions.</li>
+        <li>View a student's step-by-step arithmetic work and write your initial thoughts about
+          what the student did.</li>
+        <li>Rate how well a statement describes what the student believes about arithmetic
+          (approximately 20 trials total).</li>
+        <li>Complete a brief demographics survey.</li>
+      </ul>
+      <p>Different groups of participants might see different student work during the study.</p>
+    </div><br></br>
+    <div>
+      <h2>RISKS OR DISCOMFORTS</h2>
+      <p>This study involves the following risks or discomforts:</p>
+      <ul class="pl-8 pt-3 pb-3 list-square">
+        <li>While there are measures put in place by the researcher to secure data, there is
+          always a risk of a potential data breach of confidentiality. This risk will be minimized
+          by deleting the data that connects identifying data (Prolific ID) to the response data
+          as soon as possible (after payment is completed).</li>
+        <li>Please tell the researchers if you believe you are harmed from your participation in
+          the study.</li>
+      </ul>
+    </div><br></br>
+    <div>
+      <h2>BENEFITS</h2>
+      <p>It is hoped that this study will contribute to knowledge about how people identify and
+      reason about mathematical misconceptions.
+      You are not expected to directly benefit from participation in the study.</p>
+    </div><br></br>
+    <div>
+      <h2>COMPENSATION</h2>
+      <p>For your participation, you will receive the base payment advertised on the Prolific flyer,
+      at a rate of $16/hr for approximately 25 minutes of participation. You may additionally
+      receive a bonus payment based on the accuracy of your ratings during the task.</p>
+    </div><br></br>
+    <div>
+      <h2>VOLUNTARY PARTICIPATION</h2>
+      <p>Participating in this study is completely voluntary. You may choose not to take part in
+      the study or to stop participating at any time, for any reason, without penalty or
+      negative consequences.
+      If you withdraw from the study early please return the survey through Prolific.
+      If you withdraw or are withdrawn from the study early, then we will not keep information
+      about you that is already collected.</p>
+    </div><br></br>
+    <div>
+      <h2>PRIVACY & DATA CONFIDENTIALITY</h2>
+      <p>In this study, you may be asked to provide information that could be used to identify
+      you personally. This information will be kept confidential. Only researchers and others
+      that will keep the information confidential (e.g., regulatory agencies or oversight
+      groups) may access information that could personally identify you.<br></br>
+      <i>Future Use of Data</i><br></br>
+      Information about you collected for this study may be shared with other researchers,
+      used for other research studies, or placed in a data repository. These studies may be
+      similar to this study or completely different. All information that could identify you will
+      be removed before sharing the data or using it for other research studies. We will not
+      ask you for additional permission before sharing the information.</p>
+    </div><br></br>
+    <div>
+      <h2>ACCESS TO YOUR STUDY INFORMATION</h2>
+      <p>We will not give you access to the information that is collected about you in this study.</p>
+    </div><br></br>
+    <div>
+      <h2>CONTACT INFORMATION</h2>
+      <p>You are encouraged to ask questions at any time during this study. For information
+      about the study, contact Divya Srinivasan at <a href="mailto:ds7852@nyu.edu">ds7852@nyu.edu</a> or
+      Mark K. Ho at <a href="mailto:mkh260@nyu.edu">mkh260@nyu.edu</a>.
+      If you have questions about your rights as a research participant or if you believe you
+      have been harmed from the research, please contact the NYU Human Research
+      Protection Program at (212) 998-4808 or ask.humansubjects@nyu.edu.</p>
+    </div>
   </div>
 </template>
 
 <style scoped>
+h2 {
+  font-weight: bold;
+}
+
 /* Ensure list bullets are visible */
 ul {
   list-style-type: square;
