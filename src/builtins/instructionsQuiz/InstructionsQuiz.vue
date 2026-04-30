@@ -145,13 +145,13 @@ const currentPageComplete = computed(() => {
 function submitQuiz() {
   api.recordPageData({
     phase: 'instructionsQuiz',
-    questions: api.queryStepData('pages*'), // Update to use randomized questions
+    questions: api.queryStepData('pages*'),
     persist: api.persist,
   })
   if (quizCorrect.value) {
-    api.goToStep('feedback/success')
+    api.goNextView()
   } else {
-    api.goToStep('feedback/retry')
+    returnInstructions()
   }
 }
 
