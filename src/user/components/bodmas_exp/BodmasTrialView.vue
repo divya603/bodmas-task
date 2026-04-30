@@ -247,36 +247,33 @@ const SUMMARY_MESSAGES = {
 
       <!-- Expression (always shown) -->
       <div>
-        <p class="text-sm text-muted-foreground mb-1">
-          {{ currentTrial.studentName }} is a third grade student. Here is the expression given to {{ currentTrial.studentName }}, in their math test.:
-        </p>
+        <p class="text-sm text-muted-foreground mb-1">Expression given to {{ currentTrial.studentName }}:</p>
         <p class="text-2xl font-mono font-semibold">{{ currentTrial.expression }}</p>
       </div>
 
       <!-- Trace (always shown in phase 1; conditionally shown in phase 2) -->
       <div v-if="inTextPhase || !traceHiddenDuringRating">
         <p class="text-sm text-muted-foreground mb-2">
-          Here is the final answer {{ currentTrial.studentName }} produced, along with their working:
+          Here is the final answer {{ currentTrial.studentName }} produced, along with their work:
         </p>
-        <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7 whitespace-pre">
-          <div v-for="(line, i) in currentTrial.traceLines" :key="i">
-            <span
-              v-if="line === '████████████████████'"
-              class="inline-block bg-gray-800 text-gray-800 rounded select-none px-1"
-              title="This step is hidden"
-            >████████████████████</span>
-            <span v-else-if="line === '↓'" class="text-muted-foreground">  =</span>
-            <span v-else-if="line === '...'" class="text-muted-foreground">  ...</span>
-            <span v-else>{{ line }}</span>
+        <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7">
+          <div v-for="(line, i) in currentTrial.traceLines.filter(l => l !== '↓').slice(1)" :key="i">
+            <template v-if="line === '████████████████████'">
+              <span class="text-muted-foreground">= </span><span class="inline-block bg-gray-800 text-gray-800 rounded select-none px-1" title="This step is hidden">████████████████████</span>
+            </template>
+            <template v-else-if="line === '...'">
+              <span class="text-muted-foreground">= </span><span class="text-muted-foreground">...</span>
+            </template>
+            <template v-else>
+              <span class="text-muted-foreground">= </span>{{ line }}
+            </template>
           </div>
         </div>
       </div>
 
       <!-- Phase 1: mandatory text box (type1_yn only) -->
       <div v-if="isLikert && inTextPhase" class="flex flex-col gap-2 flex-1">
-        <p class="text-sm font-medium">
-          What do you think {{ currentTrial.studentName }} did?
-        </p>
+        <p class="text-sm font-medium">Does it seem like {{ currentTrial.studentName }} misunderstands something, and if so, what?</p>
         <textarea
           v-model="textResponse"
           placeholder="Type your thoughts here…"
@@ -350,27 +347,24 @@ const SUMMARY_MESSAGES = {
       </div>
 
       <!-- Phase 2: Likert radio buttons (type1_yn only) -->
-      <div v-if="isLikert && !inTextPhase" class="flex flex-col gap-2 flex-1">
-        <p class="text-sm font-medium">Is this what {{ currentTrial.studentName }} believes?</p>
-        <label
-          v-for="option in LIKERT_OPTIONS"
-          :key="option"
-          class="flex items-center gap-3 rounded-lg border px-4 py-3 text-sm cursor-pointer transition-colors"
-          :class="{
-            'border-primary bg-primary/10': likertValue === option,
-            'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50': likertValue !== option,
-            'opacity-60 pointer-events-none': submitted,
-          }"
-        >
-          <input
-            type="radio"
-            :value="option"
-            v-model="likertValue"
-            :disabled="submitted"
-            class="accent-primary"
-          />
-          {{ option }}
-        </label>
+      <div v-if="isLikert && !inTextPhase" class="flex flex-col gap-3 flex-1">
+        <p class="text-sm font-medium">How much do you agree with this statement?</p>
+        <div class="flex justify-between gap-2" :class="{ 'opacity-60 pointer-events-none': submitted }">
+          <label
+            v-for="option in [...LIKERT_OPTIONS].reverse()"
+            :key="option"
+            class="flex flex-col items-center gap-2 flex-1 cursor-pointer"
+          >
+            <input
+              type="radio"
+              :value="option"
+              v-model="likertValue"
+              :disabled="submitted"
+              class="accent-primary w-4 h-4"
+            />
+            <span class="text-xs text-center leading-tight text-muted-foreground">{{ option }}</span>
+          </label>
+        </div>
       </div>
 
       <!-- Slider (advice_slider — Type 3) -->

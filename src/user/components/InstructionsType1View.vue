@@ -114,16 +114,15 @@ function next() {
 
         <div>
           <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s working:</p>
-          <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7 whitespace-pre">
-            <div v-for="(line, i) in currentExample.traceLines" :key="i">
-              <span v-if="line === '↓'" class="text-muted-foreground">  =</span>
-              <span v-else>{{ line }}</span>
+          <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7">
+            <div v-for="(line, i) in currentExample.traceLines.filter(l => l !== '↓').slice(1)" :key="i">
+              <span class="text-muted-foreground">= </span>{{ line }}
             </div>
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">What do you think {{ currentExample.studentName }} did?</p>
+          <p class="text-sm font-medium">Does it seem like {{ currentExample.studentName }} misunderstands something, and if so, what?</p>
           <textarea
             v-model="demoTextResponses[exampleIndex]"
             placeholder="Type your thoughts here…"
@@ -156,10 +155,9 @@ function next() {
         <!-- Trace only if not hidden -->
         <div v-if="!currentExample.traceHiddenInPhase2">
           <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s working:</p>
-          <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7 whitespace-pre">
-            <div v-for="(line, i) in currentExample.traceLines" :key="i">
-              <span v-if="line === '↓'" class="text-muted-foreground">  =</span>
-              <span v-else>{{ line }}</span>
+          <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7">
+            <div v-for="(line, i) in currentExample.traceLines.filter(l => l !== '↓').slice(1)" :key="i">
+              <span class="text-muted-foreground">= </span>{{ line }}
             </div>
           </div>
         </div>
@@ -170,20 +168,18 @@ function next() {
         </div>
 
         <!-- Likert -->
-        <div class="flex flex-col gap-2">
-          <p class="text-sm font-medium">Is this what {{ currentExample.studentName }} believes?</p>
-          <label
-            v-for="option in LIKERT_OPTIONS"
-            :key="option"
-            class="flex items-center gap-3 rounded-lg border px-4 py-3 text-sm cursor-pointer transition-colors"
-            :class="{
-              'border-primary bg-primary/10': demoSelections[exampleIndex] === option,
-              'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/50': demoSelections[exampleIndex] !== option,
-            }"
-          >
-            <input type="radio" :value="option" v-model="demoSelections[exampleIndex]" class="accent-primary" />
-            {{ option }}
-          </label>
+        <div class="flex flex-col gap-3">
+          <p class="text-sm font-medium">How much do you agree with this statement?</p>
+          <div class="flex justify-between gap-2">
+            <label
+              v-for="option in [...LIKERT_OPTIONS].reverse()"
+              :key="option"
+              class="flex flex-col items-center gap-2 flex-1 cursor-pointer"
+            >
+              <input type="radio" :value="option" v-model="demoSelections[exampleIndex]" class="accent-primary w-4 h-4" />
+              <span class="text-xs text-center leading-tight text-muted-foreground">{{ option }}</span>
+            </label>
+          </div>
         </div>
 
         <!-- Hint after selection -->
