@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-bold">Research Informed Consent Form</h1>
     <hr class="mt-2 mb-3 h-px" />
     <p>
-      <b>STUDY TITLE:</b> Evaluating Student Reasoning in Arithmetic (IRB-FY2025-[NUMBER])<br></br>
+      <b>STUDY TITLE:</b> Evaluating Student Reasoning in Arithmetic (IRB-FY2026-11440)<br></br>
       <b>INVESTIGATOR(S):</b> Mark K. Ho, Divya Srinivasan
     </p><br></br>
     <div>
@@ -39,7 +39,7 @@
         <li>View a student's step-by-step arithmetic work and write your initial thoughts about
           what the student did.</li>
         <li>Rate how well a statement describes what the student believes about arithmetic
-          (approximately 20 trials total).</li>
+          (20 trials total).</li>
         <li>Complete a brief demographics survey.</li>
       </ul>
       <p>Different groups of participants might see different student work during the study.</p>

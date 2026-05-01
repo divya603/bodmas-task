@@ -27,7 +27,7 @@ const attemptsKey = props.trialType === 'type1' ? 'attempts'
 // ── Per-participant trial sampling ────────────────────────────────────────────
 // Types 1 & 2: Fixed 10 from Pool A + all 10 from B/C/D = 20 trials, shuffled
 // Types 3 & 4: all 20 shown, shuffled
-const FIXED_POOL_A_IDS = [1, 3, 7, 13, 15]  // 2×addition_first, 1×left_to_right, 1×right_to_left, 1×bracket_ignorer
+const FIXED_POOL_A_IDS = [1, 2, 4, 5]  // Ned (add_before_mult), Emily (bracket_skip), Morgan (same_prio_rtl), Riley (bracket_drop)
 
 if (!api.persist.isDefined(persistKey)) {
   if (isAdviceSource) {
@@ -232,11 +232,8 @@ const SUMMARY_MESSAGES = {
     <div v-else-if="currentTrial" class="flex flex-col gap-5 px-8 py-6 w-full max-w-2xl mx-auto h-full overflow-y-auto">
 
       <!-- Progress -->
-      <div class="flex items-center justify-between text-sm text-muted-foreground">
+      <div class="flex items-center text-sm text-muted-foreground">
         <span>Question {{ localQuestionNumber }} of {{ TRIAL_COUNT }}</span>
-        <span class="capitalize text-xs bg-muted px-2 py-1 rounded">
-          {{ FORMAT_LABELS[currentTrial.format] ?? currentTrial.format }}
-        </span>
       </div>
       <div class="w-full bg-muted rounded-full h-1.5">
         <div

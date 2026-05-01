@@ -46,25 +46,25 @@
     "id": 2,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "(6-2)×3+4×2",
-    "mysteryLearner": "addition_first",
+    "expression": "2×(3+(4×5))",
+    "mysteryLearner": "bracket_skip",
     "studentName": "Emily",
     "traceLines": [
-      "(6-2)×3+4×2",
+      "2×(3+(4×5))",
       "↓",
-      "4×3+4×2",
+      "2×(3+4)×5",
       "↓",
-      "4×7×2",
+      "2×7×5",
       "↓",
-      "28×2",
+      "14×5",
       "↓",
-      "56"
+      "70"
     ],
-    "finalAnswer": "56",
-    "expertAnswer": "20",
-    "correctDescription": "doing addition before multiplication",
+    "finalAnswer": "70",
+    "expertAnswer": "46",
+    "correctDescription": "skipping the inner brackets and evaluating from the outside in",
     "foilDescription": null,
-    "descriptionShown": "doing addition before multiplication",
+    "descriptionShown": "skipping the inner brackets and evaluating from the outside in",
     "options": [
       {
         "key": "no",
@@ -81,34 +81,34 @@
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
-      "add_before_mult"
+      "bracket_skip"
     ],
-    "inference_target": "add_before_mult",
+    "inference_target": "bracket_skip",
     "right_inference": true,
     "inference_points_to_first": null
   },
   {
     "id": 3,
     "format": "type1_yn",
-    "pool": "A",
-    "expression": "4×2×3+5×2",
-    "mysteryLearner": "left_to_right_only",
+    "pool": "B",
+    "expression": "3+2²×5-4",
+    "mysteryLearner": "add_before_exponent",
     "studentName": "Mike",
     "traceLines": [
-      "4×2×3+5×2",
+      "3+2²×5-4",
       "↓",
-      "8×3+5×2",
+      "5²×5-4",
       "↓",
-      "24+5×2",
+      "25×5-4",
       "↓",
-      "29×2",
+      "125-4",
       "↓",
-      "58"
+      "121"
     ],
-    "finalAnswer": "58",
-    "expertAnswer": "34",
-    "correctDescription": "doing all operations strictly left to right, ignoring operator priority",
-    "foilDescription": null,
+    "finalAnswer": "121",
+    "expertAnswer": "19",
+    "correctDescription": "adding before applying the exponent instead of squaring first",
+    "foilDescription": "doing all operations strictly left to right, ignoring operator priority",
     "descriptionShown": "doing all operations strictly left to right, ignoring operator priority",
     "options": [
       {
@@ -122,14 +122,14 @@
         "description": ""
       }
     ],
-    "correctKey": "yes",
+    "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
-      "add_before_mult"
+      "add_before_exponent"
     ],
-    "inference_target": "add_before_mult",
-    "right_inference": true,
+    "inference_target": "left_to_right",
+    "right_inference": false,
     "inference_points_to_first": null
   },
   {
@@ -224,25 +224,23 @@
     "id": 6,
     "format": "type1_yn",
     "pool": "B",
-    "expression": "(4+3)×2+5×1",
-    "mysteryLearner": "addition_first",
+    "expression": "5-(2-7)",
+    "mysteryLearner": "sign_error",
     "studentName": "Quinn",
     "traceLines": [
-      "(4+3)×2+5×1",
+      "5-(2-7)",
       "↓",
-      "7×2+5×1",
+      "5-(-5)",
       "↓",
-      "7×7×1",
+      "5-5",
       "↓",
-      "49×1",
-      "↓",
-      "49"
+      "0"
     ],
-    "finalAnswer": "49",
-    "expertAnswer": "19",
-    "correctDescription": "doing addition/subtraction before multiplication/division",
-    "foilDescription": "evaluating strictly left to right, ignoring operator priority",
-    "descriptionShown": "evaluating strictly left to right, ignoring operator priority",
+    "finalAnswer": "0",
+    "expertAnswer": "10",
+    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
+    "foilDescription": "evaluating right to left, ignoring operator priority",
+    "descriptionShown": "evaluating right to left, ignoring operator priority",
     "options": [
       {
         "key": "no",
@@ -259,7 +257,7 @@
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
-      "add_before_mult"
+      "neg_sign_error"
     ],
     "inference_target": "same_prio_rtl",
     "right_inference": false,
@@ -447,27 +445,27 @@
     "id": 11,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "2+3×6×(3+7)",
-    "mysteryLearner": "compound_add_bracket_drop",
+    "expression": "3+2²×(4-1)",
+    "mysteryLearner": "compound_add_exponent_bracket_drop",
     "studentName": "Noah",
     "traceLines": [
-      "2+3×6×(3+7)",
+      "3+2²×(4-1)",
       "↓",
-      "5×6×(3+7)",
+      "5²×(4-1)",
       "↓",
-      "5×6×3+7",
+      "25×(4-1)",
       "↓",
-      "30×3+7",
+      "25×4-1",
       "↓",
-      "90+7",
+      "100-1",
       "↓",
-      "97"
+      "99"
     ],
-    "finalAnswer": "97",
-    "expertAnswer": "182",
-    "correctDescription": "doing addition before multiplication",
+    "finalAnswer": "99",
+    "expertAnswer": "15",
+    "correctDescription": "adding before applying the exponent instead of squaring first",
     "foilDescription": null,
-    "descriptionShown": "doing addition before multiplication",
+    "descriptionShown": "adding before applying the exponent instead of squaring first",
     "options": [
       {
         "key": "no",
@@ -484,10 +482,10 @@
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": [
-      "add_before_mult",
+      "add_before_exponent",
       "bracket_drop"
     ],
-    "inference_target": "add_before_mult",
+    "inference_target": "add_before_exponent",
     "right_inference": true,
     "inference_points_to_first": true
   },
@@ -495,27 +493,29 @@
     "id": 12,
     "format": "type1_yn",
     "pool": "C",
-    "expression": "3+2×4×(5-2)",
-    "mysteryLearner": "compound_add_bracket_drop",
+    "expression": "8-(1-6)+(2×3)",
+    "mysteryLearner": "compound_sign_error_bracket_drop",
     "studentName": "Olivia",
     "traceLines": [
-      "3+2×4×(5-2)",
+      "8-(1-6)+(2×3)",
       "↓",
-      "5×4×(5-2)",
+      "8-(-5)+(2×3)",
       "↓",
-      "5×4×5-2",
+      "8-5+(2×3)",
       "↓",
-      "20×5-2",
+      "3+(2×3)",
       "↓",
-      "100-2",
+      "3+2×3",
       "↓",
-      "98"
+      "5×3",
+      "↓",
+      "15"
     ],
-    "finalAnswer": "98",
-    "expertAnswer": "27",
-    "correctDescription": "doing addition before multiplication",
+    "finalAnswer": "15",
+    "expertAnswer": "19",
+    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
     "foilDescription": null,
-    "descriptionShown": "doing addition before multiplication",
+    "descriptionShown": "forgetting that subtracting a negative number changes the sign to addition",
     "options": [
       {
         "key": "no",
@@ -532,10 +532,10 @@
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": [
-      "add_before_mult",
+      "neg_sign_error",
       "bracket_drop"
     ],
-    "inference_target": "add_before_mult",
+    "inference_target": "neg_sign_error",
     "right_inference": true,
     "inference_points_to_first": true
   },
@@ -681,27 +681,25 @@
     "id": 16,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "1+4×5×(2+6)",
-    "mysteryLearner": "compound_add_bracket_drop",
+    "expression": "1+4×(3+2)",
+    "mysteryLearner": "compound_add_partial_distribute",
     "studentName": "Zoe",
     "traceLines": [
-      "1+4×5×(2+6)",
+      "1+4×(3+2)",
       "↓",
-      "5×5×(2+6)",
+      "5×(3+2)",
       "↓",
-      "5×5×2+6",
+      "5×3+2",
       "↓",
-      "25×2+6",
+      "15+2",
       "↓",
-      "50+6",
-      "↓",
-      "56"
+      "17"
     ],
-    "finalAnswer": "56",
-    "expertAnswer": "161",
-    "correctDescription": "dropping the brackets and computing as if they weren't there",
+    "finalAnswer": "17",
+    "expertAnswer": "21",
+    "correctDescription": "only multiplying the first term in the brackets and not distributing to all terms",
     "foilDescription": null,
-    "descriptionShown": "dropping the brackets and computing as if they weren't there",
+    "descriptionShown": "only multiplying the first term in the brackets and not distributing to all terms",
     "options": [
       {
         "key": "no",
@@ -719,9 +717,9 @@
     "has_1_misconception": false,
     "misconception_types": [
       "add_before_mult",
-      "bracket_drop"
+      "bracket_distribute"
     ],
-    "inference_target": "bracket_drop",
+    "inference_target": "bracket_distribute",
     "right_inference": true,
     "inference_points_to_first": false
   },
@@ -729,27 +727,25 @@
     "id": 17,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "4+1×3×(6-4)",
-    "mysteryLearner": "compound_add_bracket_drop",
+    "expression": "2+5×(4+1)",
+    "mysteryLearner": "compound_add_partial_distribute",
     "studentName": "Liam",
     "traceLines": [
-      "4+1×3×(6-4)",
+      "2+5×(4+1)",
       "↓",
-      "5×3×(6-4)",
+      "7×(4+1)",
       "↓",
-      "5×3×6-4",
+      "7×4+1",
       "↓",
-      "15×6-4",
+      "28+1",
       "↓",
-      "90-4",
-      "↓",
-      "86"
+      "29"
     ],
-    "finalAnswer": "86",
-    "expertAnswer": "10",
-    "correctDescription": "dropping the brackets and computing as if they weren't there",
+    "finalAnswer": "29",
+    "expertAnswer": "27",
+    "correctDescription": "only multiplying the first term in the brackets and not distributing to all terms",
     "foilDescription": null,
-    "descriptionShown": "dropping the brackets and computing as if they weren't there",
+    "descriptionShown": "only multiplying the first term in the brackets and not distributing to all terms",
     "options": [
       {
         "key": "yes",
@@ -767,9 +763,9 @@
     "has_1_misconception": false,
     "misconception_types": [
       "add_before_mult",
-      "bracket_drop"
+      "bracket_distribute"
     ],
-    "inference_target": "bracket_drop",
+    "inference_target": "bracket_distribute",
     "right_inference": true,
     "inference_points_to_first": false
   },
@@ -777,25 +773,27 @@
     "id": 18,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "6+1×5-3+2",
-    "mysteryLearner": "compound_add_rtl",
+    "expression": "1+4×(2+3²)",
+    "mysteryLearner": "compound_add_add_exponent",
     "studentName": "Ella",
     "traceLines": [
-      "6+1×5-3+2",
+      "1+4×(2+3²)",
       "↓",
-      "7×5-3+2",
+      "5×(2+3²)",
       "↓",
-      "35-3+2",
+      "5×(2+3)²",
       "↓",
-      "35-5",
+      "5×5²",
       "↓",
-      "30"
+      "5×25",
+      "↓",
+      "125"
     ],
-    "finalAnswer": "30",
-    "expertAnswer": "10",
-    "correctDescription": "evaluating right to left when there are multiple operators of the same priority",
+    "finalAnswer": "125",
+    "expertAnswer": "45",
+    "correctDescription": "adding before applying the exponent instead of squaring first",
     "foilDescription": null,
-    "descriptionShown": "evaluating right to left when there are multiple operators of the same priority",
+    "descriptionShown": "adding before applying the exponent instead of squaring first",
     "options": [
       {
         "key": "no",
@@ -813,9 +811,9 @@
     "has_1_misconception": false,
     "misconception_types": [
       "add_before_mult",
-      "same_prio_rtl"
+      "add_before_exponent"
     ],
-    "inference_target": "same_prio_rtl",
+    "inference_target": "add_before_exponent",
     "right_inference": true,
     "inference_points_to_first": false
   },
@@ -823,25 +821,27 @@
     "id": 19,
     "format": "type1_yn",
     "pool": "D",
-    "expression": "2+4×3-6+3",
-    "mysteryLearner": "compound_add_rtl",
+    "expression": "2+5×(7-(3-6))",
+    "mysteryLearner": "compound_add_sign_error",
     "studentName": "Finn",
     "traceLines": [
-      "2+4×3-6+3",
+      "2+5×(7-(3-6))",
       "↓",
-      "6×3-6+3",
+      "7×(7-(3-6))",
       "↓",
-      "18-6+3",
+      "7×(7-(-3))",
       "↓",
-      "18-9",
+      "7×(7-3)",
       "↓",
-      "9"
+      "7×4",
+      "↓",
+      "28"
     ],
-    "finalAnswer": "9",
-    "expertAnswer": "11",
-    "correctDescription": "evaluating right to left when there are multiple operators of the same priority",
+    "finalAnswer": "28",
+    "expertAnswer": "52",
+    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
     "foilDescription": null,
-    "descriptionShown": "evaluating right to left when there are multiple operators of the same priority",
+    "descriptionShown": "forgetting that subtracting a negative number changes the sign to addition",
     "options": [
       {
         "key": "yes",
@@ -859,9 +859,9 @@
     "has_1_misconception": false,
     "misconception_types": [
       "add_before_mult",
-      "same_prio_rtl"
+      "neg_sign_error"
     ],
-    "inference_target": "same_prio_rtl",
+    "inference_target": "neg_sign_error",
     "right_inference": true,
     "inference_points_to_first": false
   },

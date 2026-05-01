@@ -62,31 +62,31 @@ BANK_DATA = [
         'inference_target':  'add_before_mult',
     },
     {
-        'expr':              '(6-2)*3+4*2',
-        'learner':           'addition_first',
+        'expr':              '2*(3+(4*5))',
+        'learner':           'bracket_skip',
         'pool':              'A',
-        'trace':             ['(6-2)×3+4×2', '↓', '4×3+4×2', '↓', '4×7×2', '↓', '28×2', '↓', '56'],
-        'learnerAns':        '56',
-        'expertAns':         '20',
-        'correct_desc':      'doing addition before multiplication',
+        'trace':             ['2×(3+(4×5))', '↓', '2×(3+4)×5', '↓', '2×7×5', '↓', '14×5', '↓', '70'],
+        'learnerAns':        '70',
+        'expertAns':         '46',
+        'correct_desc':      'skipping the inner brackets and evaluating from the outside in',
         'foil_desc':         None,
         'student':           'Emily',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
+        'misconception_types': ['bracket_skip'],
+        'inference_target':  'bracket_skip',
     },
-    # ── left_to_right_only learner ──────────────────────────────────────────
+    # ── add_before_exponent learner ─────────────────────────────────────────
     {
-        'expr':              '4*2*3+5*2',
-        'learner':           'left_to_right_only',
-        'pool':              'A',
-        'trace':             ['4×2×3+5×2', '↓', '8×3+5×2', '↓', '24+5×2', '↓', '29×2', '↓', '58'],
-        'learnerAns':        '58',
-        'expertAns':         '34',
-        'correct_desc':      'doing all operations strictly left to right, ignoring operator priority',
-        'foil_desc':         None,
+        'expr':              '3+2²*5-4',
+        'learner':           'add_before_exponent',
+        'pool':              'B',
+        'trace':             ['3+2²×5-4', '↓', '5²×5-4', '↓', '25×5-4', '↓', '125-4', '↓', '121'],
+        'learnerAns':        '121',
+        'expertAns':         '19',
+        'correct_desc':      'adding before applying the exponent instead of squaring first',
+        'foil_desc':         'doing all operations strictly left to right, ignoring operator priority',
         'student':           'Mike',
-        'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
+        'misconception_types': ['add_before_exponent'],
+        'inference_target':  'left_to_right',
     },
     # ── right_to_left learner ───────────────────────────────────────────────
     {
@@ -122,16 +122,16 @@ BANK_DATA = [
     # Every participant sees all 5.
     # ═══════════════════════════════════════════════════════════════════════════
     {
-        'expr':              '(4+3)*2+5*1',
-        'learner':           'addition_first',
+        'expr':              '5-(2-7)',
+        'learner':           'sign_error',
         'pool':              'B',
-        'trace':             ['(4+3)×2+5×1', '↓', '7×2+5×1', '↓', '7×7×1', '↓', '49×1', '↓', '49'],
-        'learnerAns':        '49',
-        'expertAns':         '19',
-        'correct_desc':      'doing addition/subtraction before multiplication/division',
-        'foil_desc':         'evaluating strictly left to right, ignoring operator priority',
+        'trace':             ['5-(2-7)', '↓', '5-(-5)', '↓', '5-5', '↓', '0'],
+        'learnerAns':        '0',
+        'expertAns':         '10',
+        'correct_desc':      'forgetting that subtracting a negative number changes the sign to addition',
+        'foil_desc':         'evaluating right to left, ignoring operator priority',
         'student':           'Quinn',
-        'misconception_types': ['add_before_mult'],
+        'misconception_types': ['neg_sign_error'],
         'inference_target':  'same_prio_rtl',   # foil names RTL
     },
     {
@@ -193,49 +193,51 @@ BANK_DATA = [
     # Every participant sees all 5.
     # ═══════════════════════════════════════════════════════════════════════════
 
-    # C1 — add_before_mult (1st) → bracket_drop (2nd)
-    # Learner first sums 2+3=5 outside then drops (3+7) brackets.
-    # Expert: 2 + 3×6×10 = 182
+    # C1 — add_before_exponent (1st) → bracket_drop (2nd)
+    # Learner adds 3+2=5 before squaring, then drops (4-1) brackets.
+    # Expert: 3 + 4×3 = 15
     {
-        'expr':              '2+3*6*(3+7)',
-        'learner':           'compound_add_bracket_drop',
+        'expr':              '3+2²*(4-1)',
+        'learner':           'compound_add_exponent_bracket_drop',
         'pool':              'C',
         'trace':             [
-            '2+3×6×(3+7)', '↓',
-            '5×6×(3+7)',   '↓',   # ERROR 1: 2+3=5 (add_before_mult)
-            '5×6×3+7',     '↓',   # ERROR 2: dropped (3+7) (bracket_drop)
-            '30×3+7',      '↓',
-            '90+7',        '↓',
-            '97',
+            '3+2²×(4-1)', '↓',
+            '5²×(4-1)',   '↓',   # ERROR 1: 3+2=5 (add_before_exponent)
+            '25×(4-1)',   '↓',
+            '25×4-1',     '↓',   # ERROR 2: dropped (4-1) (bracket_drop)
+            '100-1',      '↓',
+            '99',
         ],
-        'learnerAns':        '97',
-        'expertAns':         '182',
-        'desc_shown':        'doing addition before multiplication',
+        'learnerAns':        '99',
+        'expertAns':         '15',
+        'desc_shown':        'adding before applying the exponent instead of squaring first',
         'student':           'Noah',
-        'misconception_types': ['add_before_mult', 'bracket_drop'],
-        'inference_target':  'add_before_mult',
+        'misconception_types': ['add_before_exponent', 'bracket_drop'],
+        'inference_target':  'add_before_exponent',
     },
 
-    # C2 — add_before_mult (1st) → bracket_drop (2nd)
-    # Expert: 3 + 2×4×3 = 27
+    # C2 — neg_sign_error (1st) → bracket_drop (2nd)
+    # Student correctly gets (1-6)=-5, then treats 8-(-5) as 8-5=3, then drops (2*3).
+    # Expert: 8+5+6 = 19
     {
-        'expr':              '3+2*4*(5-2)',
-        'learner':           'compound_add_bracket_drop',
+        'expr':              '8-(1-6)+(2*3)',
+        'learner':           'compound_sign_error_bracket_drop',
         'pool':              'C',
         'trace':             [
-            '3+2×4×(5-2)', '↓',
-            '5×4×(5-2)',   '↓',   # ERROR 1: 3+2=5 (add_before_mult)
-            '5×4×5-2',     '↓',   # ERROR 2: dropped (5-2) (bracket_drop)
-            '20×5-2',      '↓',
-            '100-2',       '↓',
-            '98',
+            '8-(1-6)+(2×3)', '↓',
+            '8-(-5)+(2×3)',  '↓',   # evaluated (1-6)=-5 correctly
+            '8-5+(2×3)',     '↓',   # ERROR 1: treated -(-5) as -5 (neg_sign_error)
+            '3+(2×3)',       '↓',
+            '3+2×3',         '↓',   # ERROR 2: dropped (2×3) (bracket_drop)
+            '5×3',           '↓',
+            '15',
         ],
-        'learnerAns':        '98',
-        'expertAns':         '27',
-        'desc_shown':        'doing addition before multiplication',
+        'learnerAns':        '15',
+        'expertAns':         '19',
+        'desc_shown':        'forgetting that subtracting a negative number changes the sign to addition',
         'student':           'Olivia',
-        'misconception_types': ['add_before_mult', 'bracket_drop'],
-        'inference_target':  'add_before_mult',
+        'misconception_types': ['neg_sign_error', 'bracket_drop'],
+        'inference_target':  'neg_sign_error',
     },
 
     # C3 — bracket_drop (1st) → add_before_mult (2nd)
@@ -308,90 +310,94 @@ BANK_DATA = [
     # Every participant sees all 5.
     # ═══════════════════════════════════════════════════════════════════════════
 
-    # D1 — add_before_mult (1st) → bracket_drop (2nd)
-    # Expert: 1 + 4×5×8 = 161
+    # D1 — add_before_mult (1st) → bracket_distribute (2nd)
+    # Student adds 1+4=5 first, then only multiplies first bracket term.
+    # Expert: 1 + 4×5 = 21
     {
-        'expr':              '1+4*5*(2+6)',
-        'learner':           'compound_add_bracket_drop',
+        'expr':              '1+4*(3+2)',
+        'learner':           'compound_add_partial_distribute',
         'pool':              'D',
         'trace':             [
-            '1+4×5×(2+6)', '↓',
-            '5×5×(2+6)',   '↓',   # ERROR 1: 1+4=5 (add_before_mult)
-            '5×5×2+6',     '↓',   # ERROR 2: dropped (2+6) (bracket_drop)
-            '25×2+6',      '↓',
-            '50+6',        '↓',
-            '56',
+            '1+4×(3+2)', '↓',
+            '5×(3+2)',   '↓',   # ERROR 1: 1+4=5 (add_before_mult)
+            '5×3+2',     '↓',   # ERROR 2: only multiplied first term (bracket_distribute)
+            '15+2',      '↓',
+            '17',
         ],
-        'learnerAns':        '56',
-        'expertAns':         '161',
-        'desc_shown':        'dropping the brackets and computing as if they weren\'t there',
+        'learnerAns':        '17',
+        'expertAns':         '21',
+        'desc_shown':        'only multiplying the first term in the brackets and not distributing to all terms',
         'student':           'Zoe',
-        'misconception_types': ['add_before_mult', 'bracket_drop'],
-        'inference_target':  'bracket_drop',
+        'misconception_types': ['add_before_mult', 'bracket_distribute'],
+        'inference_target':  'bracket_distribute',
     },
 
-    # D2 — add_before_mult (1st) → bracket_drop (2nd)
-    # Expert: 4 + 1×3×2 = 10
+    # D2 — add_before_mult (1st) → bracket_distribute (2nd)
+    # Student adds 2+5=7 first, then only multiplies first bracket term.
+    # Expert: 2 + 5×5 = 27
     {
-        'expr':              '4+1*3*(6-4)',
-        'learner':           'compound_add_bracket_drop',
+        'expr':              '2+5*(4+1)',
+        'learner':           'compound_add_partial_distribute',
         'pool':              'D',
         'trace':             [
-            '4+1×3×(6-4)', '↓',
-            '5×3×(6-4)',   '↓',   # ERROR 1: 4+1=5 (add_before_mult)
-            '5×3×6-4',     '↓',   # ERROR 2: dropped (6-4) (bracket_drop)
-            '15×6-4',      '↓',
-            '90-4',        '↓',
-            '86',
+            '2+5×(4+1)', '↓',
+            '7×(4+1)',   '↓',   # ERROR 1: 2+5=7 (add_before_mult)
+            '7×4+1',     '↓',   # ERROR 2: only multiplied first term (bracket_distribute)
+            '28+1',      '↓',
+            '29',
         ],
-        'learnerAns':        '86',
-        'expertAns':         '10',
-        'desc_shown':        'dropping the brackets and computing as if they weren\'t there',
+        'learnerAns':        '29',
+        'expertAns':         '27',
+        'desc_shown':        'only multiplying the first term in the brackets and not distributing to all terms',
         'student':           'Liam',
-        'misconception_types': ['add_before_mult', 'bracket_drop'],
-        'inference_target':  'bracket_drop',
+        'misconception_types': ['add_before_mult', 'bracket_distribute'],
+        'inference_target':  'bracket_distribute',
     },
 
-    # D3 — add_before_mult (1st) → same_prio_rtl (2nd)
-    # Expert: 6+5-3+2 = 10
+    # D3 — add_before_mult (1st) → add_before_exponent (2nd)
+    # Student adds 1+4=5 first, then adds 2+3 inside brackets before squaring.
+    # Expert: 1 + 4×(2+9) = 45
     {
-        'expr':              '6+1*5-3+2',
-        'learner':           'compound_add_rtl',
+        'expr':              '1+4*(2+3²)',
+        'learner':           'compound_add_add_exponent',
         'pool':              'D',
         'trace':             [
-            '6+1×5-3+2', '↓',
-            '7×5-3+2',   '↓',   # ERROR 1: 6+1=7 (add_before_mult)
-            '35-3+2',    '↓',
-            '35-5',      '↓',   # ERROR 2: 3+2=5 before 35-3 (same_prio_rtl)
-            '30',
+            '1+4×(2+3²)',  '↓',
+            '5×(2+3²)',    '↓',   # ERROR 1: 1+4=5 (add_before_mult)
+            '5×(2+3)²',   '↓',   # ERROR 2: grouped 2+3 before squaring (add_before_exponent)
+            '5×5²',        '↓',
+            '5×25',        '↓',
+            '125',
         ],
-        'learnerAns':        '30',
-        'expertAns':         '10',
-        'desc_shown':        'evaluating right to left when there are multiple operators of the same priority',
+        'learnerAns':        '125',
+        'expertAns':         '45',
+        'desc_shown':        'adding before applying the exponent instead of squaring first',
         'student':           'Ella',
-        'misconception_types': ['add_before_mult', 'same_prio_rtl'],
-        'inference_target':  'same_prio_rtl',
+        'misconception_types': ['add_before_mult', 'add_before_exponent'],
+        'inference_target':  'add_before_exponent',
     },
 
-    # D4 — add_before_mult (1st) → same_prio_rtl (2nd)
-    # Expert: 2+12-6+3 = 11
+    # D4 — add_before_mult (1st) → neg_sign_error (2nd)
+    # Student adds 2+5=7 first, then treats -(−3) as −3 instead of +3.
+    # Expert: 2 + 5×(7+3) = 52
     {
-        'expr':              '2+4*3-6+3',
-        'learner':           'compound_add_rtl',
+        'expr':              '2+5*(7-(3-6))',
+        'learner':           'compound_add_sign_error',
         'pool':              'D',
         'trace':             [
-            '2+4×3-6+3', '↓',
-            '6×3-6+3',   '↓',   # ERROR 1: 2+4=6 (add_before_mult)
-            '18-6+3',    '↓',
-            '18-9',      '↓',   # ERROR 2: 6+3=9 before 18-6 (same_prio_rtl)
-            '9',
+            '2+5×(7-(3-6))', '↓',
+            '7×(7-(3-6))',   '↓',   # ERROR 1: 2+5=7 (add_before_mult)
+            '7×(7-(-3))',    '↓',   # evaluated (3-6)=-3 correctly
+            '7×(7-3)',       '↓',   # ERROR 2: treated -(-3) as -3 (neg_sign_error)
+            '7×4',           '↓',
+            '28',
         ],
-        'learnerAns':        '9',
-        'expertAns':         '11',
-        'desc_shown':        'evaluating right to left when there are multiple operators of the same priority',
+        'learnerAns':        '28',
+        'expertAns':         '52',
+        'desc_shown':        'forgetting that subtracting a negative number changes the sign to addition',
         'student':           'Finn',
-        'misconception_types': ['add_before_mult', 'same_prio_rtl'],
-        'inference_target':  'same_prio_rtl',
+        'misconception_types': ['add_before_mult', 'neg_sign_error'],
+        'inference_target':  'neg_sign_error',
     },
 
     # D5 — same_prio_rtl (1st) → add_before_mult (2nd)

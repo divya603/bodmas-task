@@ -3,8 +3,7 @@
     <i-twemoji-thinking-face class="inline-block mr-2 text-3xl" /> What was that about?
   </h1>
   <div class="max-w-3xl mx-auto text-left">
-    <p>This is where you put the debrief.</p>
-    <p>The purpose of this study was to understand how people learn and make decisions.</p>
+    <p>The purpose of this study was to understand how people identify and reason about mathematical misconceptions in student arithmetic work. Thank you for your participation!</p>
   </div>
 </template>
 
