@@ -107,7 +107,7 @@
     ],
     "finalAnswer": "121",
     "expertAnswer": "19",
-    "correctDescription": "add before applying the exponent instead of squaring first",
+    "correctDescription": "add before applying the exponent",
     "foilDescription": "do all operations strictly left to right, ignoring operator priority",
     "descriptionShown": "do all operations strictly left to right, ignoring operator priority",
     "options": [
@@ -463,9 +463,9 @@
     ],
     "finalAnswer": "99",
     "expertAnswer": "15",
-    "correctDescription": "add before applying the exponent instead of squaring first",
+    "correctDescription": "add before applying the exponent",
     "foilDescription": null,
-    "descriptionShown": "add before applying the exponent instead of squaring first",
+    "descriptionShown": "add before applying the exponent",
     "options": [
       {
         "key": "no",
@@ -791,9 +791,9 @@
     ],
     "finalAnswer": "125",
     "expertAnswer": "45",
-    "correctDescription": "add before applying the exponent instead of squaring first",
+    "correctDescription": "add before applying the exponent",
     "foilDescription": null,
-    "descriptionShown": "add before applying the exponent instead of squaring first",
+    "descriptionShown": "add before applying the exponent",
     "options": [
       {
         "key": "no",
