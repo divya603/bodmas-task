@@ -282,7 +282,7 @@ const SUMMARY_MESSAGES = {
       <!-- Phase 2: description box (type1_yn only) -->
       <div v-if="currentTrial.format === 'type1_yn' && !isTextInput && !inTextPhase"
            class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-        <p class="italic">{{ currentTrial.studentName }} believes {{ currentTrial.descriptionShown }}.</p>
+        <p class="italic">{{ currentTrial.studentName }} believes they should {{ currentTrial.descriptionShown }}.</p>
       </div>
 
       <!-- Advice box (advice_slider — Type 3 only) -->

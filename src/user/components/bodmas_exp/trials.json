@@ -17,9 +17,9 @@
     ],
     "finalAnswer": "30",
     "expertAnswer": "26",
-    "correctDescription": "doing addition before multiplication",
-    "foilDescription": "evaluating right to left, ignoring operator priority",
-    "descriptionShown": "evaluating right to left, ignoring operator priority",
+    "correctDescription": "do addition before multiplication",
+    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
+    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
     "options": [
       {
         "key": "no",
@@ -62,9 +62,9 @@
     ],
     "finalAnswer": "70",
     "expertAnswer": "46",
-    "correctDescription": "skipping the inner brackets and evaluating from the outside in",
+    "correctDescription": "skip the inner brackets and evaluate from the outside in",
     "foilDescription": null,
-    "descriptionShown": "skipping the inner brackets and evaluating from the outside in",
+    "descriptionShown": "skip the inner brackets and evaluate from the outside in",
     "options": [
       {
         "key": "no",
@@ -107,9 +107,9 @@
     ],
     "finalAnswer": "121",
     "expertAnswer": "19",
-    "correctDescription": "adding before applying the exponent instead of squaring first",
-    "foilDescription": "doing all operations strictly left to right, ignoring operator priority",
-    "descriptionShown": "doing all operations strictly left to right, ignoring operator priority",
+    "correctDescription": "add before applying the exponent instead of squaring first",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "do all operations strictly left to right, ignoring operator priority",
     "options": [
       {
         "key": "yes",
@@ -150,9 +150,9 @@
     ],
     "finalAnswer": "-5",
     "expertAnswer": "15",
-    "correctDescription": "evaluating the expression right to left, without considering operator priority",
-    "foilDescription": "doing addition before multiplication",
-    "descriptionShown": "doing addition before multiplication",
+    "correctDescription": "apply addition and subtraction from right to left rather than left to right",
+    "foilDescription": "do addition before multiplication",
+    "descriptionShown": "do addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -195,9 +195,9 @@
     ],
     "finalAnswer": "17",
     "expertAnswer": "33",
-    "correctDescription": "ignoring the brackets and computing as if they weren't there",
+    "correctDescription": "ignore the brackets and compute as if they weren't there",
     "foilDescription": null,
-    "descriptionShown": "ignoring the brackets and computing as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
       {
         "key": "no",
@@ -238,9 +238,9 @@
     ],
     "finalAnswer": "0",
     "expertAnswer": "10",
-    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
-    "foilDescription": "evaluating right to left, ignoring operator priority",
-    "descriptionShown": "evaluating right to left, ignoring operator priority",
+    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
+    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
+    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
     "options": [
       {
         "key": "no",
@@ -283,9 +283,9 @@
     ],
     "finalAnswer": "0",
     "expertAnswer": "6",
-    "correctDescription": "doing addition/subtraction before multiplication/division",
-    "foilDescription": "dropping the brackets and evaluating as if they weren't there",
-    "descriptionShown": "dropping the brackets and evaluating as if they weren't there",
+    "correctDescription": "do addition/subtraction before multiplication/division",
+    "foilDescription": "ignore the brackets and compute as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
       {
         "key": "no",
@@ -328,9 +328,9 @@
     ],
     "finalAnswer": "60",
     "expertAnswer": "16",
-    "correctDescription": "doing addition/subtraction before multiplication/division",
-    "foilDescription": "evaluating strictly right to left, ignoring operator priority",
-    "descriptionShown": "evaluating strictly right to left, ignoring operator priority",
+    "correctDescription": "do addition/subtraction before multiplication/division",
+    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
+    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
     "options": [
       {
         "key": "no",
@@ -371,9 +371,9 @@
     ],
     "finalAnswer": "-1",
     "expertAnswer": "11",
-    "correctDescription": "evaluating right to left",
-    "foilDescription": "doing addition before multiplication",
-    "descriptionShown": "doing addition before multiplication",
+    "correctDescription": "evaluate right to left",
+    "foilDescription": "do addition before multiplication",
+    "descriptionShown": "do addition before multiplication",
     "options": [
       {
         "key": "yes",
@@ -416,9 +416,9 @@
     ],
     "finalAnswer": "10",
     "expertAnswer": "19",
-    "correctDescription": "dropping the brackets as if they weren't there",
-    "foilDescription": "expanding the brackets instead of evaluating inside them first",
-    "descriptionShown": "expanding the brackets instead of evaluating inside them first",
+    "correctDescription": "ignore the brackets and compute as if they weren't there",
+    "foilDescription": "expand the brackets instead of evaluating inside them first",
+    "descriptionShown": "expand the brackets instead of evaluating inside them first",
     "options": [
       {
         "key": "no",
@@ -463,9 +463,9 @@
     ],
     "finalAnswer": "99",
     "expertAnswer": "15",
-    "correctDescription": "adding before applying the exponent instead of squaring first",
+    "correctDescription": "add before applying the exponent instead of squaring first",
     "foilDescription": null,
-    "descriptionShown": "adding before applying the exponent instead of squaring first",
+    "descriptionShown": "add before applying the exponent instead of squaring first",
     "options": [
       {
         "key": "no",
@@ -513,9 +513,9 @@
     ],
     "finalAnswer": "15",
     "expertAnswer": "19",
-    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
+    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
     "foilDescription": null,
-    "descriptionShown": "forgetting that subtracting a negative number changes the sign to addition",
+    "descriptionShown": "forget that subtracting a negative number changes the sign to addition",
     "options": [
       {
         "key": "no",
@@ -561,9 +561,9 @@
     ],
     "finalAnswer": "14",
     "expertAnswer": "6",
-    "correctDescription": "ignoring the brackets and computing as if they weren't there",
+    "correctDescription": "ignore the brackets and compute as if they weren't there",
     "foilDescription": null,
-    "descriptionShown": "ignoring the brackets and computing as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
       {
         "key": "no",
@@ -607,9 +607,9 @@
     ],
     "finalAnswer": "10",
     "expertAnswer": "11",
-    "correctDescription": "doing addition before multiplication",
+    "correctDescription": "do addition before multiplication",
     "foilDescription": null,
-    "descriptionShown": "doing addition before multiplication",
+    "descriptionShown": "do addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -651,9 +651,9 @@
     ],
     "finalAnswer": "4",
     "expertAnswer": "16",
-    "correctDescription": "evaluating right to left when there are multiple operators of the same priority",
+    "correctDescription": "apply addition and subtraction from right to left rather than left to right",
     "foilDescription": null,
-    "descriptionShown": "evaluating right to left when there are multiple operators of the same priority",
+    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
     "options": [
       {
         "key": "no",
@@ -697,9 +697,9 @@
     ],
     "finalAnswer": "17",
     "expertAnswer": "21",
-    "correctDescription": "only multiplying the first term in the brackets and not distributing to all terms",
+    "correctDescription": "only multiply the first term in the brackets and not distribute to all terms",
     "foilDescription": null,
-    "descriptionShown": "only multiplying the first term in the brackets and not distributing to all terms",
+    "descriptionShown": "only multiply the first term in the brackets and not distribute to all terms",
     "options": [
       {
         "key": "no",
@@ -743,9 +743,9 @@
     ],
     "finalAnswer": "29",
     "expertAnswer": "27",
-    "correctDescription": "only multiplying the first term in the brackets and not distributing to all terms",
+    "correctDescription": "only multiply the first term in the brackets and not distribute to all terms",
     "foilDescription": null,
-    "descriptionShown": "only multiplying the first term in the brackets and not distributing to all terms",
+    "descriptionShown": "only multiply the first term in the brackets and not distribute to all terms",
     "options": [
       {
         "key": "yes",
@@ -791,9 +791,9 @@
     ],
     "finalAnswer": "125",
     "expertAnswer": "45",
-    "correctDescription": "adding before applying the exponent instead of squaring first",
+    "correctDescription": "add before applying the exponent instead of squaring first",
     "foilDescription": null,
-    "descriptionShown": "adding before applying the exponent instead of squaring first",
+    "descriptionShown": "add before applying the exponent instead of squaring first",
     "options": [
       {
         "key": "no",
@@ -839,9 +839,9 @@
     ],
     "finalAnswer": "28",
     "expertAnswer": "52",
-    "correctDescription": "forgetting that subtracting a negative number changes the sign to addition",
+    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
     "foilDescription": null,
-    "descriptionShown": "forgetting that subtracting a negative number changes the sign to addition",
+    "descriptionShown": "forget that subtracting a negative number changes the sign to addition",
     "options": [
       {
         "key": "yes",
@@ -883,9 +883,9 @@
     ],
     "finalAnswer": "10",
     "expertAnswer": "20",
-    "correctDescription": "doing addition/subtraction before multiplication/division",
+    "correctDescription": "do addition/subtraction before multiplication/division",
     "foilDescription": null,
-    "descriptionShown": "doing addition/subtraction before multiplication/division",
+    "descriptionShown": "do addition/subtraction before multiplication/division",
     "options": [
       {
         "key": "yes",
