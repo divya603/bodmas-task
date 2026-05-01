@@ -18,8 +18,8 @@
     "finalAnswer": "30",
     "expertAnswer": "26",
     "correctDescription": "do addition before multiplication",
-    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
-    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
+    "foilDescription": "work right to left when two operations have the same priority",
+    "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
       {
         "key": "no",
@@ -150,7 +150,7 @@
     ],
     "finalAnswer": "-5",
     "expertAnswer": "15",
-    "correctDescription": "apply addition and subtraction from right to left rather than left to right",
+    "correctDescription": "work right to left when two operations have the same priority",
     "foilDescription": "do addition before multiplication",
     "descriptionShown": "do addition before multiplication",
     "options": [
@@ -239,8 +239,8 @@
     "finalAnswer": "0",
     "expertAnswer": "10",
     "correctDescription": "forget that subtracting a negative number changes the sign to addition",
-    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
-    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
+    "foilDescription": "work right to left when two operations have the same priority",
+    "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
       {
         "key": "no",
@@ -329,8 +329,8 @@
     "finalAnswer": "60",
     "expertAnswer": "16",
     "correctDescription": "do addition/subtraction before multiplication/division",
-    "foilDescription": "apply addition and subtraction from right to left rather than left to right",
-    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
+    "foilDescription": "work right to left when two operations have the same priority",
+    "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
       {
         "key": "no",
@@ -371,7 +371,7 @@
     ],
     "finalAnswer": "-1",
     "expertAnswer": "11",
-    "correctDescription": "evaluate right to left",
+    "correctDescription": "work right to left when two operations have the same priority",
     "foilDescription": "do addition before multiplication",
     "descriptionShown": "do addition before multiplication",
     "options": [
@@ -651,9 +651,9 @@
     ],
     "finalAnswer": "4",
     "expertAnswer": "16",
-    "correctDescription": "apply addition and subtraction from right to left rather than left to right",
+    "correctDescription": "work right to left when two operations have the same priority",
     "foilDescription": null,
-    "descriptionShown": "apply addition and subtraction from right to left rather than left to right",
+    "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
       {
         "key": "no",
