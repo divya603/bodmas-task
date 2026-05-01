@@ -2,7 +2,7 @@
   {
     "id": 1,
     "format": "type1_yn",
-    "pool": "A",
+    "pool": "B",
     "expression": "(2+3)×5+1",
     "mysteryLearner": "addition_first",
     "studentName": "Ned",
@@ -18,8 +18,8 @@
     "finalAnswer": "30",
     "expertAnswer": "26",
     "correctDescription": "doing addition before multiplication",
-    "foilDescription": null,
-    "descriptionShown": "doing addition before multiplication",
+    "foilDescription": "evaluating right to left, ignoring operator priority",
+    "descriptionShown": "evaluating right to left, ignoring operator priority",
     "options": [
       {
         "key": "no",
@@ -32,14 +32,14 @@
         "description": ""
       }
     ],
-    "correctKey": "yes",
+    "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
       "add_before_mult"
     ],
-    "inference_target": "add_before_mult",
-    "right_inference": true,
+    "inference_target": "same_prio_rtl",
+    "right_inference": false,
     "inference_points_to_first": null
   },
   {
@@ -135,7 +135,7 @@
   {
     "id": 4,
     "format": "type1_yn",
-    "pool": "A",
+    "pool": "B",
     "expression": "8-3+2×5",
     "mysteryLearner": "right_to_left",
     "studentName": "Morgan",
@@ -151,8 +151,8 @@
     "finalAnswer": "-5",
     "expertAnswer": "15",
     "correctDescription": "evaluating the expression right to left, without considering operator priority",
-    "foilDescription": null,
-    "descriptionShown": "evaluating the expression right to left, without considering operator priority",
+    "foilDescription": "doing addition before multiplication",
+    "descriptionShown": "doing addition before multiplication",
     "options": [
       {
         "key": "no",
@@ -165,14 +165,14 @@
         "description": ""
       }
     ],
-    "correctKey": "yes",
+    "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
       "same_prio_rtl"
     ],
-    "inference_target": "same_prio_rtl",
-    "right_inference": true,
+    "inference_target": "add_before_mult",
+    "right_inference": false,
     "inference_points_to_first": null
   },
   {

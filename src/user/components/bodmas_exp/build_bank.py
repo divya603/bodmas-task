@@ -47,19 +47,19 @@ BANK_DATA = [
     # Each participant draws 10 at random from this pool.
     # ═══════════════════════════════════════════════════════════════════════════
 
-    # ── addition_first learner ──────────────────────────────────────────────
+    # ── addition_first learner (foil) ──────────────────────────────────────
     {
         'expr':              '(2+3)*5+1',
         'learner':           'addition_first',
-        'pool':              'A',
+        'pool':              'B',
         'trace':             ['(2+3)×5+1', '↓', '5×5+1', '↓', '5×6', '↓', '30'],
         'learnerAns':        '30',
         'expertAns':         '26',
         'correct_desc':      'doing addition before multiplication',
-        'foil_desc':         None,
+        'foil_desc':         'evaluating right to left, ignoring operator priority',
         'student':           'Ned',
         'misconception_types': ['add_before_mult'],
-        'inference_target':  'add_before_mult',
+        'inference_target':  'same_prio_rtl',
     },
     {
         'expr':              '2*(3+(4*5))',
@@ -88,19 +88,19 @@ BANK_DATA = [
         'misconception_types': ['add_before_exponent'],
         'inference_target':  'left_to_right',
     },
-    # ── right_to_left learner ───────────────────────────────────────────────
+    # ── right_to_left learner (foil) ───────────────────────────────────────
     {
         'expr':              '8-3+2*5',
         'learner':           'right_to_left',
-        'pool':              'A',
+        'pool':              'B',
         'trace':             ['8-3+2×5', '↓', '8-3+10', '↓', '8-13', '↓', '-5'],
         'learnerAns':        '-5',
         'expertAns':         '15',
         'correct_desc':      'evaluating the expression right to left, without considering operator priority',
-        'foil_desc':         None,
+        'foil_desc':         'doing addition before multiplication',
         'student':           'Morgan',
         'misconception_types': ['same_prio_rtl'],
-        'inference_target':  'same_prio_rtl',
+        'inference_target':  'add_before_mult',
     },
     # ── bracket_ignorer learner ─────────────────────────────────────────────
     {

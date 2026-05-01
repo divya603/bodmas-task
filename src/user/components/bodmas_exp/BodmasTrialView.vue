@@ -27,7 +27,7 @@ const attemptsKey = props.trialType === 'type1' ? 'attempts'
 // ── Per-participant trial sampling ────────────────────────────────────────────
 // Types 1 & 2: Fixed 10 from Pool A + all 10 from B/C/D = 20 trials, shuffled
 // Types 3 & 4: all 20 shown, shuffled
-const FIXED_POOL_A_IDS = [1, 2, 4, 5]  // Ned (add_before_mult), Emily (bracket_skip), Morgan (same_prio_rtl), Riley (bracket_drop)
+const FIXED_POOL_A_IDS = [2, 5]  // Emily (bracket_skip), Riley (bracket_drop)
 
 if (!api.persist.isDefined(persistKey)) {
   if (isAdviceSource) {
