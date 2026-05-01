@@ -238,7 +238,7 @@
     ],
     "finalAnswer": "0",
     "expertAnswer": "10",
-    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
+    "correctDescription": "keep the minus sign when subtracting a negative number",
     "foilDescription": "work right to left when two operations have the same priority",
     "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
@@ -513,9 +513,9 @@
     ],
     "finalAnswer": "15",
     "expertAnswer": "19",
-    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
+    "correctDescription": "keep the minus sign when subtracting a negative number",
     "foilDescription": null,
-    "descriptionShown": "forget that subtracting a negative number changes the sign to addition",
+    "descriptionShown": "keep the minus sign when subtracting a negative number",
     "options": [
       {
         "key": "no",
@@ -839,9 +839,9 @@
     ],
     "finalAnswer": "28",
     "expertAnswer": "52",
-    "correctDescription": "forget that subtracting a negative number changes the sign to addition",
+    "correctDescription": "keep the minus sign when subtracting a negative number",
     "foilDescription": null,
-    "descriptionShown": "forget that subtracting a negative number changes the sign to addition",
+    "descriptionShown": "keep the minus sign when subtracting a negative number",
     "options": [
       {
         "key": "yes",
