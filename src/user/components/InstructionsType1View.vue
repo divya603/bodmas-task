@@ -19,21 +19,21 @@ const examples = [
     expression: '3 + 4 × 5',
     traceLines: ['3 + 4 × 5', '↓', '7 × 5', '↓', '35'],
     studentName: 'Alex',
-    belief: 'doing addition before multiplication',
+    belief: 'do addition before multiplication',
     traceHiddenInPhase2: false,
   },
   {
     expression: '2 + 3 × 4',
     traceLines: ['2 + 3 × 4', '↓', '5 × 4', '↓', '20'],
     studentName: 'Sam',
-    belief: 'evaluating right to left',
+    belief: 'work right to left when two operations have the same priority',
     traceHiddenInPhase2: false,
   },
   {
     expression: '(3 + 4) × 5',
     traceLines: ['(3 + 4) × 5', '↓', '7 × 5', '↓', '35'],
     studentName: 'Jordan',
-    belief: 'dropping the brackets',
+    belief: 'ignore the brackets and compute as if they weren\'t there',
     traceHiddenInPhase2: true,
   },
 ]
@@ -161,7 +161,7 @@ function next() {
 
         <!-- Belief statement -->
         <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
-          <p class="italic">{{ currentExample.studentName }} believes {{ currentExample.belief }}.</p>
+          <p class="italic">{{ currentExample.studentName }} believes they should {{ currentExample.belief }}.</p>
         </div>
 
         <!-- Likert -->
