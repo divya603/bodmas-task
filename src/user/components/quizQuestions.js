@@ -14,10 +14,13 @@ export const QUIZ_QUESTIONS = [
       },
       {
         id: 'q2',
-        question: "Is the student's working always visible when you answer the question?",
+        question: 'What should your rating be based on?',
         multiSelect: false,
-        answers: ['Yes', 'No'],
-        correctAnswer: ['No'],
+        answers: [
+          "Whether the student got the correct final answer",
+          "How well the belief statement matches the student's work",
+        ],
+        correctAnswer: ["How well the belief statement matches the student's work"],
       },
     ],
   },
