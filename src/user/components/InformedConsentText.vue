@@ -96,9 +96,8 @@
     </div><br></br>
     <div>
       <h2>CONTACT INFORMATION</h2>
-      <p>You are encouraged to ask questions at any time during this study. For information
-      about the study, contact Divya Srinivasan at <a href="mailto:ds7852@nyu.edu">ds7852@nyu.edu</a> or
-      Mark K. Ho at <a href="mailto:mkh260@nyu.edu">mkh260@nyu.edu</a>.
+      <p>You are encouraged to ask questions at any time during this study.
+      Contact Mark K. Ho at <a href="mailto:mkh260@nyu.edu">mkh260@nyu.edu</a>.
       If you have questions about your rights as a research participant or if you believe you
       have been harmed from the research, please contact the NYU Human Research
       Protection Program at (212) 998-4808 or ask.humansubjects@nyu.edu.</p>
