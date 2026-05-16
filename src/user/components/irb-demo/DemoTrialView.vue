@@ -23,13 +23,7 @@ const phase = ref(1)  // 1 = show trace + open response, 2 = show belief + ratin
 const textResponse = ref('')
 const rating = ref(null)
 
-const SCALE = [
-  { value: 1, label: 'Strongly\nDisagree' },
-  { value: 2, label: 'Disagree' },
-  { value: 3, label: 'Neutral' },
-  { value: 4, label: 'Agree' },
-  { value: 5, label: 'Strongly\nAgree' },
-]
+const LIKERT_OPTIONS = ['Strongly Agree', 'Agree', 'Somewhat Agree', 'Somewhat Disagree', 'Disagree', 'Strongly Disagree']
 
 function nextPhase() {
   if (phase.value === 1) {
@@ -93,24 +87,25 @@ function nextPhase() {
         </div>
 
         <div>
-          <p class="text-sm font-medium mb-3">How well does this statement describe {{ trial.studentName }}'s belief?</p>
+          <p class="text-sm font-medium mb-3">How much do you agree with this statement?</p>
           <div class="flex justify-between gap-2">
-            <button
-              v-for="opt in SCALE"
-              :key="opt.value"
-              @click="rating = opt.value"
-              class="flex-1 flex flex-col items-center gap-1 rounded-lg border-2 py-2 px-1 text-xs transition-colors"
-              :class="rating === opt.value
-                ? 'border-primary bg-primary/10 text-primary font-semibold'
-                : 'border-border text-muted-foreground hover:border-primary/50'"
+            <label
+              v-for="option in [...LIKERT_OPTIONS].reverse()"
+              :key="option"
+              class="flex flex-col items-center gap-2 flex-1 cursor-pointer"
             >
-              <span class="text-sm font-bold">{{ opt.value }}</span>
-              <span class="text-center leading-tight whitespace-pre-line">{{ opt.label }}</span>
-            </button>
+              <input
+                type="radio"
+                :value="option"
+                v-model="rating"
+                class="accent-primary w-4 h-4"
+              />
+              <span class="text-xs text-center leading-tight text-muted-foreground">{{ option }}</span>
+            </label>
           </div>
         </div>
 
-        <Button :disabled="rating === null" @click="nextPhase">
+        <Button :disabled="!rating" @click="nextPhase">
           Finish <i-fa6-solid-arrow-right class="ml-2" />
         </Button>
       </div>

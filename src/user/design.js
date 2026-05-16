@@ -151,7 +151,7 @@ timeline.registerView({
   },
 })
 
-// IRB demo: consent → one trial → debrief
+// IRB demo: consent → one trial → debrief → thanks
 timeline.pushSeqView({
   name: 'consent',
   component: ConsentPDFView,
@@ -170,6 +170,12 @@ timeline.pushSeqView({
   name: 'debrief',
   component: DebriefPDFView,
   meta: { setDone: true },
+})
+
+timeline.pushSeqView({
+  name: 'thanks',
+  component: ThanksView,
+  meta: { requiresDone: true },
 })
 
 // this is a special page that is for a withdraw

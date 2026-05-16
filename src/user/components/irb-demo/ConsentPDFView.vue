@@ -7,6 +7,7 @@ import { Label } from '@/uikit/components/ui/label'
 
 const api = useViewAPI()
 const consented = ref(false)
+const baseURL = import.meta.env.BASE_URL
 
 function proceed() {
   api.goNextView()
@@ -16,7 +17,7 @@ function proceed() {
 <template>
   <div class="flex w-full" style="height: 100vh;">
     <div class="w-3/5 h-full border-r border-border">
-      <iframe src="/consent-form.pdf" class="w-full h-full" style="display:block;" />
+      <iframe :src="`${baseURL}consent-form.pdf`" class="w-full h-full" style="display:block;" />
     </div>
     <div class="w-2/5 flex flex-col justify-center items-start px-10 gap-6">
       <h2 class="text-xl font-bold leading-snug">
@@ -26,7 +27,7 @@ function proceed() {
         Please take the time to read the consent form (you can scroll the page).
       </p>
       <div class="flex items-center gap-3">
-        <Switch id="consent" v-model:checked="consented" />
+        <Switch id="consent" v-model="consented" variant="success" size="lg" />
         <Label for="consent" class="text-sm cursor-pointer">I consent and am over 18 years old.</Label>
       </div>
       <Button :disabled="!consented" @click="proceed">
