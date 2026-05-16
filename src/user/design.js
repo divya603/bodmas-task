@@ -31,6 +31,9 @@ import WindowSizerView from '@/builtins/windowSizer/WindowSizerView.vue'
 
 // 2. Import user View components
 import BodmasTrialView from '@/user/components/bodmas_exp/BodmasTrialView.vue'
+import ConsentPDFView from '@/user/components/irb-demo/ConsentPDFView.vue'
+import DemoTrialView from '@/user/components/irb-demo/DemoTrialView.vue'
+import DebriefPDFView from '@/user/components/irb-demo/DebriefPDFView.vue'
 
 // #3. Import smile API and timeline
 import useAPI from '@/core/composables/useAPI'
@@ -148,89 +151,25 @@ timeline.registerView({
   },
 })
 
-// import the consent text
-// consent
+// IRB demo: consent → one trial → debrief
 timeline.pushSeqView({
   name: 'consent',
-  component: InformedConsentView,
-  props: {
-    informedConsentText: markRaw(InformedConsentText), // provide the informed consent text
-  },
+  component: ConsentPDFView,
   meta: {
     requiresConsent: false,
     setConsented: true,
   },
 })
 
-// demographic survey
 timeline.pushSeqView({
-  name: 'demograph',
-  component: DemographicSurveyView,
+  name: 'trial',
+  component: DemoTrialView,
 })
 
-// windowsizer
-timeline.pushSeqView({
-  name: 'windowsizer',
-  component: WindowSizerView,
-})
-
-// instructions
-timeline.pushSeqView({
-  name: 'instructions',
-  component: InstructionsView,
-})
-
-// import the quiz questions
-import { QUIZ_QUESTIONS } from './components/quizQuestions'
-// instructions quiz
-timeline.pushSeqView({
-  name: 'quiz',
-  component: InstructionsQuizView,
-  props: {
-    questions: QUIZ_QUESTIONS,
-    returnTo: 'instructions',
-    randomizeQandA: true,
-  },
-})
-
-// Type 1: rate description accuracy (0–10 slider)
-timeline.pushSeqView({
-  name: 'exp',
-  path: '/experiment',
-  component: BodmasTrialView,
-})
-
-// debriefing form
-import DebriefText from '@/user/components/DebriefText.vue' // get access to the global store
 timeline.pushSeqView({
   name: 'debrief',
-  component: DebriefView,
-  props: {
-    debriefText: markRaw(DebriefText),
-  },
-})
-
-// device survey
-timeline.pushSeqView({
-  name: 'device',
-  component: DeviceSurveyView,
-})
-
-// debriefing form
-timeline.pushSeqView({
-  name: 'feedback',
-  component: TaskFeedbackSurveyView,
-  meta: { setDone: true }, // this is the last form
-})
-
-// thanks/submit page
-timeline.pushSeqView({
-  name: 'thanks',
-  component: ThanksView,
-  meta: {
-    requiresDone: true,
-    resetApp: api.getConfig('allowRepeats'),
-  },
+  component: DebriefPDFView,
+  meta: { setDone: true },
 })
 
 // this is a special page that is for a withdraw
