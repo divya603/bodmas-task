@@ -274,7 +274,7 @@ const SUMMARY_MESSAGES = {
         <textarea
           v-model="textResponse"
           placeholder="Type your thoughts here…"
-          rows="4"
+          rows="2"
           class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
@@ -335,7 +335,7 @@ const SUMMARY_MESSAGES = {
           v-model="textResponse"
           :disabled="submitted"
           placeholder="Type your response here…"
-          rows="4"
+          rows="2"
           class="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
         />
         <div v-if="submitted" class="text-sm text-muted-foreground">
