@@ -110,7 +110,7 @@ function next() {
         </div>
 
         <div>
-          <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s working:</p>
+          <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s work:</p>
           <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7">
             <div v-for="(line, i) in currentExample.traceLines.filter(l => l !== '↓').slice(1)" :key="i">
               <span class="text-muted-foreground">= </span>{{ line }}
@@ -140,7 +140,7 @@ function next() {
       <template v-else>
         <div class="text-xs uppercase tracking-wide text-muted-foreground font-medium">
           Example {{ exampleIndex + 1 }} of 3 — Step 2
-          <span v-if="currentExample.traceHiddenInPhase2" class="ml-2 normal-case text-amber-700">(working no longer shown)</span>
+          <span v-if="currentExample.traceHiddenInPhase2" class="ml-2 normal-case text-amber-700">In this example, the student's step-by-step work is hidden</span>
         </div>
 
         <!-- Expression always shown -->
@@ -151,7 +151,7 @@ function next() {
 
         <!-- Trace only if not hidden -->
         <div v-if="!currentExample.traceHiddenInPhase2">
-          <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s working:</p>
+          <p class="text-sm text-muted-foreground mb-2">{{ currentExample.studentName }}'s work:</p>
           <div class="bg-muted rounded-lg p-4 font-mono text-sm leading-7">
             <div v-for="(line, i) in currentExample.traceLines.filter(l => l !== '↓').slice(1)" :key="i">
               <span class="text-muted-foreground">= </span>{{ line }}
