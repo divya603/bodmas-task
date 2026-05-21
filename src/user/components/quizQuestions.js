@@ -4,13 +4,13 @@ export const QUIZ_QUESTIONS = [
     questions: [
       {
         id: 'q1',
-        question: 'Which describes the task you will do?',
+        question: 'What are you rating in this task?',
         multiSelect: false,
         answers: [
-          "Rate how accurate the student's math or reasoning is",
-          "Rate how accurate a statement about the student's math or reasoning is",
+          "How correct the student's final answer is",
+          "How well a belief statement matches the student's reasoning",
         ],
-        correctAnswer: ["Rate how accurate a statement about the student's math or reasoning is"],
+        correctAnswer: ["How well a belief statement matches the student's reasoning"],
       },
       {
         id: 'q2',
