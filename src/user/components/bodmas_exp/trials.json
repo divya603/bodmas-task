@@ -46,25 +46,25 @@
     "id": 2,
     "format": "type1_yn",
     "pool": "A",
-    "expression": "2\u00d7(3+(4\u00d75))",
-    "mysteryLearner": "bracket_skip",
+    "expression": "2\u00d7((3+4)\u00d75)",
+    "mysteryLearner": "bracket_ignorer",
     "studentName": "Emily",
     "traceLines": [
-      "2\u00d7(3+(4\u00d75))",
+      "2\u00d7((3+4)\u00d75)",
       "\u2193",
-      "2\u00d7(3+4)\u00d75",
+      "2\u00d7(3+4\u00d75)",
       "\u2193",
-      "2\u00d77\u00d75",
+      "2\u00d7(3+20)",
       "\u2193",
-      "14\u00d75",
+      "2\u00d723",
       "\u2193",
-      "70"
+      "46"
     ],
-    "finalAnswer": "70",
-    "expertAnswer": "46",
-    "correctDescription": "skip the inner brackets and evaluate from the outside in",
+    "finalAnswer": "46",
+    "expertAnswer": "70",
+    "correctDescription": "ignore the brackets and compute as if they weren't there",
     "foilDescription": null,
-    "descriptionShown": "skip the inner brackets and evaluate from the outside in",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
       {
         "key": "no",
@@ -81,9 +81,9 @@
     "has_misconception": true,
     "has_1_misconception": true,
     "misconception_types": [
-      "bracket_skip"
+      "bracket_drop"
     ],
-    "inference_target": "bracket_skip",
+    "inference_target": "bracket_drop",
     "right_inference": true,
     "inference_points_to_first": null
   },
