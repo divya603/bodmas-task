@@ -345,7 +345,7 @@ const SUMMARY_MESSAGES = {
 
       <!-- Phase 2: Likert radio buttons (type1_yn only) -->
       <div v-if="isLikert && !inTextPhase" class="flex flex-col gap-3 flex-1">
-        <p class="text-sm font-medium">How much do you agree with this statement?</p>
+        <p class="text-sm font-medium">How much do you agree that this is what the student believes?</p>
         <div class="flex justify-between gap-2" :class="{ 'opacity-60 pointer-events-none': submitted }">
           <label
             v-for="option in [...LIKERT_OPTIONS].reverse()"

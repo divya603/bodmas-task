@@ -16,25 +16,37 @@ const demoSelections    = ref([null, null, null])
 
 const examples = [
   {
+    // Example 1: 1 misconception, correct description, trace shown → Strongly Agree / Agree
     expression: '3 + 4 × 5',
     traceLines: ['3 + 4 × 5', '↓', '7 × 5', '↓', '35'],
     studentName: 'Alex',
     belief: 'do addition before multiplication',
     traceHiddenInPhase2: false,
+    correctAnswers: ['Strongly Agree', 'Agree'],
+    correctFeedback: 'Correct! Alex added 3+4=7 before multiplying by 5, which shows they believe addition should come before multiplication. Strongly Agree or Agree are the best choices here.',
+    incorrectFeedback: 'Not quite. Look at Alex\'s first step — they added 3+4=7 before multiplying, which is exactly what the statement describes. Strongly Agree or Agree would be the best choices here.',
   },
   {
-    expression: '2 + 3 × 4',
-    traceLines: ['2 + 3 × 4', '↓', '5 × 4', '↓', '20'],
+    // Example 2: 2 misconceptions, description points to 1st error, trace shown → Somewhat Agree
+    expression: '3 + 2² × (4 - 1)',
+    traceLines: ['3 + 2² × (4-1)', '↓', '5² × (4-1)', '↓', '25 × (4-1)', '↓', '25 × 4 - 1', '↓', '100 - 1', '↓', '99'],
     studentName: 'Sam',
-    belief: 'work right to left when two operations have the same priority',
+    belief: 'add before applying the exponent',
     traceHiddenInPhase2: false,
+    correctAnswers: ['Somewhat Agree'],
+    correctFeedback: 'Good thinking! The statement correctly captures one of Sam\'s errors — they did add 3+2=5 before squaring (step 2). However, Sam also dropped the brackets around (4-1) in step 4, which the statement doesn\'t mention. Since it only describes part of what happened, Somewhat Agree is the best choice.',
+    incorrectFeedback: 'Take another look. The statement is partly right — Sam did add before the exponent (3+2=5²). But Sam also made a second error: dropping the brackets (4-1) in step 4. Because the statement only captures one of two errors, Somewhat Agree is the most accurate choice.',
   },
   {
-    expression: '(3 + 4) × 5',
-    traceLines: ['(3 + 4) × 5', '↓', '7 × 5', '↓', '35'],
+    // Example 3: 1 misconception, foil (wrong) description, trace hidden → Disagree / Strongly Disagree
+    expression: '5 - (2 - 7)',
+    traceLines: ['5 - (2 - 7)', '↓', '5 - (-5)', '↓', '5 - 5', '↓', '0'],
     studentName: 'Jordan',
-    belief: 'ignore the brackets and compute as if they weren\'t there',
+    belief: 'work right to left when two operations have the same priority',
     traceHiddenInPhase2: true,
+    correctAnswers: ['Disagree', 'Strongly Disagree'],
+    correctFeedback: 'Correct! Jordan\'s actual error was about negative signs — they treated 5−(−5) as 5−5 instead of 5+5. The statement describes a completely different mistake, so Disagree or Strongly Disagree are the right choices.',
+    incorrectFeedback: 'Not quite. Jordan\'s error was about negative signs — they kept the minus when subtracting a negative number, turning 5−(−5) into 5−5. The statement describes something different entirely, so Disagree or Strongly Disagree would be the best choices.',
   },
 ]
 
@@ -42,6 +54,12 @@ const examples = [
 const exampleIndex  = computed(() => Math.floor((page.value - 1) / 2))
 const isPhase1      = computed(() => page.value > 0 && (page.value - 1) % 2 === 0)
 const currentExample = computed(() => examples[Math.max(0, exampleIndex.value)])
+
+const isCorrect = computed(() => {
+  const sel = demoSelections.value[exampleIndex.value]
+  if (!sel) return null
+  return currentExample.value.correctAnswers.includes(sel)
+})
 
 function next() {
   if (page.value < TOTAL_PAGES - 1) {
@@ -67,7 +85,7 @@ function next() {
         <h1 class="text-2xl font-bold">📋 Instructions</h1>
 
         <p class="text-base leading-relaxed">
-          You'll see math work from a series of different students 🧑‍🎓 and try to figure out what each one thinks about how math works. Each trial has two steps.
+          You'll see step-by-step solutions from a series of different students 🧑‍🎓 and try to figure out what each one thinks about how math works. Each trial has two steps.
         </p>
 
         <div class="bg-muted rounded-lg px-5 py-4 text-sm space-y-4">
@@ -136,7 +154,7 @@ function next() {
         </div>
       </template>
 
-      <!-- ── Phase 2 (pages 2, 4, 6): belief statement + Likert ────────────── -->
+      <!-- ── Phase 2 (pages 2, 4, 6): belief statement + Likert + feedback ──── -->
       <template v-else>
         <div class="text-xs uppercase tracking-wide text-muted-foreground font-medium">
           Example {{ exampleIndex + 1 }} of 3 — Step 2
@@ -166,7 +184,7 @@ function next() {
 
         <!-- Likert -->
         <div class="flex flex-col gap-3">
-          <p class="text-sm font-medium">How much do you agree with this statement?</p>
+          <p class="text-sm font-medium">How much do you agree that this is what the student believes?</p>
           <div class="flex justify-between gap-2">
             <label
               v-for="option in [...LIKERT_OPTIONS].reverse()"
@@ -179,6 +197,15 @@ function next() {
           </div>
         </div>
 
+        <!-- Feedback -->
+        <div v-if="demoSelections[exampleIndex]"
+             class="rounded-lg px-4 py-3 text-sm"
+             :class="isCorrect
+               ? 'bg-green-50 border border-green-200 text-green-900'
+               : 'bg-red-50 border border-red-200 text-red-900'">
+          <p class="font-semibold mb-1">{{ isCorrect ? '✓ Good answer!' : '✗ Not quite.' }}</p>
+          <p>{{ isCorrect ? currentExample.correctFeedback : currentExample.incorrectFeedback }}</p>
+        </div>
 
         <div class="flex justify-between pt-2">
           <Button variant="outline" @click="page--"><i-fa6-solid-arrow-left class="mr-1" /> Back</Button>

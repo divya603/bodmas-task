@@ -364,8 +364,7 @@ BANK_DATA = [
         'trace':             [
             '1+4×(2+3²)',  '↓',
             '5×(2+3²)',    '↓',   # ERROR 1: 1+4=5 (add_before_mult)
-            '5×(2+3)²',   '↓',   # ERROR 2: grouped 2+3 before squaring (add_before_exponent)
-            '5×5²',        '↓',
+            '5×5²',        '↓',   # ERROR 2: added 2+3=5 before squaring (add_before_exponent)
             '5×25',        '↓',
             '125',
         ],
