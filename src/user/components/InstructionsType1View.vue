@@ -91,11 +91,11 @@ function next() {
         <div class="bg-muted rounded-lg px-5 py-4 text-sm space-y-4">
           <div>
             <p class="font-semibold mb-1">👀 Step 1</p>
-            <p>You'll see a math expression and one student's step-by-step solution. Write your initial thoughts about what they did. ✏️</p>
+            <p>You'll see a math expression and one student's step-by-step solution. Write your initial thoughts about what they did. ✏️ Note: each student's individual arithmetic is correct — there are no calculation mistakes. Any errors are in the order they choose to apply operations.</p>
           </div>
           <div>
             <p class="font-semibold mb-1">💭 Step 2</p>
-            <p>You'll see a statement about what this student might believe. Rate it on this scale:</p>
+            <p>You'll see a statement about what this student might believe. Rate it on this scale. Keep in mind: a student may have made more than one type of error, and the statement might only describe one of them — use your best judgment about how well it fits overall.</p>
             <div class="mt-2 space-y-1 pl-2">
               <p><span class="font-semibold">Strongly Agree</span> — perfectly describes their belief</p>
               <p><span class="font-semibold">Agree</span> — mostly matches</p>
@@ -108,8 +108,13 @@ function next() {
         </div>
 
         <p class="text-base leading-relaxed">
-          ⚠️ In Step 2, the student's work may or may not still be visible. You won't know in advance!
+          ⚠️ In Step 2, the student's work may or may not still be visible. You won't know in advance, so pay close attention in Step 1!
         </p>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg px-5 py-4 text-sm text-amber-900">
+          <p class="font-semibold mb-1">Performance bonus</p>
+          <p>Each statement has a correct answer — some descriptions accurately capture what the student misunderstands, others don't. You'll earn a bonus based on how accurately you rate each one.</p>
+        </div>
 
         <div class="flex justify-end pt-2">
           <Button @click="next()">Continue <i-fa6-solid-arrow-right class="ml-1" /></Button>

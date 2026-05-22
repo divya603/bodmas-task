@@ -238,7 +238,7 @@
     ],
     "finalAnswer": "0",
     "expertAnswer": "10",
-    "correctDescription": "keep the minus sign when subtracting a negative number",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
     "foilDescription": "work right to left when two operations have the same priority",
     "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
@@ -417,8 +417,8 @@
     "finalAnswer": "10",
     "expertAnswer": "19",
     "correctDescription": "ignore the brackets and compute as if they weren't there",
-    "foilDescription": "expand the brackets instead of evaluating inside them first",
-    "descriptionShown": "expand the brackets instead of evaluating inside them first",
+    "foilDescription": "only apply the multiplication to the first term inside the brackets",
+    "descriptionShown": "only apply the multiplication to the first term inside the brackets",
     "options": [
       {
         "key": "no",
@@ -513,9 +513,9 @@
     ],
     "finalAnswer": "15",
     "expertAnswer": "19",
-    "correctDescription": "keep the minus sign when subtracting a negative number",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
     "foilDescription": null,
-    "descriptionShown": "keep the minus sign when subtracting a negative number",
+    "descriptionShown": "treat subtracting a negative as regular subtraction",
     "options": [
       {
         "key": "no",
@@ -697,9 +697,9 @@
     ],
     "finalAnswer": "17",
     "expertAnswer": "21",
-    "correctDescription": "only multiply the first term in the brackets and not distribute to all terms",
+    "correctDescription": "only apply the multiplication to the first term inside the brackets",
     "foilDescription": null,
-    "descriptionShown": "only multiply the first term in the brackets and not distribute to all terms",
+    "descriptionShown": "only apply the multiplication to the first term inside the brackets",
     "options": [
       {
         "key": "no",
@@ -743,9 +743,9 @@
     ],
     "finalAnswer": "29",
     "expertAnswer": "27",
-    "correctDescription": "only multiply the first term in the brackets and not distribute to all terms",
+    "correctDescription": "only apply the multiplication to the first term inside the brackets",
     "foilDescription": null,
-    "descriptionShown": "only multiply the first term in the brackets and not distribute to all terms",
+    "descriptionShown": "only apply the multiplication to the first term inside the brackets",
     "options": [
       {
         "key": "yes",
@@ -837,9 +837,9 @@
     ],
     "finalAnswer": "28",
     "expertAnswer": "52",
-    "correctDescription": "keep the minus sign when subtracting a negative number",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
     "foilDescription": null,
-    "descriptionShown": "keep the minus sign when subtracting a negative number",
+    "descriptionShown": "treat subtracting a negative as regular subtraction",
     "options": [
       {
         "key": "yes",
