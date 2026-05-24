@@ -56,11 +56,12 @@ onBeforeUnmount(() => {
     :width="api.config.windowsizerRequest.width"
     :height="api.config.windowsizerRequest.height"
   >
-    <TwoCol leftWidth="w-3/5" class="px-6 h-full">
+    <TwoCol leftWidth="w-3/5" class="px-6">
       <template #left>
         <iframe
           :src="pdfUrl"
-          class="w-full h-full rounded border border-border"
+          class="w-full rounded border border-border"
+          style="height: 850px;"
           title="Consent Form"
         />
       </template>
