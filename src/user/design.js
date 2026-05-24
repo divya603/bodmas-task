@@ -18,7 +18,7 @@ import { processQuery } from '@/core/utils/utils'
 // 1. Import main built-in View components
 import AdvertisementView from '@/builtins/advertisement/AdvertisementView.vue'
 import MTurkRecruitView from '@/builtins/mturk/MTurkRecruitView.vue'
-import InformedConsentView from '@/builtins/informedConsent/InformedConsentView.vue'
+import ConsentPDFView from '@/user/components/ConsentPDFView.vue'
 import DemographicSurveyView from '@/builtins/demographicSurvey/DemographicSurveyMinimalView.vue'
 import DeviceSurveyView from '@/builtins/deviceSurvey/DeviceSurveyView.vue'
 import InstructionsView from '@/user/components/InstructionsType1View.vue'
@@ -152,10 +152,7 @@ timeline.registerView({
 // consent
 timeline.pushSeqView({
   name: 'consent',
-  component: InformedConsentView,
-  props: {
-    informedConsentText: markRaw(InformedConsentText), // provide the informed consent text
-  },
+  component: ConsentPDFView,
   meta: {
     requiresConsent: false,
     setConsented: true,
