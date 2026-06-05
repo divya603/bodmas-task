@@ -15,12 +15,12 @@ const demoTextResponses = ref(['', '', ''])
 const demoSelections    = ref([null, null, null])
 
 const LIKERT_MEANING = {
-  'Strongly Agree':    "you fully agree — this statement perfectly describes what the student believes",
-  'Agree':             "you mostly agree — this statement largely matches the student's thinking",
-  'Somewhat Agree':    "you partially agree — this statement captures something, but not the full picture",
-  'Somewhat Disagree': "you partially disagree — this statement is somewhat off from what the student did",
-  'Disagree':          "you mostly disagree — this statement doesn't really match the student's thinking",
-  'Strongly Disagree': "you fully disagree — this statement doesn't describe the student at all",
+  'Strongly Agree':    "you fully agree and think this statement perfectly describes what the student believes",
+  'Agree':             "you mostly agree and think this statement largely matches the student's thinking",
+  'Somewhat Agree':    "you partially agree and think this statement captures something but not the full picture",
+  'Somewhat Disagree': "you partially disagree and think this statement is somewhat off from what the student did",
+  'Disagree':          "you mostly disagree and think this statement doesn't really match the student's thinking",
+  'Strongly Disagree': "you fully disagree and think this statement doesn't describe the student at all",
 }
 
 const examples = [
@@ -32,8 +32,8 @@ const examples = [
     belief: 'do addition before multiplication',
     traceHiddenInPhase2: false,
     explanation: {
-      errorDesc: "Alex's error: in the first step, Alex computed 3+4=7 before multiplying — they added first instead of multiplying first.",
-      beliefDesc: "The belief statement — \"do addition before multiplication\" — describes this error exactly. It correctly identifies what Alex did.",
+      errorDesc: "In the first step, Alex computed 3+4=7 before multiplying. They added first instead of multiplying first.",
+      beliefDesc: "The belief statement describes this error exactly.",
       numMisconceptions: 1,
     },
   },
@@ -45,8 +45,8 @@ const examples = [
     belief: 'add before applying the exponent',
     traceHiddenInPhase2: false,
     explanation: {
-      errorDesc: "Sam made two errors. First, Sam added 3+2=5 before squaring in step 2 (the exponent error). Second, Sam dropped the brackets around (4−1) in step 4, treating it as 25×4−1 instead of 25×3.",
-      beliefDesc: "The belief statement — \"add before applying the exponent\" — correctly identifies Sam's first error, but does not mention the second (dropping the brackets). It captures one of the two misconceptions Sam has.",
+      errorDesc: "Sam made two errors. In step 2, Sam added 3+2=5 before squaring. In step 4, Sam dropped the brackets around (4−1) and treated it as 25×4−1 instead of 25×3.",
+      beliefDesc: "The belief statement correctly identifies Sam's first error but does not mention the second one. It captures one of the two misconceptions Sam has.",
       numMisconceptions: 2,
     },
   },
@@ -58,8 +58,8 @@ const examples = [
     belief: 'work right to left when two operations have the same priority',
     traceHiddenInPhase2: true,
     explanation: {
-      errorDesc: "Jordan's error was about negative signs — in step 3, Jordan treated 5−(−5) as 5−5=0 instead of 5+5=10, not keeping the sign change when subtracting a negative.",
-      beliefDesc: "The belief statement — \"work right to left when two operations have the same priority\" — describes a completely different kind of error that Jordan did not make. It does not match what Jordan actually did.",
+      errorDesc: "Jordan's error was about negative signs. In step 3, Jordan treated 5−(−5) as 5−5=0 instead of 5+5=10, not keeping the sign change when subtracting a negative.",
+      beliefDesc: "The belief statement describes a completely different kind of error that Jordan did not make. It does not match what Jordan actually did.",
       numMisconceptions: 1,
     },
   },
