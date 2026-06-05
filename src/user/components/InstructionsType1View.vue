@@ -14,52 +14,61 @@ const TOTAL_PAGES = 7  // 0 = intro, then 2 pages per example × 3 examples
 const demoTextResponses = ref(['', '', ''])
 const demoSelections    = ref([null, null, null])
 
+const LIKERT_MEANING = {
+  'Strongly Agree':    "you fully agree — this statement perfectly describes what the student believes",
+  'Agree':             "you mostly agree — this statement largely matches the student's thinking",
+  'Somewhat Agree':    "you partially agree — this statement captures something, but not the full picture",
+  'Somewhat Disagree': "you partially disagree — this statement is somewhat off from what the student did",
+  'Disagree':          "you mostly disagree — this statement doesn't really match the student's thinking",
+  'Strongly Disagree': "you fully disagree — this statement doesn't describe the student at all",
+}
+
 const examples = [
   {
-    // Example 1: 1 misconception, correct description, trace shown → Strongly Agree / Agree
+    // Example 1: 1 misconception, correct belief statement, trace shown
     expression: '3 + 4 × 5',
     traceLines: ['3 + 4 × 5', '↓', '7 × 5', '↓', '35'],
     studentName: 'Alex',
     belief: 'do addition before multiplication',
     traceHiddenInPhase2: false,
-    correctAnswers: ['Strongly Agree', 'Agree'],
-    correctFeedback: 'Correct! Alex added 3+4=7 before multiplying by 5, which shows they believe addition should come before multiplication. Strongly Agree or Agree are the best choices here.',
-    incorrectFeedback: 'Not quite. Look at Alex\'s first step — they added 3+4=7 before multiplying, which is exactly what the statement describes. Strongly Agree or Agree would be the best choices here.',
+    explanation: {
+      errorDesc: "Alex's error: in the first step, Alex computed 3+4=7 before multiplying — they added first instead of multiplying first.",
+      beliefDesc: "The belief statement — \"do addition before multiplication\" — describes this error exactly. It correctly identifies what Alex did.",
+      numMisconceptions: 1,
+    },
   },
   {
-    // Example 2: 2 misconceptions, description points to 1st error, trace shown → Somewhat Agree
+    // Example 2: 2 misconceptions, belief points to 1st error, trace shown
     expression: '3 + 2² × (4 - 1)',
     traceLines: ['3 + 2² × (4-1)', '↓', '5² × (4-1)', '↓', '25 × (4-1)', '↓', '25 × 4 - 1', '↓', '100 - 1', '↓', '99'],
     studentName: 'Sam',
     belief: 'add before applying the exponent',
     traceHiddenInPhase2: false,
-    correctAnswers: ['Somewhat Agree'],
-    correctFeedback: 'Good thinking! The statement correctly captures one of Sam\'s errors — they did add 3+2=5 before squaring (step 2). However, Sam also dropped the brackets around (4-1) in step 4, which the statement doesn\'t mention. Since it only describes part of what happened, Somewhat Agree is the best choice.',
-    incorrectFeedback: 'Take another look. The statement is partly right — Sam did add before the exponent (3+2=5²). But Sam also made a second error: dropping the brackets (4-1) in step 4. Because the statement only captures one of two errors, Somewhat Agree is the most accurate choice.',
+    explanation: {
+      errorDesc: "Sam made two errors. First, Sam added 3+2=5 before squaring in step 2 (the exponent error). Second, Sam dropped the brackets around (4−1) in step 4, treating it as 25×4−1 instead of 25×3.",
+      beliefDesc: "The belief statement — \"add before applying the exponent\" — correctly identifies Sam's first error, but does not mention the second (dropping the brackets). It captures one of the two misconceptions Sam has.",
+      numMisconceptions: 2,
+    },
   },
   {
-    // Example 3: 1 misconception, foil (wrong) description, trace hidden → Disagree / Strongly Disagree
+    // Example 3: 1 misconception, foil belief statement, trace hidden
     expression: '5 - (2 - 7)',
     traceLines: ['5 - (2 - 7)', '↓', '5 - (-5)', '↓', '5 - 5', '↓', '0'],
     studentName: 'Jordan',
     belief: 'work right to left when two operations have the same priority',
     traceHiddenInPhase2: true,
-    correctAnswers: ['Disagree', 'Strongly Disagree'],
-    correctFeedback: 'Correct! Jordan\'s actual error was about negative signs — they treated 5−(−5) as 5−5 instead of 5+5. The statement describes a completely different mistake, so Disagree or Strongly Disagree are the right choices.',
-    incorrectFeedback: 'Not quite. Jordan\'s error was about negative signs — they kept the minus when subtracting a negative number, turning 5−(−5) into 5−5. The statement describes something different entirely, so Disagree or Strongly Disagree would be the best choices.',
+    explanation: {
+      errorDesc: "Jordan's error was about negative signs — in step 3, Jordan treated 5−(−5) as 5−5=0 instead of 5+5=10, not keeping the sign change when subtracting a negative.",
+      beliefDesc: "The belief statement — \"work right to left when two operations have the same priority\" — describes a completely different kind of error that Jordan did not make. It does not match what Jordan actually did.",
+      numMisconceptions: 1,
+    },
   },
 ]
 
 // pages 1,2 → example 0; pages 3,4 → example 1; pages 5,6 → example 2
-const exampleIndex  = computed(() => Math.floor((page.value - 1) / 2))
-const isPhase1      = computed(() => page.value > 0 && (page.value - 1) % 2 === 0)
+const exampleIndex   = computed(() => Math.floor((page.value - 1) / 2))
+const isPhase1       = computed(() => page.value > 0 && (page.value - 1) % 2 === 0)
 const currentExample = computed(() => examples[Math.max(0, exampleIndex.value)])
-
-const isCorrect = computed(() => {
-  const sel = demoSelections.value[exampleIndex.value]
-  if (!sel) return null
-  return currentExample.value.correctAnswers.includes(sel)
-})
 
 function next() {
   if (page.value < TOTAL_PAGES - 1) {
@@ -194,9 +203,16 @@ function next() {
             <label
               v-for="option in [...LIKERT_OPTIONS].reverse()"
               :key="option"
-              class="flex flex-col items-center gap-2 flex-1 cursor-pointer"
+              class="flex flex-col items-center gap-2 flex-1"
+              :class="demoSelections[exampleIndex] ? 'cursor-default' : 'cursor-pointer'"
             >
-              <input type="radio" :value="option" v-model="demoSelections[exampleIndex]" class="accent-primary w-4 h-4" />
+              <input
+                type="radio"
+                :value="option"
+                v-model="demoSelections[exampleIndex]"
+                :disabled="demoSelections[exampleIndex] !== null"
+                class="accent-primary w-4 h-4"
+              />
               <span class="text-xs text-center leading-tight text-muted-foreground">{{ option }}</span>
             </label>
           </div>
@@ -204,12 +220,16 @@ function next() {
 
         <!-- Feedback -->
         <div v-if="demoSelections[exampleIndex]"
-             class="rounded-lg px-4 py-3 text-sm"
-             :class="isCorrect
-               ? 'bg-green-50 border border-green-200 text-green-900'
-               : 'bg-red-50 border border-red-200 text-red-900'">
-          <p class="font-semibold mb-1">{{ isCorrect ? '✓ Good answer!' : '✗ Not quite.' }}</p>
-          <p>{{ isCorrect ? currentExample.correctFeedback : currentExample.incorrectFeedback }}</p>
+             class="rounded-lg px-4 py-3 text-sm bg-blue-50 border border-blue-200 text-blue-900 space-y-2">
+          <p>{{ currentExample.explanation.errorDesc }}</p>
+          <p>{{ currentExample.explanation.beliefDesc }}</p>
+          <p v-if="currentExample.explanation.numMisconceptions === 2" class="text-blue-700 italic">
+            Note: when a student has more than one error, the belief statement will point to one of them — rate how well it describes that specific aspect of their thinking.
+          </p>
+          <p class="border-t border-blue-200 pt-2">
+            By selecting <span class="font-semibold">{{ demoSelections[exampleIndex] }}</span>,
+            {{ LIKERT_MEANING[demoSelections[exampleIndex]] }}.
+          </p>
         </div>
 
         <div class="flex justify-between pt-2">
