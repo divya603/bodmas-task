@@ -2,220 +2,169 @@
   {
     "id": 1,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "(2+3)\u00d75+1",
+    "expression": "2×5+6×(2+3)",
     "mysteryLearner": "addition_first",
-    "studentName": "Ned",
+    "studentName": "Emily",
     "traceLines": [
-      "(2+3)\u00d75+1",
-      "\u2193",
-      "5\u00d75+1",
-      "\u2193",
-      "5\u00d76",
-      "\u2193",
-      "30"
+      "2×5+6×(2+3)",
+      "↓",
+      "2×11×(2+3)",
+      "↓",
+      "2×11×5",
+      "↓",
+      "22×5",
+      "↓",
+      "110"
     ],
-    "finalAnswer": "30",
-    "expertAnswer": "26",
+    "finalAnswer": "110",
+    "expertAnswer": "40",
     "correctDescription": "do addition before multiplication",
-    "foilDescription": "work right to left when two operations have the same priority",
-    "descriptionShown": "work right to left when two operations have the same priority",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "do addition before multiplication",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
-    "correctKey": "no",
+    "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "add_before_mult"
-    ],
-    "inference_target": "same_prio_rtl",
-    "right_inference": false,
+    "misconception_types": ["add_before_mult"],
+    "inference_target": "add_before_mult",
+    "right_inference": true,
     "inference_points_to_first": null
   },
   {
     "id": 2,
     "format": "type1_yn",
-    "pool": "A",
-    "expression": "2\u00d7((3+4)\u00d75)",
-    "mysteryLearner": "bracket_ignorer",
-    "studentName": "Emily",
+    "expression": "2×5-3×2",
+    "mysteryLearner": "addition_first",
+    "studentName": "Rob",
     "traceLines": [
-      "2\u00d7((3+4)\u00d75)",
-      "\u2193",
-      "2\u00d7(3+4\u00d75)",
-      "\u2193",
-      "2\u00d7(3+20)",
-      "\u2193",
-      "2\u00d723",
-      "\u2193",
-      "46"
+      "2×5-3×2",
+      "↓",
+      "2×2×2",
+      "↓",
+      "2×4",
+      "↓",
+      "8"
     ],
-    "finalAnswer": "46",
-    "expertAnswer": "70",
-    "correctDescription": "ignore the brackets and compute as if they weren't there",
-    "foilDescription": null,
-    "descriptionShown": "ignore the brackets and compute as if they weren't there",
-    "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
-    ],
-    "correctKey": "yes",
-    "has_misconception": true,
-    "has_1_misconception": true,
-    "misconception_types": [
-      "bracket_drop"
-    ],
-    "inference_target": "bracket_drop",
-    "right_inference": true,
-    "inference_points_to_first": null
-  },
-  {
-    "id": 3,
-    "format": "type1_yn",
-    "pool": "B",
-    "expression": "3+2\u00b2\u00d75-4",
-    "mysteryLearner": "add_before_exponent",
-    "studentName": "Mike",
-    "traceLines": [
-      "3+2\u00b2\u00d75-4",
-      "\u2193",
-      "5\u00b2\u00d75-4",
-      "\u2193",
-      "25\u00d75-4",
-      "\u2193",
-      "125-4",
-      "\u2193",
-      "121"
-    ],
-    "finalAnswer": "121",
-    "expertAnswer": "19",
-    "correctDescription": "add before applying the exponent",
+    "finalAnswer": "8",
+    "expertAnswer": "4",
+    "correctDescription": "do addition before multiplication",
     "foilDescription": "do all operations strictly left to right, ignoring operator priority",
     "descriptionShown": "do all operations strictly left to right, ignoring operator priority",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "add_before_exponent"
-    ],
+    "misconception_types": ["add_before_mult"],
     "inference_target": "left_to_right",
     "right_inference": false,
     "inference_points_to_first": null
   },
   {
+    "id": 3,
+    "format": "type1_yn",
+    "expression": "2×5+(6-2)",
+    "mysteryLearner": "bracket_distributor",
+    "studentName": "Ned",
+    "traceLines": [
+      "2×5+(6-2)",
+      "↓",
+      "2×((5+6)-(5+2))",
+      "↓",
+      "2×((5+6)-7)",
+      "↓",
+      "2×(11-7)",
+      "↓",
+      "2×4",
+      "↓",
+      "8"
+    ],
+    "finalAnswer": "8",
+    "expertAnswer": "14",
+    "correctDescription": "distribute the number outside the brackets across all terms inside",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "distribute the number outside the brackets across all terms inside",
+    "options": [
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
+    ],
+    "correctKey": "yes",
+    "has_misconception": true,
+    "has_1_misconception": true,
+    "misconception_types": ["bracket_distribute"],
+    "inference_target": "bracket_distribute",
+    "right_inference": true,
+    "inference_points_to_first": null
+  },
+  {
     "id": 4,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "8-3+2\u00d75",
-    "mysteryLearner": "right_to_left",
-    "studentName": "Morgan",
+    "expression": "3+(8-9)",
+    "mysteryLearner": "bracket_distributor",
+    "studentName": "Mike",
     "traceLines": [
-      "8-3+2\u00d75",
-      "\u2193",
-      "8-3+10",
-      "\u2193",
-      "8-13",
-      "\u2193",
-      "-5"
+      "3+(8-9)",
+      "↓",
+      "(3+8)-(3+9)",
+      "↓",
+      "11-(3+9)",
+      "↓",
+      "11-12",
+      "↓",
+      "-1"
     ],
-    "finalAnswer": "-5",
-    "expertAnswer": "15",
-    "correctDescription": "work right to left when two operations have the same priority",
-    "foilDescription": "do addition before multiplication",
-    "descriptionShown": "do addition before multiplication",
+    "finalAnswer": "-1",
+    "expertAnswer": "2",
+    "correctDescription": "distribute the number outside the brackets across all terms inside",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "do all operations strictly left to right, ignoring operator priority",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "same_prio_rtl"
-    ],
-    "inference_target": "add_before_mult",
+    "misconception_types": ["bracket_distribute"],
+    "inference_target": "left_to_right",
     "right_inference": false,
     "inference_points_to_first": null
   },
   {
     "id": 5,
     "format": "type1_yn",
-    "pool": "A",
-    "expression": "5\u00d7(3+4)-2",
+    "expression": "2×5+(6-2)",
     "mysteryLearner": "bracket_ignorer",
-    "studentName": "Riley",
+    "studentName": "Morgan",
     "traceLines": [
-      "5\u00d7(3+4)-2",
-      "\u2193",
-      "5\u00d73+4-2",
-      "\u2193",
-      "15+4-2",
-      "\u2193",
-      "19-2",
-      "\u2193",
-      "17"
+      "2×5+(6-2)",
+      "↓",
+      "2×5+6-2",
+      "↓",
+      "10+6-2",
+      "↓",
+      "16-2",
+      "↓",
+      "14"
     ],
-    "finalAnswer": "17",
-    "expertAnswer": "33",
+    "finalAnswer": "14",
+    "expertAnswer": "14",
     "correctDescription": "ignore the brackets and compute as if they weren't there",
-    "foilDescription": null,
+    "foilDescription": "do addition before multiplication",
     "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "bracket_drop"
-    ],
+    "misconception_types": ["bracket_drop"],
     "inference_target": "bracket_drop",
     "right_inference": true,
     "inference_points_to_first": null
@@ -223,242 +172,186 @@
   {
     "id": 6,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "5-(2-7)",
-    "mysteryLearner": "sign_error",
-    "studentName": "Quinn",
+    "expression": "2×(3-8)-6",
+    "mysteryLearner": "bracket_ignorer",
+    "studentName": "Katie",
     "traceLines": [
-      "5-(2-7)",
-      "\u2193",
-      "5-(-5)",
-      "\u2193",
-      "5-5",
-      "\u2193",
-      "0"
+      "2×(3-8)-6",
+      "↓",
+      "2×3-8-6",
+      "↓",
+      "6-8-6",
+      "↓",
+      "-2-6",
+      "↓",
+      "-8"
     ],
-    "finalAnswer": "0",
-    "expertAnswer": "10",
-    "correctDescription": "treat subtracting a negative as regular subtraction",
-    "foilDescription": "work right to left when two operations have the same priority",
-    "descriptionShown": "work right to left when two operations have the same priority",
+    "finalAnswer": "-8",
+    "expertAnswer": "-16",
+    "correctDescription": "ignore the brackets and compute as if they weren't there",
+    "foilDescription": "do addition before multiplication",
+    "descriptionShown": "do addition before multiplication",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "neg_sign_error"
-    ],
-    "inference_target": "same_prio_rtl",
+    "misconception_types": ["bracket_drop"],
+    "inference_target": "add_before_mult",
     "right_inference": false,
     "inference_points_to_first": null
   },
   {
     "id": 7,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "6\u00d7(2+1)-3\u00d74",
-    "mysteryLearner": "addition_first",
-    "studentName": "Pat",
+    "expression": "3×4-(4-8)",
+    "mysteryLearner": "sign_error",
+    "studentName": "Olivia",
     "traceLines": [
-      "6\u00d7(2+1)-3\u00d74",
-      "\u2193",
-      "6\u00d73-3\u00d74",
-      "\u2193",
-      "6\u00d70\u00d74",
-      "\u2193",
-      "0\u00d74",
-      "\u2193",
-      "0"
+      "3×4-(4-8)",
+      "↓",
+      "3×4-(-4)",
+      "↓",
+      "3×4-4",
+      "↓",
+      "12-4",
+      "↓",
+      "8"
     ],
-    "finalAnswer": "0",
-    "expertAnswer": "6",
-    "correctDescription": "do addition/subtraction before multiplication/division",
+    "finalAnswer": "8",
+    "expertAnswer": "16",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
     "foilDescription": "ignore the brackets and compute as if they weren't there",
-    "descriptionShown": "ignore the brackets and compute as if they weren't there",
+    "descriptionShown": "treat subtracting a negative as regular subtraction",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
-    "correctKey": "no",
+    "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "add_before_mult"
-    ],
-    "inference_target": "bracket_drop",
-    "right_inference": false,
+    "misconception_types": ["neg_sign_error"],
+    "inference_target": "neg_sign_error",
+    "right_inference": true,
     "inference_points_to_first": null
   },
   {
     "id": 8,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "6\u00d73+4-2\u00d73",
-    "mysteryLearner": "left_to_right_only",
-    "studentName": "Drew",
+    "expression": "8-(8-9)×5",
+    "mysteryLearner": "sign_error",
+    "studentName": "Lily",
     "traceLines": [
-      "6\u00d73+4-2\u00d73",
-      "\u2193",
-      "18+4-2\u00d73",
-      "\u2193",
-      "22-2\u00d73",
-      "\u2193",
-      "20\u00d73",
-      "\u2193",
-      "60"
+      "8-(8-9)×5",
+      "↓",
+      "8-(-1)×5",
+      "↓",
+      "8-1×5",
+      "↓",
+      "8-5",
+      "↓",
+      "3"
     ],
-    "finalAnswer": "60",
-    "expertAnswer": "16",
-    "correctDescription": "do addition/subtraction before multiplication/division",
-    "foilDescription": "work right to left when two operations have the same priority",
-    "descriptionShown": "work right to left when two operations have the same priority",
+    "finalAnswer": "3",
+    "expertAnswer": "13",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
+    "foilDescription": "ignore the brackets and compute as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "add_before_mult"
-    ],
-    "inference_target": "same_prio_rtl",
+    "misconception_types": ["neg_sign_error"],
+    "inference_target": "bracket_drop",
     "right_inference": false,
     "inference_points_to_first": null
   },
   {
     "id": 9,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "9-4+2\u00d73",
+    "expression": "3×4-5+8",
     "mysteryLearner": "right_to_left",
-    "studentName": "Lee",
+    "studentName": "Ryan",
     "traceLines": [
-      "9-4+2\u00d73",
-      "\u2193",
-      "9-4+6",
-      "\u2193",
-      "9-10",
-      "\u2193",
-      "-1"
+      "3×4-5+8",
+      "↓",
+      "3×4-13",
+      "↓",
+      "3×-9",
+      "↓",
+      "-27"
     ],
-    "finalAnswer": "-1",
-    "expertAnswer": "11",
+    "finalAnswer": "-27",
+    "expertAnswer": "15",
     "correctDescription": "work right to left when two operations have the same priority",
-    "foilDescription": "do addition before multiplication",
-    "descriptionShown": "do addition before multiplication",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
-    "correctKey": "no",
+    "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "same_prio_rtl"
-    ],
-    "inference_target": "add_before_mult",
-    "right_inference": false,
+    "misconception_types": ["same_prio_rtl"],
+    "inference_target": "same_prio_rtl",
+    "right_inference": true,
     "inference_points_to_first": null
   },
   {
     "id": 10,
     "format": "type1_yn",
-    "pool": "B",
-    "expression": "4\u00d7(2+3)-1",
-    "mysteryLearner": "bracket_ignorer",
-    "studentName": "Chris",
+    "expression": "2+4-6+9",
+    "mysteryLearner": "right_to_left",
+    "studentName": "Lily",
     "traceLines": [
-      "4\u00d7(2+3)-1",
-      "\u2193",
-      "4\u00d72+3-1",
-      "\u2193",
-      "8+3-1",
-      "\u2193",
-      "11-1",
-      "\u2193",
-      "10"
+      "2+4-6+9",
+      "↓",
+      "2+4+3",
+      "↓",
+      "6+3",
+      "↓",
+      "9"
     ],
-    "finalAnswer": "10",
-    "expertAnswer": "19",
-    "correctDescription": "ignore the brackets and compute as if they weren't there",
-    "foilDescription": "only apply the multiplication to the first term inside the brackets",
-    "descriptionShown": "only apply the multiplication to the first term inside the brackets",
+    "finalAnswer": "9",
+    "expertAnswer": "9",
+    "correctDescription": "work right to left when two operations have the same priority",
+    "foilDescription": "do all operations strictly left to right, ignoring operator priority",
+    "descriptionShown": "do all operations strictly left to right, ignoring operator priority",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": true,
-    "misconception_types": [
-      "bracket_drop"
-    ],
-    "inference_target": "bracket_distribute",
+    "misconception_types": ["same_prio_rtl"],
+    "inference_target": "left_to_right",
     "right_inference": false,
     "inference_points_to_first": null
   },
   {
     "id": 11,
     "format": "type1_yn",
-    "pool": "C",
-    "expression": "3+2\u00b2\u00d7(4-1)",
+    "expression": "3+2²×(4-1)",
     "mysteryLearner": "compound_add_exponent_bracket_drop",
     "studentName": "Noah",
     "traceLines": [
-      "3+2\u00b2\u00d7(4-1)",
-      "\u2193",
-      "5\u00b2\u00d7(4-1)",
-      "\u2193",
-      "25\u00d7(4-1)",
-      "\u2193",
-      "25\u00d74-1",
-      "\u2193",
+      "3+2²×(4-1)",
+      "↓",
+      "5²×(4-1)",
+      "↓",
+      "25×(4-1)",
+      "↓",
+      "25×4-1",
+      "↓",
       "100-1",
-      "\u2193",
+      "↓",
       "99"
     ],
     "finalAnswer": "99",
@@ -467,24 +360,13 @@
     "foilDescription": null,
     "descriptionShown": "add before applying the exponent",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_exponent",
-      "bracket_drop"
-    ],
+    "misconception_types": ["add_before_exponent", "bracket_drop"],
     "inference_target": "add_before_exponent",
     "right_inference": true,
     "inference_points_to_first": true
@@ -492,23 +374,22 @@
   {
     "id": 12,
     "format": "type1_yn",
-    "pool": "C",
-    "expression": "8-(1-6)+(2\u00d73)",
+    "expression": "8-(1-6)+(2×3)",
     "mysteryLearner": "compound_sign_error_bracket_drop",
     "studentName": "Olivia",
     "traceLines": [
-      "8-(1-6)+(2\u00d73)",
-      "\u2193",
-      "8-(-5)+(2\u00d73)",
-      "\u2193",
-      "8-5+(2\u00d73)",
-      "\u2193",
-      "3+(2\u00d73)",
-      "\u2193",
-      "3+2\u00d73",
-      "\u2193",
-      "5\u00d73",
-      "\u2193",
+      "8-(1-6)+(2×3)",
+      "↓",
+      "8-(-5)+(2×3)",
+      "↓",
+      "8-5+(2×3)",
+      "↓",
+      "3+(2×3)",
+      "↓",
+      "3+2×3",
+      "↓",
+      "5×3",
+      "↓",
       "15"
     ],
     "finalAnswer": "15",
@@ -517,24 +398,13 @@
     "foilDescription": null,
     "descriptionShown": "treat subtracting a negative as regular subtraction",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "neg_sign_error",
-      "bracket_drop"
-    ],
+    "misconception_types": ["neg_sign_error", "bracket_drop"],
     "inference_target": "neg_sign_error",
     "right_inference": true,
     "inference_points_to_first": true
@@ -542,21 +412,20 @@
   {
     "id": 13,
     "format": "type1_yn",
-    "pool": "C",
-    "expression": "4+(2\u00d73)-5+1",
+    "expression": "4+(2×3)-5+1",
     "mysteryLearner": "compound_bracket_add",
     "studentName": "Lily",
     "traceLines": [
-      "4+(2\u00d73)-5+1",
-      "\u2193",
-      "4+2\u00d73-5+1",
-      "\u2193",
-      "6\u00d73-5+1",
-      "\u2193",
+      "4+(2×3)-5+1",
+      "↓",
+      "4+2×3-5+1",
+      "↓",
+      "6×3-5+1",
+      "↓",
       "18-5+1",
-      "\u2193",
+      "↓",
       "13+1",
-      "\u2193",
+      "↓",
       "14"
     ],
     "finalAnswer": "14",
@@ -565,24 +434,13 @@
     "foilDescription": null,
     "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "bracket_drop"
-    ],
+    "misconception_types": ["add_before_mult", "bracket_drop"],
     "inference_target": "add_before_mult",
     "right_inference": true,
     "inference_points_to_first": true
@@ -590,19 +448,18 @@
   {
     "id": 14,
     "format": "type1_yn",
-    "pool": "C",
-    "expression": "3+5\u00d72-4+2",
+    "expression": "3+5×2-4+2",
     "mysteryLearner": "compound_add_rtl",
     "studentName": "Mia",
     "traceLines": [
-      "3+5\u00d72-4+2",
-      "\u2193",
-      "8\u00d72-4+2",
-      "\u2193",
+      "3+5×2-4+2",
+      "↓",
+      "8×2-4+2",
+      "↓",
       "16-4+2",
-      "\u2193",
+      "↓",
       "16-6",
-      "\u2193",
+      "↓",
       "10"
     ],
     "finalAnswer": "10",
@@ -611,24 +468,13 @@
     "foilDescription": null,
     "descriptionShown": "do addition before multiplication",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "same_prio_rtl"
-    ],
+    "misconception_types": ["add_before_mult", "same_prio_rtl"],
     "inference_target": "add_before_mult",
     "right_inference": true,
     "inference_points_to_first": true
@@ -636,17 +482,16 @@
   {
     "id": 15,
     "format": "type1_yn",
-    "pool": "C",
-    "expression": "6-2+3\u00d74",
+    "expression": "6-2+3×4",
     "mysteryLearner": "compound_rtl_add",
     "studentName": "Owen",
     "traceLines": [
-      "6-2+3\u00d74",
-      "\u2193",
-      "6-5\u00d74",
-      "\u2193",
-      "1\u00d74",
-      "\u2193",
+      "6-2+3×4",
+      "↓",
+      "6-5×4",
+      "↓",
+      "1×4",
+      "↓",
       "4"
     ],
     "finalAnswer": "4",
@@ -655,24 +500,13 @@
     "foilDescription": null,
     "descriptionShown": "work right to left when two operations have the same priority",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "same_prio_rtl",
-      "add_before_mult"
-    ],
+    "misconception_types": ["same_prio_rtl", "add_before_mult"],
     "inference_target": "same_prio_rtl",
     "right_inference": true,
     "inference_points_to_first": true
@@ -680,19 +514,18 @@
   {
     "id": 16,
     "format": "type1_yn",
-    "pool": "D",
-    "expression": "1+4\u00d7(3+2)",
+    "expression": "1+4×(3+2)",
     "mysteryLearner": "compound_add_partial_distribute",
     "studentName": "Zoe",
     "traceLines": [
-      "1+4\u00d7(3+2)",
-      "\u2193",
-      "5\u00d7(3+2)",
-      "\u2193",
-      "5\u00d73+2",
-      "\u2193",
+      "1+4×(3+2)",
+      "↓",
+      "5×(3+2)",
+      "↓",
+      "5×3+2",
+      "↓",
       "15+2",
-      "\u2193",
+      "↓",
       "17"
     ],
     "finalAnswer": "17",
@@ -701,24 +534,13 @@
     "foilDescription": null,
     "descriptionShown": "only apply the multiplication to the first term inside the brackets",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "bracket_distribute"
-    ],
+    "misconception_types": ["add_before_mult", "bracket_distribute"],
     "inference_target": "bracket_distribute",
     "right_inference": true,
     "inference_points_to_first": false
@@ -726,19 +548,18 @@
   {
     "id": 17,
     "format": "type1_yn",
-    "pool": "D",
-    "expression": "2+5\u00d7(4+1)",
+    "expression": "2+5×(4+1)",
     "mysteryLearner": "compound_add_partial_distribute",
     "studentName": "Liam",
     "traceLines": [
-      "2+5\u00d7(4+1)",
-      "\u2193",
-      "7\u00d7(4+1)",
-      "\u2193",
-      "7\u00d74+1",
-      "\u2193",
+      "2+5×(4+1)",
+      "↓",
+      "7×(4+1)",
+      "↓",
+      "7×4+1",
+      "↓",
       "28+1",
-      "\u2193",
+      "↓",
       "29"
     ],
     "finalAnswer": "29",
@@ -747,24 +568,13 @@
     "foilDescription": null,
     "descriptionShown": "only apply the multiplication to the first term inside the brackets",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      }
+      { "key": "yes", "label": "Yes", "description": "" },
+      { "key": "no", "label": "No", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "bracket_distribute"
-    ],
+    "misconception_types": ["add_before_mult", "bracket_distribute"],
     "inference_target": "bracket_distribute",
     "right_inference": true,
     "inference_points_to_first": false
@@ -772,19 +582,18 @@
   {
     "id": 18,
     "format": "type1_yn",
-    "pool": "D",
-    "expression": "1+4\u00d7(2+3\u00b2)",
+    "expression": "1+4×(2+3²)",
     "mysteryLearner": "compound_add_add_exponent",
     "studentName": "Ella",
     "traceLines": [
-      "1+4\u00d7(2+3\u00b2)",
-      "\u2193",
-      "5\u00d7(2+3\u00b2)",
-      "\u2193",
-      "5\u00d75\u00b2",
-      "\u2193",
-      "5\u00d725",
-      "\u2193",
+      "1+4×(2+3²)",
+      "↓",
+      "5×(2+3²)",
+      "↓",
+      "5×5²",
+      "↓",
+      "5×25",
+      "↓",
       "125"
     ],
     "finalAnswer": "125",
@@ -793,24 +602,13 @@
     "foilDescription": null,
     "descriptionShown": "add before applying the exponent",
     "options": [
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      },
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      }
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "add_before_exponent"
-    ],
+    "misconception_types": ["add_before_mult", "add_before_exponent"],
     "inference_target": "add_before_exponent",
     "right_inference": true,
     "inference_points_to_first": false
@@ -818,21 +616,20 @@
   {
     "id": 19,
     "format": "type1_yn",
-    "pool": "D",
-    "expression": "2+5\u00d7(7-(3-6))",
+    "expression": "2+5×(7-(3-6))",
     "mysteryLearner": "compound_add_sign_error",
     "studentName": "Finn",
     "traceLines": [
-      "2+5\u00d7(7-(3-6))",
-      "\u2193",
-      "7\u00d7(7-(3-6))",
-      "\u2193",
-      "7\u00d7(7-(-3))",
-      "\u2193",
-      "7\u00d7(7-3)",
-      "\u2193",
-      "7\u00d74",
-      "\u2193",
+      "2+5×(7-(3-6))",
+      "↓",
+      "7×(7-(3-6))",
+      "↓",
+      "7×(7-(-3))",
+      "↓",
+      "7×(7-3)",
+      "↓",
+      "7×4",
+      "↓",
       "28"
     ],
     "finalAnswer": "28",
@@ -841,24 +638,13 @@
     "foilDescription": null,
     "descriptionShown": "treat subtracting a negative as regular subtraction",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      }
+      { "key": "yes", "label": "Yes", "description": "" },
+      { "key": "no", "label": "No", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "add_before_mult",
-      "neg_sign_error"
-    ],
+    "misconception_types": ["add_before_mult", "neg_sign_error"],
     "inference_target": "neg_sign_error",
     "right_inference": true,
     "inference_points_to_first": false
@@ -866,17 +652,16 @@
   {
     "id": 20,
     "format": "type1_yn",
-    "pool": "D",
-    "expression": "7-2+3\u00d75",
+    "expression": "7-2+3×5",
     "mysteryLearner": "compound_rtl_add",
     "studentName": "Nora",
     "traceLines": [
-      "7-2+3\u00d75",
-      "\u2193",
-      "7-5\u00d75",
-      "\u2193",
-      "2\u00d75",
-      "\u2193",
+      "7-2+3×5",
+      "↓",
+      "7-5×5",
+      "↓",
+      "2×5",
+      "↓",
       "10"
     ],
     "finalAnswer": "10",
@@ -885,24 +670,13 @@
     "foilDescription": null,
     "descriptionShown": "do addition/subtraction before multiplication/division",
     "options": [
-      {
-        "key": "yes",
-        "label": "Yes",
-        "description": ""
-      },
-      {
-        "key": "no",
-        "label": "No",
-        "description": ""
-      }
+      { "key": "yes", "label": "Yes", "description": "" },
+      { "key": "no", "label": "No", "description": "" }
     ],
     "correctKey": "yes",
     "has_misconception": true,
     "has_1_misconception": false,
-    "misconception_types": [
-      "same_prio_rtl",
-      "add_before_mult"
-    ],
+    "misconception_types": ["same_prio_rtl", "add_before_mult"],
     "inference_target": "add_before_mult",
     "right_inference": true,
     "inference_points_to_first": false
