@@ -25,20 +25,10 @@ const attemptsKey = props.trialType === 'type1' ? 'attempts'
                   : `attempts_${props.trialType}`
 
 // ── Per-participant trial sampling ────────────────────────────────────────────
-// Types 1 & 2: Fixed 10 from Pool A + all 10 from B/C/D = 20 trials, shuffled
-// Types 3 & 4: all 20 shown, shuffled
-const FIXED_POOL_A_IDS = [2, 5]  // Emily (bracket_skip), Riley (bracket_drop)
-
+// All 20 trials shown to every participant, shuffled
 if (!api.persist.isDefined(persistKey)) {
-  if (isAdviceSource) {
-    const combined = [...sourceData].sort(() => Math.random() - 0.5)
-    api.persist[persistKey] = combined.map(t => t.id)
-  } else {
-    const poolA   = sourceData.filter(t => FIXED_POOL_A_IDS.includes(t.id))
-    const poolBCD = sourceData.filter(t => t.pool !== 'A')
-    const combined = [...poolA, ...poolBCD].sort(() => Math.random() - 0.5)
-    api.persist[persistKey] = combined.map(t => t.id)
-  }
+  const combined = [...sourceData].sort(() => Math.random() - 0.5)
+  api.persist[persistKey] = combined.map(t => t.id)
 }
 
 const idToTrial = Object.fromEntries(sourceData.map(t => [t.id, t]))
@@ -48,15 +38,8 @@ let participantTrials = api.persist[persistKey].map(id => idToTrial[id]).filter(
 
 // If all persisted IDs were stale, reset and re-sample
 if (participantTrials.length === 0) {
-  if (isAdviceSource) {
-    const combined = [...sourceData].sort(() => Math.random() - 0.5)
-    api.persist[persistKey] = combined.map(t => t.id)
-  } else {
-    const poolA   = sourceData.filter(t => FIXED_POOL_A_IDS.includes(t.id))
-    const poolBCD = sourceData.filter(t => t.pool !== 'A')
-    const combined = [...poolA, ...poolBCD].sort(() => Math.random() - 0.5)
-    api.persist[persistKey] = combined.map(t => t.id)
-  }
+  const combined = [...sourceData].sort(() => Math.random() - 0.5)
+  api.persist[persistKey] = combined.map(t => t.id)
   participantTrials = api.persist[persistKey].map(id => idToTrial[id])
 }
 
