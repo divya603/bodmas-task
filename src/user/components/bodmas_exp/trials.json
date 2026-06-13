@@ -567,19 +567,19 @@
     "finalAnswer": "29",
     "expertAnswer": "27",
     "correctDescription": "only apply the multiplication to the first term inside the brackets",
-    "foilDescription": null,
-    "descriptionShown": "only apply the multiplication to the first term inside the brackets",
+    "foilDescription": "distribute the number outside the brackets across all terms inside",
+    "descriptionShown": "distribute the number outside the brackets across all terms inside",
     "options": [
       { "key": "yes", "label": "Yes", "description": "" },
       { "key": "no", "label": "No", "description": "" }
     ],
-    "correctKey": "yes",
+    "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": ["add_before_mult", "bracket_distribute"],
     "inference_target": "bracket_distribute",
-    "right_inference": true,
-    "inference_points_to_first": false
+    "right_inference": false,
+    "inference_points_to_first": null
   },
   {
     "id": 18,
