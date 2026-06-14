@@ -601,19 +601,19 @@
     "finalAnswer": "125",
     "expertAnswer": "45",
     "correctDescription": "add before applying the exponent",
-    "foilDescription": null,
-    "descriptionShown": "add before applying the exponent",
+    "foilDescription": "ignore the brackets and compute as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
     "options": [
       { "key": "no", "label": "No", "description": "" },
       { "key": "yes", "label": "Yes", "description": "" }
     ],
-    "correctKey": "yes",
+    "correctKey": "no",
     "has_misconception": true,
     "has_1_misconception": false,
     "misconception_types": ["add_before_mult", "add_before_exponent"],
-    "inference_target": "add_before_exponent",
-    "right_inference": true,
-    "inference_points_to_first": false
+    "inference_target": "bracket_drop",
+    "right_inference": false,
+    "inference_points_to_first": null
   },
   {
     "id": 19,
