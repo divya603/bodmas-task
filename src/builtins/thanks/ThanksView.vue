@@ -118,7 +118,7 @@ onMounted(() => {
               <Button
                 variant="default"
                 as="a"
-                :href="`https://app.prolific.co/submissions/complete?cc=${completionCode}`"
+                href="https://app.prolific.com/submissions/complete?cc=C1H7IZ4V"
               >
                 Submit my work to Prolific
                 <i-fa6-solid-arrow-right />
