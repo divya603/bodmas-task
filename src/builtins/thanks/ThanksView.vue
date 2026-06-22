@@ -97,32 +97,26 @@ onMounted(() => {
         <TitleTwoCol leftFirst leftWidth="w-1/3" :responsiveUI="api.config.responsiveUI">
           <template #title>
             <h1 class="text-3xl font-bold mb-4">
-              <i-fa6-solid-square-check class="inline mr-2" />&nbsp;Thanks, let's begin the payment process!
+              <i-fa6-solid-square-check class="inline mr-2" />&nbsp;Thanks for your contribution to science!
             </h1>
             <p class="text-lg mb-8">
-              Please click the button below to begin the process of payment. This will notify Prolific you successfully
-              completed the task. Your work will be approved within several hours and any performance related bonuses
-              will be assigned at that time. We really appreciate your time.
+              Your data have been successfully recorded and you can close this window or navigate to another page.
             </p>
+            <div class="border border-border rounded-lg px-5 py-3 mb-6 text-base text-muted-foreground">
+              Please allow <strong class="text-foreground">1–5 business days</strong> for your bonus to be distributed through Prolific. You do not need to do anything further.
+            </div>
           </template>
           <template #left>
             <div class="text-left text-muted-foreground">
-              <h3 class="text-lg font-bold mb-2">Payment Process</h3>
+              <h3 class="text-lg font-bold mb-2">Study Complete</h3>
               <p class="text-sm text-muted-foreground">
-                Click the button to complete your submission and receive payment through Prolific.
+                Thank you for participating in our research study. Your contribution helps advance scientific knowledge.
               </p>
             </div>
           </template>
           <template #right>
             <div class="border border-border text-left bg-muted p-6 rounded-lg">
-              <Button
-                variant="default"
-                as="a"
-                href="https://app.prolific.com/submissions/complete?cc=C1H7IZ4V"
-              >
-                Submit my work to Prolific
-                <i-fa6-solid-arrow-right />
-              </Button>
+              <p class="text-foreground">You may now safely close this browser window.</p>
             </div>
           </template>
         </TitleTwoCol>

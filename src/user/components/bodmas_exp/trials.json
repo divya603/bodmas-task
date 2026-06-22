@@ -682,5 +682,73 @@
     "inference_target": "add_before_mult",
     "right_inference": true,
     "inference_points_to_first": false
+  },
+  {
+    "id": 21,
+    "format": "type1_yn",
+    "expression": "4-(2-6)+5",
+    "mysteryLearner": "sign_error",
+    "studentName": "Max",
+    "traceLines": [
+      "4-(2-6)+5",
+      "↓",
+      "4-(-4)+5",
+      "↓",
+      "4-4+5",
+      "↓",
+      "5"
+    ],
+    "finalAnswer": "5",
+    "expertAnswer": "13",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
+    "foilDescription": "work right to left when two operations have the same priority",
+    "descriptionShown": "work right to left when two operations have the same priority",
+    "options": [
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
+    ],
+    "correctKey": "no",
+    "has_misconception": true,
+    "has_1_misconception": true,
+    "misconception_types": ["neg_sign_error"],
+    "inference_target": "same_prio_rtl",
+    "right_inference": false,
+    "inference_points_to_first": null
+  },
+  {
+    "id": 22,
+    "format": "type1_yn",
+    "expression": "9-6-2-(3-8)",
+    "mysteryLearner": "compound_sign_error_rtl",
+    "studentName": "Sophie",
+    "traceLines": [
+      "9-6-2-(3-8)",
+      "↓",
+      "9-(6-2)-(3-8)",
+      "↓",
+      "5-(3-8)",
+      "↓",
+      "5-(-5)",
+      "↓",
+      "5-5",
+      "↓",
+      "0"
+    ],
+    "finalAnswer": "0",
+    "expertAnswer": "6",
+    "correctDescription": "treat subtracting a negative as regular subtraction",
+    "foilDescription": "ignore the brackets and compute as if they weren't there",
+    "descriptionShown": "ignore the brackets and compute as if they weren't there",
+    "options": [
+      { "key": "no", "label": "No", "description": "" },
+      { "key": "yes", "label": "Yes", "description": "" }
+    ],
+    "correctKey": "no",
+    "has_misconception": true,
+    "has_1_misconception": false,
+    "misconception_types": ["neg_sign_error", "same_prio_rtl"],
+    "inference_target": "bracket_drop",
+    "right_inference": false,
+    "inference_points_to_first": null
   }
 ]
