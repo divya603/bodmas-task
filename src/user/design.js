@@ -25,7 +25,7 @@ import InstructionsView from '@/user/components/InstructionsType1View.vue'
 import InstructionsQuizView from '@/builtins/instructionsQuiz/InstructionsQuiz.vue'
 import DebriefView from '@/builtins/debrief/DebriefView.vue'
 import TaskFeedbackSurveyView from '@/builtins/taskFeedbackSurvey/TaskFeedbackSurveyView.vue'
-import ThanksView from '@/builtins/thanks/ThanksView.vue'
+import ThanksView from '@/user/components/ThanksView.vue'
 import WithdrawView from '@/builtins/withdraw/WithdrawView.vue'
 import WindowSizerView from '@/builtins/windowSizer/WindowSizerView.vue'
 
