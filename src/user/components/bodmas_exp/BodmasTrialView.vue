@@ -46,8 +46,8 @@ if (participantTrials.length === 0) {
 const TRIAL_COUNT = participantTrials.length   // 20 for types 1/2, 20 for types 3/4
 
 // ── Build step list ───────────────────────────────────────────────────────────
-// Randomly assign which 10 of 20 trials hide the trace during the rating phase
-const splitFlags = [...Array(10).fill(false), ...Array(10).fill(true)].sort(() => Math.random() - 0.5)
+// Randomly assign which 11 of 22 trials hide the trace during the rating phase
+const splitFlags = [...Array(11).fill(false), ...Array(11).fill(true)].sort(() => Math.random() - 0.5)
 
 const trials = api.steps.append(
   participantTrials.map((t, i) => ({
